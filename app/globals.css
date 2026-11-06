@@ -1,0 +1,170 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+/* Los componentes de shadcn traen clases `dark:`; esta versión es solo modo claro y nunca se activa. */
+@custom-variant dark (&:is(.dark *));
+
+/* ── Paleta de marca (SPEC 4.1) ─────────────────────────────────────────────
+   Teal = positivo / Max · Coral = negativo / Bruno. Nunca invertir.
+   Los tokens `*-text` y `*-soft` existen por contraste AA (ver PLAN_ejecucion.md, sección 3):
+   - teal y coral puros NO alcanzan 4,5:1 como texto pequeño sobre blanco o `mist`.
+   - `*-text`: texto pequeño sobre fondos claros (blanco, mist y sus tintes de hasta 15 %).
+   - `*-soft`: texto pequeño sobre navy / navy-deep. */
+@theme {
+  --color-navy: #1f3a5f;
+  --color-navy-deep: #16304f;
+  --color-teal: #2a9d8f;
+  --color-coral: #e76f51;
+  --color-gold: #e9c46a;
+  --color-slate: #6b7280; /* competidores en gráficos; para texto usar muted-foreground */
+  --color-mist: #eef2f7;
+  --color-ink: #0f1b2d;
+
+  --color-teal-text: #1a6f65;
+  --color-coral-text: #a53c23;
+  --color-teal-soft: #5ccfc0;
+  --color-coral-soft: #ff9e85;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-soft: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* Mapeo de los tokens semánticos de shadcn. */
+@theme inline {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  /* Inter va como respaldo: JetBrains Mono no trae el espacio fino U+202F que separa los miles. */
+  --font-mono: var(--font-jetbrains), var(--font-inter), ui-monospace, monospace;
+  --font-heading: var(--font-sans);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #0f1b2d;
+  --card: #ffffff;
+  --card-foreground: #0f1b2d;
+  --popover: #ffffff;
+  --popover-foreground: #0f1b2d;
+  --primary: #1f3a5f;
+  --primary-foreground: #ffffff;
+  --secondary: #eef2f7;
+  --secondary-foreground: #1f3a5f;
+  --muted: #eef2f7;
+  --muted-foreground: #5b6472; /* SPEC: #6B7280 (4,30:1 sobre mist) → 5,32:1 */
+  /* SPEC: accent = teal. shadcn usa `accent` como fondo de hover/selección con texto pequeño, y
+     blanco sobre teal da 3,32:1. Se deja mist/navy para esos estados; el teal sale de `bg-teal`. */
+  --accent: #eef2f7;
+  --accent-foreground: #1f3a5f;
+  /* SPEC: destructive = coral #E76F51 (blanco encima: 3,09:1) → coral oscuro */
+  --destructive: #a53c23;
+  --border: #dce3ec;
+  --input: #dce3ec;
+  /* SPEC: ring = teal #2A9D8F (2,96:1 sobre mist, bajo el 3:1 de WCAG 1.4.11 para foco) →
+     teal ligeramente más oscuro: 3,57 blanco · 3,18 mist · 3,21 navy · 3,74 navy-deep. */
+  --ring: #289789;
+  --radius: 0.875rem;
+  --chart-1: #1f3a5f;
+  --chart-2: #2a9d8f;
+  --chart-3: #e76f51;
+  --chart-4: #e9c46a;
+  --chart-5: #6b7280;
+}
+
+/* Enlace de texto: el subrayado crece de izquierda a derecha en 200 ms (SPEC 5.3). */
+@utility link-underline {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% 1px;
+  transition: background-size 200ms var(--ease-out-expo);
+  &:hover,
+  &:focus-visible {
+    background-size: 100% 1px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+
+/* Entrada del hero al CARGAR (SPEC 6.1): solo CSS, sin esperar a hidratar, para no retrasar el LCP.
+   El orden lo da `--i` (100 ms de desfase por elemento); el video entra aparte, con escala. */
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+@keyframes hero-media {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}
+@utility hero-rise {
+  animation: hero-rise 600ms var(--ease-out-expo) backwards;
+  animation-delay: calc(var(--i, 0) * 100ms);
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+@utility hero-media {
+  animation: hero-media 700ms var(--ease-out-expo) 400ms backwards;
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    @apply font-sans;
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+  /* Foco visible: anillo teal de 2 px (`--ring`, ≥ 3:1 sobre blanco, mist y navy). */
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}

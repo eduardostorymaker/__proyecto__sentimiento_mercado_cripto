@@ -1,0 +1,1079 @@
+{
+  "generado": "2026-11-06T19:25:48+00:00",
+  "caso": {
+    "nombre": "Hackeo a Binance",
+    "evento_utc": "2026-10-29T20:05:00+00:00",
+    "segunda_ola_utc": "2026-10-29T23:05:00+00:00",
+    "inicio_ventana_utc": "2026-10-15T20:05:00+00:00",
+    "fin_durante_utc": "2026-11-01T20:05:00+00:00"
+  },
+  "kpis": {
+    "documentos_iniciales": 1445,
+    "documentos_curados": 1228,
+    "comentarios_youtube": 607,
+    "titulares_google_news": 621,
+    "videos": 18,
+    "medios": 247,
+    "pct_espanol": 65.1,
+    "dia_pico": "2026-11-03",
+    "desfase_noticias_comentarios_h": 4,
+    "chequeos_calidad": {
+      "OK": 39,
+      "REVISAR": 13
+    },
+    "chequeos_total": 52,
+    "pico_documentos": 271,
+    "documentos_antes": 8,
+    "reaccion_h": {
+      "google_news": 0.7,
+      "youtube": 4.3
+    },
+    "primer_documento_utc": {
+      "google_news": "2026-10-29T20:49:22+00:00",
+      "youtube": "2026-10-30T00:20:29+00:00"
+    },
+    "mediana_palabras_corpus": 13.0,
+    "correlacion_max": 0.34,
+    "cobertura_max_length_128_pct": 99.2,
+    "spam_youtube_pct": 4.5
+  },
+  "volumen_diario": [
+    {
+      "t": "2026-10-16T00:00:00+00:00",
+      "google_news": 1,
+      "youtube": 1
+    },
+    {
+      "t": "2026-10-21T00:00:00+00:00",
+      "google_news": 0,
+      "youtube": 1
+    },
+    {
+      "t": "2026-10-22T00:00:00+00:00",
+      "google_news": 0,
+      "youtube": 2
+    },
+    {
+      "t": "2026-10-26T00:00:00+00:00",
+      "google_news": 0,
+      "youtube": 1
+    },
+    {
+      "t": "2026-10-28T00:00:00+00:00",
+      "google_news": 0,
+      "youtube": 1
+    },
+    {
+      "t": "2026-10-29T00:00:00+00:00",
+      "google_news": 21,
+      "youtube": 0
+    },
+    {
+      "t": "2026-10-30T00:00:00+00:00",
+      "google_news": 74,
+      "youtube": 117
+    },
+    {
+      "t": "2026-10-31T00:00:00+00:00",
+      "google_news": 25,
+      "youtube": 51
+    },
+    {
+      "t": "2026-11-01T00:00:00+00:00",
+      "google_news": 72,
+      "youtube": 46
+    },
+    {
+      "t": "2026-11-02T00:00:00+00:00",
+      "google_news": 82,
+      "youtube": 106
+    },
+    {
+      "t": "2026-11-03T00:00:00+00:00",
+      "google_news": 149,
+      "youtube": 122
+    },
+    {
+      "t": "2026-11-04T00:00:00+00:00",
+      "google_news": 76,
+      "youtube": 191
+    },
+    {
+      "t": "2026-11-05T00:00:00+00:00",
+      "google_news": 77,
+      "youtube": 47
+    },
+    {
+      "t": "2026-11-06T00:00:00+00:00",
+      "google_news": 61,
+      "youtube": 14
+    }
+  ],
+  "volumen_6h": [
+    {
+      "t": "2026-10-28T18:00:00+00:00",
+      "google_news": 0,
+      "youtube": 0
+    },
+    {
+      "t": "2026-10-29T00:00:00+00:00",
+      "google_news": 0,
+      "youtube": 0
+    },
+    {
+      "t": "2026-10-29T06:00:00+00:00",
+      "google_news": 1,
+      "youtube": 0
+    },
+    {
+      "t": "2026-10-29T12:00:00+00:00",
+      "google_news": 0,
+      "youtube": 0
+    },
+    {
+      "t": "2026-10-29T18:00:00+00:00",
+      "google_news": 11,
+      "youtube": 0
+    },
+    {
+      "t": "2026-10-30T00:00:00+00:00",
+      "google_news": 10,
+      "youtube": 42
+    },
+    {
+      "t": "2026-10-30T06:00:00+00:00",
+      "google_news": 18,
+      "youtube": 25
+    },
+    {
+      "t": "2026-10-30T12:00:00+00:00",
+      "google_news": 23,
+      "youtube": 27
+    },
+    {
+      "t": "2026-10-30T18:00:00+00:00",
+      "google_news": 22,
+      "youtube": 23
+    },
+    {
+      "t": "2026-10-31T00:00:00+00:00",
+      "google_news": 5,
+      "youtube": 22
+    },
+    {
+      "t": "2026-10-31T06:00:00+00:00",
+      "google_news": 2,
+      "youtube": 4
+    },
+    {
+      "t": "2026-10-31T12:00:00+00:00",
+      "google_news": 14,
+      "youtube": 15
+    },
+    {
+      "t": "2026-10-31T18:00:00+00:00",
+      "google_news": 4,
+      "youtube": 10
+    },
+    {
+      "t": "2026-11-01T00:00:00+00:00",
+      "google_news": 13,
+      "youtube": 11
+    },
+    {
+      "t": "2026-11-01T06:00:00+00:00",
+      "google_news": 18,
+      "youtube": 1
+    },
+    {
+      "t": "2026-11-01T12:00:00+00:00",
+      "google_news": 22,
+      "youtube": 17
+    },
+    {
+      "t": "2026-11-01T18:00:00+00:00",
+      "google_news": 19,
+      "youtube": 17
+    },
+    {
+      "t": "2026-11-02T00:00:00+00:00",
+      "google_news": 7,
+      "youtube": 29
+    },
+    {
+      "t": "2026-11-02T06:00:00+00:00",
+      "google_news": 26,
+      "youtube": 29
+    },
+    {
+      "t": "2026-11-02T12:00:00+00:00",
+      "google_news": 33,
+      "youtube": 39
+    },
+    {
+      "t": "2026-11-02T18:00:00+00:00",
+      "google_news": 16,
+      "youtube": 9
+    },
+    {
+      "t": "2026-11-03T00:00:00+00:00",
+      "google_news": 30,
+      "youtube": 9
+    },
+    {
+      "t": "2026-11-03T06:00:00+00:00",
+      "google_news": 23,
+      "youtube": 2
+    },
+    {
+      "t": "2026-11-03T12:00:00+00:00",
+      "google_news": 58,
+      "youtube": 32
+    },
+    {
+      "t": "2026-11-03T18:00:00+00:00",
+      "google_news": 38,
+      "youtube": 79
+    },
+    {
+      "t": "2026-11-04T00:00:00+00:00",
+      "google_news": 14,
+      "youtube": 47
+    },
+    {
+      "t": "2026-11-04T06:00:00+00:00",
+      "google_news": 23,
+      "youtube": 51
+    },
+    {
+      "t": "2026-11-04T12:00:00+00:00",
+      "google_news": 25,
+      "youtube": 66
+    },
+    {
+      "t": "2026-11-04T18:00:00+00:00",
+      "google_news": 14,
+      "youtube": 27
+    },
+    {
+      "t": "2026-11-05T00:00:00+00:00",
+      "google_news": 13,
+      "youtube": 20
+    },
+    {
+      "t": "2026-11-05T06:00:00+00:00",
+      "google_news": 13,
+      "youtube": 1
+    },
+    {
+      "t": "2026-11-05T12:00:00+00:00",
+      "google_news": 29,
+      "youtube": 21
+    },
+    {
+      "t": "2026-11-05T18:00:00+00:00",
+      "google_news": 22,
+      "youtube": 5
+    },
+    {
+      "t": "2026-11-06T00:00:00+00:00",
+      "google_news": 9,
+      "youtube": 3
+    },
+    {
+      "t": "2026-11-06T06:00:00+00:00",
+      "google_news": 27,
+      "youtube": 5
+    },
+    {
+      "t": "2026-11-06T12:00:00+00:00",
+      "google_news": 25,
+      "youtube": 6
+    }
+  ],
+  "volumen_base": {
+    "documentos_ventana": 1338,
+    "documentos_6h": 1321,
+    "sin_hora_exacta": 11,
+    "anteriores_a_zoom": 6
+  },
+  "idioma": {
+    "google_news": {
+      "en": 297,
+      "es": 324
+    },
+    "youtube": {
+      "en": 132,
+      "es": 475
+    }
+  },
+  "longitud_mediana_palabras": {
+    "google_news": 13.0,
+    "youtube": 14.0
+  },
+  "top_terminos": {
+    "google_news": {
+      "hack": 163,
+      "millones": 131,
+      "hackeo": 119,
+      "robo": 109,
+      "billion": 95,
+      "crypto": 87,
+      "retiros": 85,
+      "withdrawals": 64,
+      "$6.3": 61,
+      "hackers": 58,
+      "dolares": 57,
+      "criptomonedas": 53
+    },
+    "youtube": {
+      "crypto": 38,
+      "dinero": 35,
+      "bitcoin": 31,
+      "video": 27,
+      "siempre": 21,
+      "gracias": 21,
+      "millones": 20,
+      "cripto": 20,
+      "robo": 20,
+      "seguridad": 16,
+      "exchange": 16,
+      "mejor": 16
+    }
+  },
+  "terminos_distintivos": {
+    "durante": {
+      "90%": 2.1,
+      "record": 2.06,
+      "sufre": 1.92,
+      "cripto": 1.92,
+      "suspende": 1.84,
+      "cubrir": 1.8,
+      "largest": 1.78,
+      "perdidas": 1.78,
+      "history": 1.78,
+      "paso": 1.77,
+      "historia": 1.68,
+      "$6.3": 1.67
+    },
+    "despues": {
+      "trabajo": -1.81,
+      "job": -1.68,
+      "entrevista": -1.61,
+      "hackers": -1.59,
+      "fake": -1.52,
+      "spcx90k": -1.33,
+      "salidas": -1.31,
+      "used": -1.31,
+      "interview": -1.26,
+      "bank": -1.21,
+      "corea": -1.2,
+      "$6.3b": -1.2
+    }
+  },
+  "entidades_pct": {
+    "Google News RSS (titulares)": {
+      "Binance": 96.6,
+      "Bitcoin (BTC)": 7.7,
+      "BNB": 1.1,
+      "Ethereum (ETH)": 1.1,
+      "Solana (SOL)": 0.6,
+      "Stablecoins (USDT/USDC)": 0.5,
+      "Otros exchanges": 0.9,
+      "Corea del Norte / Lazarus": 14.7,
+      "Autoridades (FBI, SEC…)": 7.2
+    },
+    "YouTube (comentarios)": {
+      "Binance": 11.3,
+      "Bitcoin (BTC)": 7.0,
+      "BNB": 0.4,
+      "Ethereum (ETH)": 1.1,
+      "Solana (SOL)": 0.7,
+      "Stablecoins (USDT/USDC)": 1.3,
+      "Otros exchanges": 0.9,
+      "Corea del Norte / Lazarus": 4.9,
+      "Autoridades (FBI, SEC…)": 1.1
+    }
+  },
+  "aspectos_pct": {
+    "Google · durante": {
+      "Seguridad / ataque": 89.6,
+      "Fondos y retiros": 50.8,
+      "Confianza y garantías": 7.7,
+      "Mercado y precio": 15.8,
+      "Responsables y castigo": 13.1,
+      "Regulación": 0.0
+    },
+    "Google · despues": {
+      "Seguridad / ataque": 82.8,
+      "Fondos y retiros": 32.7,
+      "Confianza y garantías": 4.9,
+      "Mercado y precio": 9.7,
+      "Responsables y castigo": 17.4,
+      "Regulación": 2.2
+    },
+    "YouTube · durante": {
+      "Seguridad / ataque": 24.6,
+      "Fondos y retiros": 8.5,
+      "Confianza y garantías": 7.5,
+      "Mercado y precio": 10.1,
+      "Responsables y castigo": 8.5,
+      "Regulación": 1.0
+    },
+    "YouTube · despues": {
+      "Seguridad / ataque": 20.6,
+      "Fondos y retiros": 6.5,
+      "Confianza y garantías": 6.5,
+      "Mercado y precio": 6.5,
+      "Responsables y castigo": 7.9,
+      "Regulación": 0.8
+    }
+  },
+  "top_medios": {
+    "Yahoo Finance": 29,
+    "TradingView": 24,
+    "DiarioBitcoin": 23,
+    "CoinDesk": 21,
+    "Binance": 18,
+    "Reuters": 11,
+    "Infobae": 11,
+    "CNBC": 10,
+    "El Economista": 10,
+    "BBC": 8
+  },
+  "sentimiento_lexico_pct": {
+    "google_news": {
+      "negativo": 69.2,
+      "neutral": 20.1,
+      "positivo": 10.6
+    },
+    "youtube": {
+      "negativo": 25.7,
+      "neutral": 59.1,
+      "positivo": 15.2
+    }
+  },
+  "pulse_score_diario_preliminar": [
+    {
+      "fecha": "2026-10-29",
+      "fuente": "google_news",
+      "score": -85.7,
+      "n": 21
+    },
+    {
+      "fecha": "2026-10-30",
+      "fuente": "google_news",
+      "score": -70.3,
+      "n": 74
+    },
+    {
+      "fecha": "2026-10-30",
+      "fuente": "youtube",
+      "score": -10.3,
+      "n": 117
+    },
+    {
+      "fecha": "2026-10-31",
+      "fuente": "google_news",
+      "score": -60.0,
+      "n": 25
+    },
+    {
+      "fecha": "2026-10-31",
+      "fuente": "youtube",
+      "score": -13.7,
+      "n": 51
+    },
+    {
+      "fecha": "2026-11-01",
+      "fuente": "google_news",
+      "score": -8.3,
+      "n": 72
+    },
+    {
+      "fecha": "2026-11-01",
+      "fuente": "youtube",
+      "score": -10.9,
+      "n": 46
+    },
+    {
+      "fecha": "2026-11-02",
+      "fuente": "google_news",
+      "score": -30.5,
+      "n": 82
+    },
+    {
+      "fecha": "2026-11-02",
+      "fuente": "youtube",
+      "score": -17.0,
+      "n": 106
+    },
+    {
+      "fecha": "2026-11-03",
+      "fuente": "google_news",
+      "score": -69.8,
+      "n": 149
+    },
+    {
+      "fecha": "2026-11-03",
+      "fuente": "youtube",
+      "score": 1.6,
+      "n": 122
+    },
+    {
+      "fecha": "2026-11-04",
+      "fuente": "google_news",
+      "score": -73.7,
+      "n": 76
+    },
+    {
+      "fecha": "2026-11-04",
+      "fuente": "youtube",
+      "score": -6.3,
+      "n": 191
+    },
+    {
+      "fecha": "2026-11-05",
+      "fuente": "google_news",
+      "score": -72.7,
+      "n": 77
+    },
+    {
+      "fecha": "2026-11-05",
+      "fuente": "youtube",
+      "score": -12.8,
+      "n": 47
+    },
+    {
+      "fecha": "2026-11-06",
+      "fuente": "google_news",
+      "score": -65.6,
+      "n": 61
+    },
+    {
+      "fecha": "2026-11-06",
+      "fuente": "youtube",
+      "score": 7.1,
+      "n": 14
+    }
+  ],
+  "titulares_ejemplo": [
+    {
+      "periodo": "durante",
+      "fecha": "2026-10-29 07:00",
+      "medio": "The Guardian",
+      "idioma": "en",
+      "titular": "North Korea is likely culprit behind $6.3bn crypto hack, ‘largest heist in history’",
+      "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPdWN2c3ZkZWFYdzZaTS0tZTFQTDJVQVZTazhTakl5LXRZalQ5WjRUVkZXWGxXR2VCcEJGV3E4N3JkNjlPOTRBZUJKMHY3TC1tRElPTHItaEprTDFHMDlOYlcwblB0cVlCZkJFSVoxLW9aVWZRclRQRFVCWkpBRnA3RHRFRQ?oc=5",
+      "sentimiento_lexico": "negativo"
+    },
+    {
+      "periodo": "durante",
+      "fecha": "2026-10-29 07:00",
+      "medio": "Bloomberg.com",
+      "idioma": "en",
+      "titular": "Bitcoin Stolen in Binance Hack Is Likely ‘Gone,’ Ballet Says",
+      "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPemhaVE1WaXl3eUFwc3RWT0d1S1pLYzBVRXpzS1UxaTdUUk5ReGxBR1VwYkliQUV5Um9rVmhZZm96Uk4tanhNSi1WaDRyY1FWSnEtaW1jdURCaWdxaS1vZmZEX1p3ZnV1c3lLajhXd3FEeUZvdGMzcjMxSUFkTmpOYW8ydGZzY2xDSTJab3BSZFROd2VMZE9qajF3alVZdkx3WTM3TTNLR0M1djVX?oc=5",
+      "sentimiento_lexico": "negativo"
+    },
+    {
+      "periodo": "durante",
+      "fecha": "2026-10-30 01:49",
+      "medio": "Bloomberg Línea",
+      "idioma": "es",
+      "titular": "Binance suspende depósitos y retiros tras presunto hackeo que deja más de US$2.500 millones congelados",
+      "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxQZHR2UUNjZFpoNlY5VFM4eXdBT3lTV3ctdFJhdXFPcC1nM1JKSjVzMEtFaFYxZ19ldmNUQzJnY2JsamJqOHA2YTNjWGFNaVhoZlQyZUFmeUR3TmUzMWkwWjUyVEZOcjRpcVp1eDl4Y1dfTmQ0eVdnVFB3ZThTZ25yOEtpNUJscFZVbjc4aFZ4X3hBQkpWU2JWNkdOcEt0TWxXcmRuYkNmdXJKdHpJQkdlcGFUMTNxTFhPNFFEMHFGS3pWZW9GTER2N1M0SF8zM3dxVGNHTlNtRE82SlHSAe8BQVVfeXFMT2plUTY3LWRxYVpmSlBMS0NmS1JYd0Qxc0xuM1NaMmFnVkNLYzNValZCUGMxM1g3NWlWaXc0YlV1Zi1OazNKckJoNXJmS3hWTVJ2QU4xMzV1aWtYY01sR0JWa2syMFUzRnFMVmVyZzBrVUoxNXQtYWxsXzZybFVXRjJCTi1oOHRaazJabHdoeVlWbGZPOVJzam1QVWxGRHlMQ3NvSjRFRmZyVE1TWC04Mzg0amcyN01sYWx1TXItbXl0OUltN216WFJJd2l4R3d4dXMyWUxEdV8ydnV6SzJxdmYwQXRPNEpNRENyYW9OaGs?oc=5",
+      "sentimiento_lexico": "negativo"
+    },
+    {
+      "periodo": "durante",
+      "fecha": "2026-10-30 03:35",
+      "medio": "Infobae",
+      "idioma": "es",
+      "titular": "Binance investiga un hackeo que podría superar los USD 6.000 millones: retiros suspendidos y fuerte caída del bitcoin",
+      "url": "https://news.google.com/rss/articles/CBMigAJBVV95cUxQQUVfV28zRjhGdDRSSmJJdEpzdmg1dk5yRl9oTHdPWTBxb0t4Y0JZeUUyRnJUNGZ6OENYUTBkYllVdVkwREVJam1NQ1FRM2Rtc0Fkbjg5T3RjalhGZ2diTEpNSGFxYjRic3RvbUtMN0VYNVlRRmtyc1dXTU9XYWxpOWRrMWJ1ZXF3M3AxcnpzYk5kX25DS09TR1NyTFVLc1pMUDFJSVdZREFhems2aGU5NThzZTIyVGV3NzJlZl9Bd1VnX0cwcXlxSmt2VzhkNmtBNUNOS25handOQVB2eHZHbmU0NzJFVm9odGREei1rSXJ6Y1JHYlk2OWVTREZQUXFV0gGbAkFVX3lxTE1tb2NPVjJNNzVBV1RDaG9IMGpsT0F6UjVMVlhZRGZ6UjA0Q1BNUjE1SmR5UDZtd1d1U19EdXp4eHowRW9oWDZxNDQ2dVRna19RaGpkVE1ta1k5V3RRN0pFSS1HZV9DdnJmd1NNZVgwRjdhU2dfU3c1amlWUWREemhhVjNfc2lON0JJZy1sUXZNQVczWGRKeGdhUUdDRjFRY212VHRGYU1wYktscUlxdUJPR2dncTVnNHkxLXdwMTVEMmlLUkEzb3Flb2ludnNwMTlEMEd1NHI5Y3pPbHdJUzRLdTBibG4zYndYZUlvZm1DTzZEeXprb0NhaDY3S05kdkY5dXI4Mk5hTjNocE9kUG94RDFlT1lqaHlCSDg?oc=5",
+      "sentimiento_lexico": "negativo"
+    },
+    {
+      "periodo": "despues",
+      "fecha": "2026-11-02 00:11",
+      "medio": "CNBC",
+      "idioma": "en",
+      "titular": "Binance sees $3.64 billion in net outflows as withdrawals resume after massive hack",
+      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE03cEhlYUJ1U19kNUJxVjlROEFjLVRVMWFTZk9RSm5HdmJjbGNnaEtGY1ppVUR2UkpEUzBlVHljSkxHYjFyY3ViMTQxc200Qm13SHNhNmJXbDVzZERndjV1WlpKVDgxVEdqZlVDMTR4WDEwRnPSAXhBVV95cUxPZ1kxZ3VBbUZOR1BGRWd6ZUdzV0xNX0cyNWMwRDlqaGRyaWxneWR0TUJldTB4R2x6Y0VGSUE1dXFIcFFpS25kUnFibnRLSGNubWljc0pBMzRFUS1reXZ1bDlvRXE4b1VRbGtQOFZmWU05bmEyeU1pT1o?oc=5",
+      "sentimiento_lexico": "negativo"
+    },
+    {
+      "periodo": "despues",
+      "fecha": "2026-11-02 07:15",
+      "medio": "Yahoo Finance",
+      "idioma": "en",
+      "titular": "Bitcoin slips after steep October losses, as Binance hack keeps lid on sentiment",
+      "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxOSFhaekVKT3V1SHZpbW4xZW42MHVaQzhpNUFIZkVSb2R5V0VDeUlhRVFZS3Z3aVE2cTA0aWxJaHF5MVRXbHJLTm1WNmpKUkVzT3hHam5Jdktfd0s4Rkg3Z2pPUUNKeDVwTUZjWjV4LXdVaVBwTm9SNjJyTDl3WW9WZDVWWnpReGhUb0UxNUtSNTYyeUNHaUdkdy1paFhWY1ZERFE?oc=5",
+      "sentimiento_lexico": "negativo"
+    },
+    {
+      "periodo": "despues",
+      "fecha": "2026-11-02 10:22",
+      "medio": "DiarioBitcoin",
+      "idioma": "es",
+      "titular": "Binance amplía sus retiros en fiat con cinco monedas para usuarios de tres regiones",
+      "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxNLXA2ZFRnUWNSOWdxTlJPazd6WkhXZUxyVUFzS2JDZk80YW9ac05FTzBoZjhNLVhYTEdaWjVmb0VmSXVleEYwRnUzTGR3QWl4Q2laM09Ra3JhTFZmM3IyUnNadVpFNE1DRmxxUmdRR293d0lSRWZ4c1R2Q3RMZzY1aXh4cnFyX2hhNlFhbndNS1BwVnZ5YUUwcDZDenRDd0UyS3FSNzNuelhUcWtZU2I5YnR4aUtmT1IwMVdGYkhsZkUxRWFlSDBoalZ6OC1RTVFsUW1saUhXOA?oc=5",
+      "sentimiento_lexico": "neutral"
+    },
+    {
+      "periodo": "despues",
+      "fecha": "2026-11-02 11:30",
+      "medio": "CoinDesk",
+      "idioma": "es",
+      "titular": "Bitcoin se mantiene cerca de $78,000 mientras Binance reabre retiradas: Mercados Cripto Hoy",
+      "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxQeGJMZ0JvWmdwZVgxUlp4ZTVBM1FZX3o2bnlHalVYVmxlWjRVeUtyOEx4N0hnS29iNF80MThyWkVGNmVkbk5BeWc4UjBXc2s3YjlxNHVqU1BJVDJ1MzhVcFhPbHpQLXQxUFc2am5tUGpXVVZ5UTNxbnZoQmtxdDlzVmJLR256M2pweDdKT2dxUXRfZmg4MjR3b0dVNl82SWdXMTMzUUp3QXotc25EMjdaT3VYSUVYczU1WGZlc1ktdWt2dFQ5VUlDQlllbDBqNWkzZ3dCdEh3?oc=5",
+      "sentimiento_lexico": "positivo"
+    }
+  ],
+  "calidad": [
+    {
+      "Dimensión": "Exactitud",
+      "Chequeo": "Idioma heurístico vs. idioma de la edición (RSS)",
+      "Fuente": "Google News",
+      "Valor": "96.7 %",
+      "Umbral": "≥ 95 %",
+      "Estado": "OK"
+    },
+    {
+      "Dimensión": "Exactitud",
+      "Chequeo": "Acuerdo heurístico vs. langdetect (YouTube)",
+      "Fuente": "YouTube",
+      "Valor": "98.5 %",
+      "Umbral": "≥ 95 %",
+      "Estado": "OK"
+    },
+    {
+      "Dimensión": "Exactitud",
+      "Chequeo": "Titulares con fecha solo a nivel de día (07:00 UTC)",
+      "Fuente": "Google News",
+      "Valor": "1.7 %",
+      "Umbral": "≤ 2 %",
+      "Estado": "OK"
+    },
+    {
+      "Dimensión": "Exactitud",
+      "Chequeo": "Medio extraído con URL o texto anómalo",
+      "Fuente": "Google News",
+      "Valor": "2.2 %",
+      "Umbral": "≤ 1 %",
+      "Estado": "REVISAR"
+    },
+    {
+      "Dimensión": "Completitud",
+      "Chequeo": "Nulos o vacíos en `doc_id`",
+      "Fuente": "Ambas",
+      "Valor": "0.0 %",
+      "Umbral": "0 %",
+      "Estado": "OK"
+    },
+    {
+      "Dimensión": "Completitud",
+      "Chequeo": "Nulos o vacíos en `timestamp`",
+      "Fuente": "Ambas",
+      "Valor": "0.0 %",
+      "Umbral": "0 %",
+      "Estado": "OK"
+    },
+    {
+      "Dimensión": "Completitud",
+      "Chequeo": "Nulos o vacíos en `text_raw`",
+      "Fuente": "Ambas",
+      "Valor": "0.1 %",
+      "Umbral": "0 %",
+      "Estado": "REVISAR"
+    },
+    {
+      "Dimensión": "Completitud",
+      "Chequeo": "Nulos o vacíos en `url`",
+      "Fuente": "Ambas",
+      "Valor": "0.0 %",
+      "Umbral": "0 %",
+      "Estado": "OK"
+    },
+    {
+      "Dimensión": "Completitud",
+      "Chequeo": "Titulares sin medio identificable",
+      "Fuente": "Google News",
+      "Valor": "0.0 %",
+      "Umbral": "≤ 2 %",
+      "Estado": "OK"
+    },
+    {
+      "Dimensión": "Completitud",
+      "Chequeo": "Videos truncados en 100 comentarios (sin paginar)",
+      "Fuente": "YouTube",
+      "Valor": "3 de 18 videos",
+      "Umbral": "0",
+      "Estado": "REVISAR"
+    },
+    {
+      "Dimensión": "Completitud",
+      "Chequeo": "Campos de autor recolectados",
+      "Fuente": "YouTube",
+      "Valor": "No (por diseño)",
+      "Umbral": "No requerido",
+      "Estado": "OK"
+    },
+    {
+      "Dimensión": "Completitud",
+      "Chequeo": "Cuerpo de la noticia disponible",
+      "Fuente": "Google News",
+      "Valor": "Solo titular",
+      "Umbral": "Titular suficiente para el MVP",
+      "Estado": "OK"
+    },
+    {
+      "Dimensión": "Consistencia",
+      "Chequeo": "Formato de doc_id (Ug… / hash de 16 hex)",
+      "Fuente": "Ambas",
+      "Valor": "100.0 % / 100.0 %",
+      "Umbral": "100 %",
+      "Estado": "OK"
+    },
+    {
+      "Dimensión": "Consistencia",
+      "Chequeo": "Zona horaria única (UTC)",
+      "Fuente": "Ambas",
+      "Valor": "UTC",
+      "Umbral": "UTC",
+      "Estado": "OK"
+    },
+    {
+      "Dimensión": "Consistencia",
+      "Chequeo": "Valores de `source` dentro del dominio",
+      "Fuente": "Ambas",
+      "Valor": "100.0 %",
+      "Umbral": "100 %",
+      "Estado": "OK"
+    },
+    {
+      "Dimensión": "Consistencia",
+      "Chequeo": "Valores de `doc_type` dentro del dominio",
+      "Fuente": "Ambas",
+      "Valor": "100.0 %",
+      "Umbral": "100 %",
+      "Estado": "OK"
+    },
+    {
+      "Dimensión": "Consistencia",
+      "Chequeo": "Valores de `period` dentro del dominio",
+      "Fuente": "Ambas",
+      "Valor": "100.0 %",
+      "Umbral": "100 %",
+      "Estado": "OK"
+    },
+    {
+      "Dimensión": "Consistencia",
+      "Chequeo": "Titular en idioma distinto al de la edición",
+      "Fuente": "Google News",
+      "Valor": "0.0 %",
+      "Umbral": "≤ 3 %",
+      "Estado": "OK"
+    },
+    {
+      "Dimensión": "Integridad",
+      "Chequeo": "doc_id únicos en el corpus",
+      "Fuente": "Ambas",
+      "Valor": "0 duplicados",
+      "Umbral": "0",
+      "Estado": "OK"
+    },
+    {
+      "Dimensión": "Integridad",
+      "Chequeo": "Comentarios con video de origen identificable",
+      "Fuente": "YouTube",
+      "Valor": "100.0 %",
+      "Umbral": "100 %",
+      "Estado": "OK"
+    },
+    {
+      "Dimensión": "Integridad",
+      "Chequeo": "Enlaces de noticias con formato de Google News",
+      "Fuente": "Google News",
+      "Valor": "100.0 %",
+      "Umbral": "100 %",
+      "Estado": "OK"
+    },
+    {
+      "Dimensión": "Razonabilidad",
+      "Chequeo": "Fechas en el futuro",
+      "Fuente": "Ambas",
+      "Valor": 0,
+      "Umbral": "0",
+      "Estado": "OK"
+    },
+    {
+      "Dimensión": "Razonabilidad",
+      "Chequeo": "Documentos anteriores a la ventana del caso (−14 d)",
+      "Fuente": "YouTube",
+      "Valor": "13.3 %",
+      "Umbral": "≤ 5 %",
+      "Estado": "REVISAR"
+    },
+    {
+      "Dimensión": "Razonabilidad",
+      "Chequeo": "Documentos anteriores a la ventana del caso (−14 d)",
+      "Fuente": "Google News",
+      "Valor": "0.0 %",
+      "Umbral": "≤ 5 %",
+      "Estado": "OK"
+    },
+    {
+      "Dimensión": "Razonabilidad",
+      "Chequeo": "Comentarios > 1 000 caracteres",
+      "Fuente": "YouTube",
+      "Valor": 4,
+      "Umbral": "≤ 1 %",
+      "Estado": "OK"
+    },
+    {
+      "Dimensión": "Razonabilidad",
+      "Chequeo": "Engagement atípico (> Q3 + 3·IQR = 4)",
+      "Fuente": "YouTube",
+      "Valor": "8.4 %",
+      "Umbral": "≤ 5 %",
+      "Estado": "REVISAR"
+    },
+    {
+      "Dimensión": "Oportunidad",
+      "Chequeo": "Horas hasta el primer documento tras el evento",
+      "Fuente": "Google News",
+      "Valor": "0.7 h",
+      "Umbral": "≤ 6 h",
+      "Estado": "OK"
+    },
+    {
+      "Dimensión": "Oportunidad",
+      "Chequeo": "Documentos en las primeras 24 h",
+      "Fuente": "Google News",
+      "Valor": 74,
+      "Umbral": "≥ 30",
+      "Estado": "OK"
+    },
+    {
+      "Dimensión": "Oportunidad",
+      "Chequeo": "Horas hasta el primer documento tras el evento",
+      "Fuente": "YouTube",
+      "Valor": "4.3 h",
+      "Umbral": "≤ 6 h",
+      "Estado": "OK"
+    },
+    {
+      "Dimensión": "Oportunidad",
+      "Chequeo": "Documentos en las primeras 24 h",
+      "Fuente": "YouTube",
+      "Valor": 101,
+      "Umbral": "≥ 30",
+      "Estado": "OK"
+    },
+    {
+      "Dimensión": "Oportunidad",
+      "Chequeo": "Antigüedad de la captura al analizar",
+      "Fuente": "Ambas",
+      "Valor": "0.1 días",
+      "Umbral": "≤ 7 días",
+      "Estado": "OK"
+    },
+    {
+      "Dimensión": "Unicidad",
+      "Chequeo": "Duplicados exactos (texto normalizado)",
+      "Fuente": "YouTube",
+      "Valor": "15 (1.9 %)",
+      "Umbral": "≤ 1 %",
+      "Estado": "REVISAR"
+    },
+    {
+      "Dimensión": "Unicidad",
+      "Chequeo": "Duplicados exactos (texto normalizado)",
+      "Fuente": "Google News",
+      "Valor": "17 (2.7 %)",
+      "Umbral": "≤ 1 %",
+      "Estado": "REVISAR"
+    },
+    {
+      "Dimensión": "Unicidad",
+      "Chequeo": "Casi duplicados (Jaccard 3-gramas ≥ 0,6)",
+      "Fuente": "YouTube",
+      "Valor": "0 (0.0 %)",
+      "Umbral": "≤ 3 %",
+      "Estado": "OK"
+    },
+    {
+      "Dimensión": "Unicidad",
+      "Chequeo": "Casi duplicados (Jaccard 3-gramas ≥ 0,6)",
+      "Fuente": "Google News RSS",
+      "Valor": "10 (1.6 %)",
+      "Umbral": "≤ 3 %",
+      "Estado": "OK"
+    },
+    {
+      "Dimensión": "Unicidad",
+      "Chequeo": "Comentarios de spam o promoción (p. ej. 'SPCX90K')",
+      "Fuente": "YouTube",
+      "Valor": "36 (4.5 %)",
+      "Umbral": "≤ 2 %",
+      "Estado": "REVISAR"
+    },
+    {
+      "Dimensión": "Validez",
+      "Chequeo": "Textos con menos de 3 palabras",
+      "Fuente": "YouTube",
+      "Valor": "6.6 %",
+      "Umbral": "≤ 5 %",
+      "Estado": "REVISAR"
+    },
+    {
+      "Dimensión": "Validez",
+      "Chequeo": "Textos con menos de 3 palabras",
+      "Fuente": "Google News",
+      "Valor": "0.0 %",
+      "Umbral": "≤ 5 %",
+      "Estado": "OK"
+    },
+    {
+      "Dimensión": "Validez",
+      "Chequeo": "Textos fuera de español/inglés",
+      "Fuente": "Ambas",
+      "Valor": "3.0 %",
+      "Umbral": "≤ 5 %",
+      "Estado": "OK"
+    },
+    {
+      "Dimensión": "Validez",
+      "Chequeo": "Problemas de codificación (mojibake)",
+      "Fuente": "Ambas",
+      "Valor": "0.0 %",
+      "Umbral": "0 %",
+      "Estado": "OK"
+    },
+    {
+      "Dimensión": "Validez",
+      "Chequeo": "Restos de HTML tras la limpieza",
+      "Fuente": "Ambas",
+      "Valor": "0.0 %",
+      "Umbral": "0 %",
+      "Estado": "OK"
+    },
+    {
+      "Dimensión": "Validez",
+      "Chequeo": "Etiqueta de sentimiento de referencia",
+      "Fuente": "Ambas",
+      "Valor": "No existe aún",
+      "Umbral": "Muestra anotada ≥ 3 000",
+      "Estado": "REVISAR"
+    },
+    {
+      "Dimensión": "Sesgo",
+      "Chequeo": "Balance entre fuentes (participación de la mayor)",
+      "Fuente": "Ambas",
+      "Valor": "52.3 %",
+      "Umbral": "≤ 65 %",
+      "Estado": "OK"
+    },
+    {
+      "Dimensión": "Sesgo",
+      "Chequeo": "Proporción de inglés en comentarios",
+      "Fuente": "YouTube",
+      "Valor": "23.9 %",
+      "Umbral": "≥ 25 %",
+      "Estado": "REVISAR"
+    },
+    {
+      "Dimensión": "Sesgo",
+      "Chequeo": "Concentración por video (mayor video / HHI)",
+      "Fuente": "YouTube",
+      "Valor": "14.3 % / 0.10",
+      "Umbral": "≤ 25 % / ≤ 0,15",
+      "Estado": "OK"
+    },
+    {
+      "Dimensión": "Sesgo",
+      "Chequeo": "Participación de los 10 medios principales",
+      "Fuente": "Google News",
+      "Valor": "26.2 %",
+      "Umbral": "≤ 50 %",
+      "Estado": "OK"
+    },
+    {
+      "Dimensión": "Sesgo",
+      "Chequeo": "Documentos en el periodo 'antes' (línea base)",
+      "Fuente": "Ambas",
+      "Valor": 8,
+      "Umbral": "≥ 100",
+      "Estado": "REVISAR"
+    },
+    {
+      "Dimensión": "Calidad lingüística",
+      "Chequeo": "Textos con emojis o risa (posible ironía)",
+      "Fuente": "YouTube",
+      "Valor": "19.2 %",
+      "Umbral": "≤ 15 %",
+      "Estado": "REVISAR"
+    },
+    {
+      "Dimensión": "Calidad lingüística",
+      "Chequeo": "Mezcla de idiomas en un mismo texto",
+      "Fuente": "YouTube",
+      "Valor": "0.9 %",
+      "Umbral": "≤ 5 %",
+      "Estado": "OK"
+    },
+    {
+      "Dimensión": "Calidad lingüística",
+      "Chequeo": "Textos con emojis o risa (posible ironía)",
+      "Fuente": "Google News",
+      "Valor": "0.0 %",
+      "Umbral": "≤ 15 %",
+      "Estado": "OK"
+    },
+    {
+      "Dimensión": "Calidad lingüística",
+      "Chequeo": "Mezcla de idiomas en un mismo texto",
+      "Fuente": "Google News",
+      "Valor": "0.0 %",
+      "Umbral": "≤ 5 %",
+      "Estado": "OK"
+    },
+    {
+      "Dimensión": "Calidad lingüística",
+      "Chequeo": "Tokens con alargamientos o mezcla letra-número",
+      "Fuente": "YouTube",
+      "Valor": "1.0 %",
+      "Umbral": "≤ 3 %",
+      "Estado": "OK"
+    }
+  ],
+  "embudo_curado": [
+    {
+      "Paso": "Corpus inicial",
+      "Documentos restantes": 1445
+    },
+    {
+      "Paso": "R1 Fuera de la ventana del caso",
+      "Documentos restantes": 1338
+    },
+    {
+      "Paso": "R2 Spam / promoción",
+      "Documentos restantes": 1303
+    },
+    {
+      "Paso": "R3 Duplicado exacto",
+      "Documentos restantes": 1277
+    },
+    {
+      "Paso": "R4 Menos de 3 palabras",
+      "Documentos restantes": 1238
+    },
+    {
+      "Paso": "R5 Idioma distinto de es/en",
+      "Documentos restantes": 1228
+    }
+  ],
+  "nota": "Sentimiento preliminar por léxico; no representa el desempeño del modelo final."
+}

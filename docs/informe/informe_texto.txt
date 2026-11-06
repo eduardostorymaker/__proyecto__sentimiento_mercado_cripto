@@ -1,0 +1,1064 @@
+[NOMBRE DE LA UNIVERSIDAD]
+[Facultad / Escuela profesional]
+Curso: [Nombre del curso]  ·  Sección: [código]
+Docente: [Nombre completo del docente]
+Análisis de sentimiento del mercado de criptomonedas mediante Procesamiento del Lenguaje Natural
+Caso: Pulse Analytics S.A.C.
+Informe final – Comprensión del negocio y de los datos (CRISP-DM)
+Integrantes:
+[Apellidos y nombres – código]
+[Apellidos y nombres – código]
+[Apellidos y nombres – código]
+[Apellidos y nombres – código]
+Lima, Perú – noviembre de 2026
+Índice
+Índice de figuras
+Figura 1. Volumen de criptoactivos recibido por país, julio de 2024 a junio de 2025
+Figura 2. Embudo de mercado en Perú: del usuario digital al inversionista cripto
+Figura 3. Balance PESTEL: intensidad de oportunidades y amenazas por factor
+Figura 4. Intensidad de las cinco fuerzas competitivas
+Figura 5. Dimensionamiento del mercado (TAM, SAM y SOM)
+Figura 6. Mapa de posicionamiento competitivo
+Figura 7. Proyección de MRR y clientes de pago, 2027-2029
+Figura 8. Organigrama de Pulse Analytics S.A.C.
+Figura 9. Flujograma del proceso de generación del índice Pulse Score
+Figura 10. Proceso de adquisición y conversión de clientes
+Figura 11. Matriz de probabilidad e impacto de los riesgos del proyecto
+Figura 12. Flujo de caja acumulado del plan de negocio
+Figura 13. Ciclo CRISP-DM aplicado al proyecto de Pulse Analytics
+Figura 14. Diagrama de Gantt del proyecto (16 semanas)
+Figura 15. Volumen diario y por bloques de 6 horas de titulares y comentarios
+Figura 16. Correlación cruzada entre el volumen horario de noticias y de comentarios
+Figura 17. Distribución de idiomas por fuente y periodo
+Figura 18. Distribución del número de palabras por documento
+Figura 19. Términos y bigramas más frecuentes por fuente
+Figura 20. Términos distintivos de la crisis aguda frente a la etapa posterior
+Figura 21. Entidades mencionadas y aspectos por fuente y periodo
+Figura 22. Medios con más titulares y comentarios por video
+Figura 23. Sentimiento léxico por fuente y periodo, y Pulse Score diario preliminar
+Figura 24. Resultado de la verificación de calidad por dimensión
+Figura 25. Del corpus inicial al corpus curado
+Figura 26. Arquitectura técnica del prototipo (MVP)
+Índice de tablas
+Tabla 1. Ficha sectorial de Pulse Analytics
+Tabla 2. Matriz PESTEL de Pulse Analytics
+Tabla 3. Análisis de las cinco fuerzas de Porter
+Tabla 4. Matriz FODA de Pulse Analytics
+Tabla 5. Matriz FODA de Pulse Analytics (continuación)
+Tabla 6. Segmentos de clientes
+Tabla 7. Familia de productos
+Tabla 8. Planes comerciales de Pulse Analytics
+Tabla 9. Comparación con los principales competidores
+Tabla 10. Metas comerciales y operativas del primer año (2027)
+Tabla 11. Proyección de ingresos recurrentes al cierre de 2027
+Tabla 12. Datos generales de la empresa
+Tabla 13. Puestos y funciones
+Tabla 14. Principales proveedores
+Tabla 15. DAP del ciclo de procesamiento de un lote de 500 textos
+Tabla 16. KPI de los procesos clave
+Tabla 17. Relación entre productos de negocio y capacidades de NLP
+Tabla 18. Información compilada para el entendimiento del negocio
+Tabla 19. Criterios de éxito del negocio
+Tabla 20. Inventario de recursos del proyecto
+Tabla 21. Requisitos funcionales
+Tabla 22. Requisitos no funcionales
+Tabla 23. Registro de riesgos y contingencias
+Tabla 24. Glosario de terminología del dominio
+Tabla 25. Presupuesto del MVP (16 semanas)
+Tabla 26. Flujo de caja proyectado del negocio, 2027-2029 (US$)
+Tabla 27. Indicadores de evaluación económica
+Tabla 28. Tareas NLP del proyecto
+Tabla 29. Criterios de éxito del modelo NLP
+Tabla 30. Alineamiento de objetivos de negocio y objetivos NLP
+Tabla 31. Plan de proyecto por fases
+Tabla 32. Hitos y criterios de aceptación
+Tabla 33. Matriz RACI del proyecto
+Tabla 34. Herramientas y técnicas por actividad
+Tabla 35. Orígenes de datos del corpus
+Tabla 36. Informe de recopilación de datos
+Tabla 37. Características del corpus por fuente
+Tabla 38. Rasgos lingüísticos por fuente (% de documentos)
+Tabla 39. Variables del corpus
+Tabla 40. Hallazgos del análisis exploratorio y su implicancia
+Tabla 41. Resumen de la verificación de calidad por dimensión
+Tabla 42. Reglas de curado y documentos restantes
+Tabla 43. Lienzo del modelo de negocio (Business Model Canvas) de Pulse Analytics
+Tabla 44. Diccionario de datos del corpus
+Tabla 45. Resultado completo de la verificación de calidad (52 chequeos)
+Tabla 46. Archivos generados por el cuaderno
+Tabla 47. Clientes de pago al cierre de cada año (neto de bajas)
+Tabla 48. Análisis de sensibilidad sobre el número de clientes
+[Heading1] 1. Antecedentes y análisis del sector
+[Heading2] 1.1. Antecedentes
+El mercado de activos digitales opera las 24 horas del día y reacciona con rapidez a noticias, anuncios regulatorios y conversaciones en comunidades en línea. La información que mueve las expectativas de los inversionistas llega mayoritariamente en forma de texto no estructurado: titulares de prensa, descripciones de videos, comentarios y publicaciones. Su volumen y su dispersión hacen inviable una lectura manual sistemática, y es precisamente ahí donde el Procesamiento del Lenguaje Natural (NLP) aporta valor, al convertir texto en indicadores cuantitativos de percepción [1].
+La literatura reciente respalda esta aproximación. Kraaijeveld y De Smedt encontraron que el sentimiento público en redes sociales contiene poder predictivo sobre los rendimientos de varias criptomonedas [2], y Gurgul, Lessmann y Härdle muestran que integrar información financiera, de blockchain y de redes sociales mediante aprendizaje profundo y NLP mejora el modelado de estos mercados [3]. Para Pulse Analytics, esta evidencia no se traduce en una promesa de predicción de precios, sino en un argumento para ofrecer el sentimiento como una señal complementaria y medible.
+Latinoamérica es uno de los polos de mayor crecimiento del ecosistema. Chainalysis estima que la región registró cerca de US$ 1,5 billones en volumen de transacciones cripto entre julio de 2022 y junio de 2025 [4], con Brasil y Argentina como mercados líderes y tres países de la región dentro del top 20 de su índice global de adopción [5]. Perú, aunque de menor escala, crece con rapidez: recibió más de US$ 28 000 millones en criptoactivos entre julio de 2024 y junio de 2025, superó a Chile en volumen y alcanzó una base estimada de 1,28 millones de usuarios, equivalente al 3,7 % de la población [6]. La Figura 1 ubica al país dentro del contexto regional.
+[IMG]
+Figura 1. Volumen de criptoactivos recibido por país, julio de 2024 a junio de 2025
+Fuente: elaboración propia con datos de Chainalysis reportados en [7] y [6].
+El dinamismo local también se observa en la demanda de aplicaciones: durante 2025 se registraron alrededor de 2,9 millones de descargas de aplicaciones cripto en Perú y la base de usuarios activos se duplicó respecto a 2024 [8]. En paralelo, la banca tradicional comenzó a explorar el segmento; el Banco de Crédito del Perú lanzó un piloto para la compra y gestión de bitcoin y stablecoins [6]. Este crecimiento genera una necesidad creciente de información confiable y en español que ayude a interpretar el mercado, necesidad que hoy cubren principalmente plataformas anglosajonas y de precio institucional.
+Pulse Analytics nace para atender esa brecha: una plataforma peruana que procesa noticias y contenido de video en español e inglés, clasifica su sentimiento con modelos de NLP y lo resume en indicadores por activo y periodo para inversionistas individuales y organizaciones.
+[Heading2] 1.2. Identificación del sector y actividad económica
+Pulse Analytics se ubica en la intersección de tres industrias: Tecnologías de la Información y Comunicación (TIC), servicios FinTech de información financiera y analítica de datos con inteligencia artificial. Su actividad principal es el desarrollo y la comercialización, bajo el modelo de Software como Servicio (SaaS), de una plataforma que recopila contenido textual sobre criptomonedas, lo procesa con NLP y entrega indicadores de sentimiento. La empresa no custodia activos, no intermedia operaciones ni emite recomendaciones de inversión personalizadas.
+Tabla 1. Ficha sectorial de Pulse Analytics
+<TABLA>
+Dimensión | Descripción
+Sector económico | Servicios de información y tecnología (TIC), subsector FinTech de inteligencia de mercado
+Actividad CIIU Rev. 4 de referencia | 6312 – Portales web; 6201 – Actividades de programación informática
+Producto | Plataforma SaaS de análisis de sentimiento de criptoactivos (dashboard, alertas, reportes y API)
+Mercado inicial | Perú (Lima Metropolitana como núcleo comercial)
+Mercado de expansión | Hispanoamérica: Colombia, México, Chile y Argentina
+Segmentos | B2C (inversionistas minoristas y analistas independientes) y B2B (fintech, exchanges, consultoras, fondos)
+Tamaño del ecosistema fintech local | 346 startups fintech operando en Perú (193 locales y 153 extranjeras); 21 proyectos en el vertical cripto [9], [10]
+</TABLA>
+Fuente: elaboración propia.
+El mercado global de analítica de sentimiento se valoró en US$ 5 100 millones en 2024 y se proyecta que alcance US$ 11 400 millones en 2030, con una tasa de crecimiento anual compuesta (TCAC) de 14,3 %; el segmento de banca, servicios financieros y seguros crecería a 14,7 % anual [11]. En el plano local, la base digital es amplia: Perú contaba con 28,4 millones de usuarios de internet y 28,3 millones de identidades activas en redes sociales a octubre de 2025 [12]. La Figura 2 resume el embudo desde el usuario digital hasta el inversionista cripto activo, que constituye el público natural de la plataforma.
+[IMG]
+Figura 2. Embudo de mercado en Perú: del usuario digital al inversionista cripto
+Fuente: elaboración propia con datos de [12], [6] y [13].
+[Heading2] 1.3. Análisis del entorno mediante PESTEL
+El análisis PESTEL se elaboró con información vigente a noviembre de 2026. Para cada factor se identifican las evidencias, su efecto sobre la empresa (oportunidad u amenaza) y la implicancia para la estrategia. La Tabla 2 consolida el análisis y la Figura 3 resume la intensidad relativa de cada factor.
+[Heading3] 1.3.1. Factor político
+Perú atraviesa un cambio de gobierno: el Jurado Nacional de Elecciones proclamó a Keiko Fujimori como presidenta electa para el periodo 2026-2031 tras la segunda vuelta del 7 de junio de 2026, con 50,135 % de votos válidos [14]. El margen estrecho y la fragmentación del Congreso sugieren que la agenda regulatoria sobre activos virtuales avanzará de forma gradual. Para una empresa de información, el riesgo político no es la prohibición directa del servicio, sino la incertidumbre sobre el marco que regirá a los clientes del ecosistema (exchanges y fintech) y su capacidad de inversión.
+[Heading3] 1.3.2. Factor económico
+La economía peruana mantiene fundamentos estables. El BCRP elevó su proyección de crecimiento del PBI para 2026 a 3,4 % por un mejor desempeño de la inversión privada, aunque proyecta una inflación de 3,8 % para el año por choques de oferta, con retorno al rango meta recién en 2027 [15], [16]. En el mercado cripto, 2026 ha transcurrido en una fase bajista: tras superar los US$ 124 000 en agosto de 2025 [17], el bitcoin cotizaba entre US$ 71 000 y US$ 82 000 durante el segundo trimestre de 2026 [18]. Las fases bajistas reducen el apetito minorista, pero aumentan la demanda de herramientas que ayuden a interpretar el miedo y la euforia del mercado, lo que favorece a un producto centrado en sentimiento.
+[Heading3] 1.3.3. Factor social
+La adopción cripto en Perú es joven, digital y móvil. La base de usuarios activos se duplicó en 2025 y se registraron cerca de 2,9 millones de descargas de aplicaciones [8]; además, se estima que alrededor de 350 000 personas operan bitcoin de forma activa [13]. Este público consume información en redes sociales y video, a menudo en inglés y con jerga especializada (por ejemplo, FUD, HODL o to the moon), y está expuesto a desinformación y esquemas fraudulentos. Ello crea una oportunidad para un servicio que traduzca el ruido en indicadores comprensibles, y a la vez exige controles contra contenido promocional y manipulado.
+[Heading3] 1.3.4. Factor tecnológico
+Los modelos Transformer preentrenados, como BERT [19] y su variante multilingüe XLM-RoBERTa [20], permiten clasificar sentimiento en varios idiomas con un volumen moderado de datos etiquetados, y existen variantes ajustadas a redes sociales en más de treinta idiomas [21]. La disponibilidad de fuentes con acceso programático —como la YouTube Data API v3, con una cuota gratuita de 10 000 unidades diarias por proyecto [22]— y de servicios en la nube reduce el costo de entrada. Esta misma accesibilidad facilita la entrada de nuevos competidores (ver sección 1.4).
+[Heading3] 1.3.5. Factor ecológico
+Los centros de datos consumieron alrededor de 415 TWh en 2024, cerca del 1,5 % de la electricidad mundial, y la Agencia Internacional de Energía proyecta que ese consumo se duplicará hasta unos 945 TWh en 2030, impulsado por la inteligencia artificial [23]. Aunque la huella de Pulse Analytics es marginal, la empresa adopta una política de eficiencia: usar modelos ligeros cuando la diferencia de desempeño no justifique uno mayor, procesar por lotes, apagar recursos ociosos y priorizar regiones de nube con mayor proporción de energía renovable.
+[Heading3] 1.3.6. Factor legal
+El marco relevante se agrupa en cuatro frentes. (i) Activos virtuales: el Decreto Supremo N.° 006-2023-JUS incorporó a los Proveedores de Servicios de Activos Virtuales (PSAV) como sujetos obligados ante la UIF-Perú [24], y la Resolución SBS N.° 02648-2024 aprobó su norma de prevención de lavado de activos [25]; Pulse Analytics no es PSAV, pero sus clientes B2B sí lo son. La SMV, por su parte, ha advertido públicamente sobre los riesgos de adquirir tokens y monedas virtuales [26]. (ii) Datos personales: la Ley N.° 29733 [27] y su nuevo reglamento, aprobado por el Decreto Supremo N.° 016-2024-JUS [28], rigen el tratamiento de datos como nombres de autores de comentarios. (iii) Inteligencia artificial: la Ley N.° 31814 [29] y su reglamento, el Decreto Supremo N.° 115-2025-PCM [30], vigente desde el 22 de enero de 2026 [31], establecen principios de transparencia y un enfoque basado en riesgos. (iv) Condiciones de uso de las fuentes: los términos de los servicios de API de YouTube y sus políticas para desarrolladores [32], [33], así como los términos de Google [34], limitan el almacenamiento y la redistribución del contenido. Como referencia internacional, el Reglamento MiCA de la Unión Europea [35] anticipa la dirección regulatoria que podrían seguir los mercados de la región.
+Tabla 2. Matriz PESTEL de Pulse Analytics
+<TABLA>
+Factor | Evidencia clave | Efecto | Implicancia estratégica
+Político | Nuevo gobierno 2026-2031 con mayoría ajustada [14]; regulación cripto gradual | Amenaza (4) / Oportunidad (2) | Diversificar clientes entre fintech, consultoras y medios; monitorear agenda legislativa
+Económico | PBI 2026: +3,4 %; inflación 3,8 % [16]; mercado cripto en fase bajista [18] | Oportunidad (4) / Amenaza (3) | Plan gratuito y precios bajos para captar usuarios en fase bajista; ventas B2B basadas en ahorro de tiempo
+Social | Usuarios cripto duplicados en 2025; 2,9 M descargas [8]; desinformación y jerga | Oportunidad (4) / Amenaza (3) | Contenido en español, explicaciones simples del índice y filtros antispam
+Tecnológico | Transformers multilingües [20]; APIs con cuota gratuita [22] | Oportunidad (5) / Amenaza (2) | Ventaja de costo; diferenciarse por calidad de datos en español y no solo por modelo
+Ecológico | Consumo eléctrico de centros de datos se duplicaría a 2030 [23] | Oportunidad (1) / Amenaza (1) | Modelos eficientes y procesamiento por lotes
+Legal | PSAV bajo UIF [25]; Ley 29733 y DS 016-2024-JUS [28]; reglamento de IA [30]; términos de API [32] | Oportunidad (3) / Amenaza (3) | Cumplimiento por diseño: seudonimización, avisos de no asesoría y respeto de términos
+</TABLA>
+Fuente: elaboración propia.
+[IMG]
+Figura 3. Balance PESTEL: intensidad de oportunidades y amenazas por factor
+Fuente: elaboración propia.
+[Heading2] 1.4. Análisis de las cinco fuerzas de Porter
+El modelo de Porter [36] se aplicó al mercado de inteligencia de sentimiento cripto en Hispanoamérica. Cada fuerza se calificó de 1 (baja) a 5 (alta) según su capacidad de reducir la rentabilidad del sector. La Figura 4 muestra el resultado y la Tabla 3 detalla los argumentos.
+[IMG]
+Figura 4. Intensidad de las cinco fuerzas competitivas
+Fuente: elaboración propia.
+Tabla 3. Análisis de las cinco fuerzas de Porter
+<TABLA>
+Fuerza | Nivel | Argumentos | Respuesta de Pulse Analytics
+Rivalidad entre competidores | Alta (4) | Plataformas consolidadas como Glassnode, Santiment, LunarCrush y The Tie [37], [38], [39], [40]; todas en inglés y con foco global o institucional | Diferenciación enfocada en español, fuentes latinoamericanas y precio de entrada bajo
+Amenaza de nuevos entrantes | Alta (4) | Modelos preentrenados de código abierto y nube reducen barreras técnicas | Construir un corpus etiquetado propio en español cripto y una marca local de confianza
+Poder de los proveedores | Media (3) | Dependencia de Google (YouTube API, Google News) y de proveedores de nube; cambios de cuota o términos | Arquitectura modular de conectores y plan de fuentes alternativas
+Poder de los clientes | Alta (4) | Costo de cambio bajo y oferta gratuita abundante; clientes B2B negocian precio | Plan Free como embudo; valor medible (horas ahorradas) y API integrable
+Amenaza de sustitutos | Media (3) | Lectura manual de noticias, índices de miedo y codicia, análisis técnico | Posicionarse como complemento con trazabilidad del texto a la señal
+</TABLA>
+Fuente: elaboración propia.
+Conclusión del análisis de fuerzas: el sector es atractivo por su crecimiento, pero con rentabilidad presionada por la rivalidad, la facilidad de entrada y el poder de los clientes. La forma de defender márgenes es la especialización: un corpus y un modelo afinados para el español y la jerga cripto, cuya construcción requiere tiempo y conocimiento del dominio, lo que constituye la principal barrera de imitación.
+[Heading2] 1.5. Oportunidad de mercado y dimensionamiento
+El dimensionamiento combina un enfoque descendente para el mercado total y uno ascendente para el mercado accesible:
+[ListParagraph] TAM (mercado total): analítica de sentimiento global, US$ 5 100 millones en 2024 con TCAC de 14,3 % [11], lo que equivale a unos US$ 7 600 millones en 2027.
+[ListParagraph] SAM (mercado accesible en Perú): de los 350 000 operadores activos de bitcoin [13], se asume que un 5 % (17 500) pagaría por una herramienta de análisis con un ingreso medio de US$ 25 al mes, lo que suma US$ 5,25 millones anuales; a ello se agregan 120 organizaciones B2B potenciales (fintech, exchanges, consultoras y medios) con un ticket anual medio de US$ 4 800, es decir US$ 0,58 millones. Total: US$ 5,8 millones anuales.
+[ListParagraph] SOM (mercado obtenible al cierre de 2027): 128 clientes de pago con un ARR de US$ 82 464, equivalente a una participación de 1,4 % del SAM.
+[IMG]
+Figura 5. Dimensionamiento del mercado (TAM, SAM y SOM)
+Fuente: elaboración propia con datos de [11] y [13].
+[Heading2] 1.6. Conclusión del análisis sectorial
+El entorno ofrece una ventana de oportunidad clara: un mercado cripto peruano en rápida expansión, una base digital amplia, tecnologías de NLP multilingües accesibles y una oferta competidora concentrada en inglés y en clientes institucionales. Las principales amenazas —regulación en evolución, dependencia de fuentes de terceros y baja barrera técnica— son gestionables con una estrategia de diferenciación enfocada, cumplimiento por diseño y una arquitectura de datos modular.
+[Heading1] 2. Descripción de la empresa
+Pulse Analytics S.A.C. es una startup tecnológica limeña especializada en inteligencia de mercado para criptoactivos mediante NLP. Se encuentra en etapa de producto mínimo viable (MVP): el equipo fundador desarrolla el prototipo de clasificación de sentimiento que se documenta en este informe, cuyo lanzamiento comercial está programado para enero de 2027.
+[Heading2] 2.1. Estrategia competitiva
+[Heading3] 2.1.1. Estrategia genérica y propuesta de valor
+Siguiendo la tipología de Porter, la empresa adopta una estrategia de diferenciación enfocada: no compite por amplitud de métricas ni por cobertura global, sino por relevancia para el inversionista hispanohablante. Su propuesta de valor es “entender en minutos lo que el mercado está diciendo de tu criptomoneda, en tu idioma”, y se apoya en cuatro pilares:
+[ListParagraph] Especialización lingüística: clasificación de textos en español e inglés con un modelo ajustado a la jerga cripto.
+[ListParagraph] Trazabilidad: cada indicador puede desglosarse hasta los titulares y comentarios que lo originan, lo que evita el efecto de caja negra.
+[ListParagraph] Accesibilidad: plan gratuito y plan de pago desde US$ 19 al mes, por debajo de los planes de entrada de la competencia.
+[ListParagraph] Integración B2B: API y reportes que permiten a fintech y consultoras incorporar el sentimiento en sus propios productos.
+La plataforma no pretende reemplazar el análisis financiero ni predecir precios; comunica explícitamente que sus indicadores son información complementaria y no constituyen asesoría de inversión.
+[Heading3] 2.1.2. Análisis FODA
+Tabla 4. Matriz FODA de Pulse Analytics
+<TABLA>
+Fortalezas | Debilidades
+F1. Especialización en español y jerga cripto F2. Costo de datos casi nulo en la fase inicial (fuentes con cuota gratuita) F3. Equipo multidisciplinario de datos, producto y negocio F4. Trazabilidad del indicador hasta el texto | D1. Marca nueva, sin historial ni base de clientes D2. Dependencia de dos fuentes de terceros en el MVP D3. Corpus etiquetado inicial pequeño D4. Capital limitado para marketing
+</TABLA>
+Fuente: elaboración propia.
+Tabla 5. Matriz FODA de Pulse Analytics (continuación)
+<TABLA>
+Oportunidades | Amenazas
+O1. Usuarios cripto en Perú duplicados en 2025 [8] O2. Banca y fintech locales ingresando al segmento [6] O3. Mercado de analítica de sentimiento con TCAC de 14,3 % [11] O4. Escasa oferta en español | A1. Competidores globales que agreguen soporte en español A2. Cambios en cuotas o términos de las APIs [32] A3. Fase bajista prolongada del mercado cripto A4. Regulación de IA y datos personales más exigente [30]
+</TABLA>
+Fuente: elaboración propia.
+Del cruce de la matriz se derivan cuatro líneas estratégicas: FO – lanzar un plan gratuito en español para capturar el crecimiento de usuarios (F1, F2, O1, O4); DO – cerrar alianzas con fintech y exchanges locales que aporten distribución y datos (D1, D4, O2); FA – usar la trazabilidad y el corpus propio como barrera frente a competidores globales (F1, F4, A1); DA – diseñar conectores intercambiables y documentar el cumplimiento normativo (D2, A2, A4).
+[Heading3] 2.1.3. Segmentos de clientes y familia de productos
+Tabla 6. Segmentos de clientes
+<TABLA>
+Segmento | Perfil | Necesidad principal | Producto de entrada
+B2C – Inversionista minorista | 25-40 años, opera desde apps móviles, sigue noticias y YouTube | Saber si el ánimo del mercado sobre su activo mejora o empeora | Pulse Intelligence (Free / Individual)
+B2C – Analista o creador de contenido | Trader frecuente, creador de contenido o analista independiente | Datos históricos, alertas y exportación | Pulse Intelligence (Professional) y Pulse Alerts
+B2B – Fintech y exchanges | Plataformas de compraventa, billeteras y neobancos con oferta cripto | Enriquecer su app con señales de mercado en español | Pulse API (Business / Enterprise)
+B2B – Consultoras, medios y fondos | Equipos de investigación, riesgo y comunicación | Reportes periódicos y monitoreo de reputación de activos | Pulse Reports y Pulse API
+</TABLA>
+Fuente: elaboración propia.
+Tabla 7. Familia de productos
+<TABLA>
+Producto | Descripción | Fuente de valor NLP
+Pulse Intelligence | Dashboard web con el índice Pulse Score por activo, fuente y periodo, y desglose de textos | Clasificación de sentimiento y agregación
+Pulse Alerts | Notificaciones por correo o mensajería cuando el índice cambia más de un umbral definido | Detección de cambios en series de sentimiento
+Pulse Reports | Informe semanal y mensual en PDF con tendencias y titulares más influyentes | Resumen de temas y textos representativos
+Pulse API | Servicio REST con índices históricos y en tiempo casi real | Exposición programática de predicciones
+</TABLA>
+Fuente: elaboración propia.
+[Heading3] 2.1.4. Planes comerciales y precios
+La estructura de precios combina un plan gratuito, que funciona como embudo de adquisición, con planes escalonados. Como referencia, los planes de entrada de Santiment y Glassnode se ubican en US$ 49 al mes [41], [42], lo que sitúa al plan Individual de Pulse Analytics un 61 % por debajo.
+Tabla 8. Planes comerciales de Pulse Analytics
+<TABLA>
+Plan | Segmento | Precio mensual | Activos | Actualización | Histórico | Incluye
+Free | B2C | US$ 0 | 3 | Diaria | 7 días | Dashboard básico
+Individual | B2C | US$ 19 | 10 | Cada hora | 90 días | 5 alertas
+Professional | B2C | US$ 49 | 30 | 30 min | 1 año | Alertas ilimitadas, exportación CSV
+Business | B2B | US$ 349 | 30 | 30 min | 2 años | API (50 000 llamadas/mes), 5 usuarios, reporte semanal
+Enterprise | B2B | Desde US$ 799 | A medida | Casi real | Completo | API dedicada, SLA 99,5 %, modelo personalizado
+</TABLA>
+Fuente: elaboración propia.
+[Heading3] 2.1.5. Competidores y posicionamiento
+Tabla 9. Comparación con los principales competidores
+<TABLA>
+Competidor | Especialización | Idioma y foco | Precio de entrada | Diferencia de Pulse Analytics
+Glassnode [37] | Métricas on-chain | Inglés, global e institucional | US$ 49/mes (anual) [42] | Sentimiento textual, no on-chain
+Santiment [38] | Métricas sociales y on-chain | Inglés, global | US$ 49/mes [41] | Español y fuentes latinoamericanas
+LunarCrush [39] | Actividad social | Inglés, global | Plan gratuito y planes de pago | NLP de sentimiento, no solo volumen social
+The Tie [40] | Datos institucionales y noticias | Inglés, institucional | A cotización | Oferta B2C y B2B accesible
+Pulse Analytics | Sentimiento NLP de noticias y video | Español/inglés, Hispanoamérica | US$ 0 / US$ 19 | —
+</TABLA>
+Fuente: elaboración propia.
+[IMG]
+Figura 6. Mapa de posicionamiento competitivo
+Fuente: elaboración propia.
+[Heading3] 2.1.6. Metas comerciales y participación proyectada
+La Tabla 10 presenta las metas del primer año comercial (2027). Con 128 clientes de pago se alcanza un ingreso recurrente mensual (MRR) de US$ 6 872 y un ingreso recurrente anualizado (ARR) de US$ 82 464, equivalente al 1,4 % del mercado accesible estimado en la sección 1.5.
+Tabla 10. Metas comerciales y operativas del primer año (2027)
+<TABLA>
+Indicador | Meta 2027
+Usuarios registrados en plan Free | 1 000
+Clientes B2C de pago (Individual + Professional) | 120
+Clientes B2B (Business + Enterprise) | 8
+Conversión Free → pago | ≥ 10 %
+Churn mensual de clientes de pago | ≤ 4 %
+Activos monitoreados | 30
+Fuentes integradas (2 en el MVP, 6 al cierre de 2027) | 6
+Idiomas procesados | 2 (español e inglés)
+Disponibilidad del servicio | ≥ 99,5 %
+</TABLA>
+Fuente: elaboración propia.
+Tabla 11. Proyección de ingresos recurrentes al cierre de 2027
+<TABLA>
+Plan | Clientes | Precio mensual | MRR
+Individual | 90 | US$ 19 | US$ 1 710
+Professional | 30 | US$ 49 | US$ 1 470
+Business | 6 | US$ 349 | US$ 2 094
+Enterprise | 2 | US$ 799 | US$ 1 598
+Total (ARR = MRR × 12 = US$ 82 464) | 128 |  | US$ 6 872
+</TABLA>
+Fuente: elaboración propia.
+El ARR es una medida anualizada del MRR de cierre y no equivale a los ingresos efectivamente cobrados en el año, que con una rampa de adopción gradual suman US$ 44 668 en 2027. La proyección a tres años (Figura 7) considera un crecimiento neto de clientes a 366 en 2028 y 782 en 2029.
+[IMG]
+Figura 7. Proyección de MRR y clientes de pago, 2027-2029
+Fuente: elaboración propia (modelo financiero, Anexo E).
+[Heading2] 2.2. Características de la empresa
+[Heading3] 2.2.1. Identificación empresarial
+Tabla 12. Datos generales de la empresa
+<TABLA>
+Característica | Descripción
+Razón social | Pulse Analytics S.A.C.
+Nombre comercial | Pulse Analytics
+Tipo societario | Sociedad Anónima Cerrada
+Sede | Lima, Perú (modalidad híbrida; oficina en espacio de coworking)
+Inicio de operaciones | 2025 (desarrollo); enero de 2027 (lanzamiento comercial)
+Sector | TIC – FinTech – inteligencia de mercado
+Modelo de negocio | B2C y B2B, suscripción SaaS
+Colaboradores | 6 (etapa MVP)
+Mercado inicial / expansión | Perú / Colombia, México, Chile y Argentina
+</TABLA>
+Fuente: elaboración propia.
+[Heading3] 2.2.2. Misión, visión y valores
+Misión. Convertir la conversación digital sobre criptoactivos en indicadores claros, trazables y en español, para que inversionistas y organizaciones de Latinoamérica tomen decisiones mejor informadas.
+Visión. Ser al 2030 la plataforma de referencia en Hispanoamérica para la medición del sentimiento del mercado cripto, reconocida por la calidad de sus datos y la transparencia de sus modelos.
+Valores. Rigor (validamos antes de publicar), transparencia (mostramos el texto detrás de cada número y sus límites), responsabilidad (no emitimos recomendaciones de inversión), privacidad por diseño e innovación continua.
+[Heading3] 2.2.3. Estructura organizacional
+La organización es plana y se agrupa en tres áreas que reportan a la Gerencia General (Figura 8).
+[IMG]
+Figura 8. Organigrama de Pulse Analytics S.A.C.
+Fuente: elaboración propia.
+Tabla 13. Puestos y funciones
+<TABLA>
+Puesto | Funciones principales | Perfil
+CEO / Gerente general | Estrategia, finanzas, relación con inversionistas y aliados; dueño del proyecto | Ingeniería o administración con experiencia en fintech
+Ingeniero(a) de datos | Conectores, almacenamiento, calidad y orquestación de datos | Python, SQL, APIs, nube
+Científico(a) de datos / NLP | Etiquetado, modelado, evaluación y monitoreo de modelos | Aprendizaje automático, Transformers
+Desarrollador(a) full stack | Dashboard, API, autenticación y pagos | Python/JavaScript, desarrollo web
+Responsable comercial y marketing | Adquisición, ventas B2B, comunidad y precios | Marketing digital y ventas consultivas
+Analista de operaciones y calidad | Pruebas, documentación, cumplimiento y soporte | Calidad de software y procesos
+</TABLA>
+Fuente: elaboración propia.
+[Heading3] 2.2.4. Proveedores y recursos clave
+Tabla 14. Principales proveedores
+<TABLA>
+Tipo | Proveedor | Insumo | Criticidad
+Datos | Google (Google News RSS) | Titulares, enlaces, fecha y medio de noticias | Alta
+Datos | Google (YouTube Data API v3) | Metadatos de videos y comentarios públicos | Alta
+Cómputo | Proveedor de nube pública | Máquinas virtuales, base de datos, almacenamiento | Alta
+Cómputo | Entorno de cuadernos con GPU | Entrenamiento de modelos Transformer | Media
+Software | Ecosistema de código abierto | Python, scikit-learn, Transformers, PostgreSQL | Media
+Pagos | Pasarela de pagos | Cobro de suscripciones con tarjeta | Media
+</TABLA>
+Fuente: elaboración propia.
+[Heading3] 2.2.5. Distribución de instalaciones
+La operación es nativa en la nube, por lo que la infraestructura física es mínima: un espacio de coworking en Lima con seis puestos de trabajo y una sala de reuniones compartida para presencialidad tres días por semana; la totalidad del procesamiento y el almacenamiento reside en servicios de nube con respaldo automático. Esta configuración reduce los costos fijos y permite escalar el equipo sin inversión en local.
+[Heading2] 2.3. Procesos importantes
+El mapa de procesos distingue procesos estratégicos (planificación, gestión de alianzas y cumplimiento), operativos (generación de inteligencia de sentimiento y atención al cliente) y de soporte (infraestructura, finanzas y talento). Por su relación directa con la problemática del proyecto, se detallan el proceso principal de generación del indicador y el proceso de adquisición de clientes.
+[Heading3] 2.3.1. Proceso principal: generación del índice Pulse Score
+Cada 30 minutos un programador de tareas dispara un ciclo que consulta las fuentes, almacena el contenido crudo, lo limpia, descarta duplicados, clasifica el sentimiento de cada texto y agrega los resultados por activo, fuente y periodo. El indicador resultante, denominado Pulse Score, se define como:
+Pulse Score = 100 × (Σ cᵢ · positivo − Σ cᵢ · negativo) / Σ cᵢ
+donde cᵢ es la confianza del modelo en la etiqueta del texto i. El índice varía entre −100 (sentimiento totalmente negativo) y +100 (totalmente positivo), y se publica junto con el número de textos que lo respaldan para evitar interpretaciones sobre muestras pequeñas. La Figura 9 muestra el flujograma del proceso.
+[IMG]
+Figura 9. Flujograma del proceso de generación del índice Pulse Score
+Fuente: elaboración propia.
+[Heading3] 2.3.2. Diagrama de análisis del proceso (DAP)
+La Tabla 15 descompone un ciclo de procesamiento de un lote estándar de 500 textos según la simbología ASME. Los tiempos son estimaciones de diseño que se validarán con mediciones del prototipo; la clasificación supone inferencia en CPU por lotes con un modelo Transformer de tamaño base.
+Tabla 15. DAP del ciclo de procesamiento de un lote de 500 textos
+<TABLA>
+N.° | Actividad | Op. ○ | Transp. ⇨ | Insp. □ | Demora D | Alm. ▽ | Tiempo (s)
+1 | Disparo del ciclo por el programador | ○ |  |  |  |  | 1
+2 | Solicitud al feed de Google News RSS |  | ⇨ |  |  |  | 4
+3 | Solicitudes a YouTube Data API v3 (videos y comentarios) |  | ⇨ |  |  |  | 12
+4 | Espera por límites de cuota y paginación |  |  |  | D |  | 10
+5 | Almacenamiento en capa cruda (JSON) |  |  |  |  | ▽ | 2
+6 | Validación de esquema y campos obligatorios |  |  | □ |  |  | 3
+7 | Limpieza y normalización del texto | ○ |  |  |  |  | 6
+8 | Detección de idioma | ○ |  |  |  |  | 4
+9 | Control de duplicados y casi duplicados |  |  | □ |  |  | 3
+10 | Identificación del activo mencionado | ○ |  |  |  |  | 2
+11 | Clasificación de sentimiento (modelo NLP) | ○ |  |  |  |  | 25
+12 | Control de confianza (< 0,60 a cola de revisión) |  |  | □ |  |  | 1
+13 | Almacenamiento en base de datos curada |  |  |  |  | ▽ | 3
+14 | Cálculo del Pulse Score por activo y periodo | ○ |  |  |  |  | 2
+15 | Publicación en dashboard, API y alertas |  | ⇨ |  |  |  | 2
+ | Total: 6 operaciones, 3 transportes, 3 inspecciones, 1 demora, 2 almacenamientos | 6 | 3 | 3 | 1 | 2 | 80
+</TABLA>
+Fuente: elaboración propia.
+El ciclo completo toma alrededor de 80 segundos por lote (0,16 s por texto), muy por debajo de la ventana de 30 minutos, lo que deja holgura para crecer en volumen. La actividad crítica es la clasificación (31 % del tiempo) y la principal fuente de variabilidad es la espera por cuota de la API de YouTube; por ello, el diseño prioriza llamadas de bajo costo de cuota, como la consulta de comentarios, que consume una unidad por solicitud frente a las cien de una búsqueda [22].
+[Heading3] 2.3.3. Proceso de adquisición y conversión de clientes
+El segundo proceso relevante es comercial: el usuario se registra en el plan gratuito, configura sus activos y alertas, usa el dashboard, accede a una prueba de 14 días del plan Professional y, si convierte, pasa a cliente de pago con seguimiento de retención (Figura 10). La calidad del indicador NLP impacta directamente en la conversión: un índice poco confiable reduce el uso y aumenta el churn.
+[IMG]
+Figura 10. Proceso de adquisición y conversión de clientes
+Fuente: elaboración propia.
+[Heading3] 2.3.4. Indicadores clave de desempeño de los procesos
+Tabla 16. KPI de los procesos clave
+<TABLA>
+Proceso | Indicador | Meta
+Generación del índice | Macro-F1 del clasificador en el conjunto de prueba | ≥ 0,78
+Generación del índice | Tiempo de ciclo por lote de 500 textos | ≤ 120 s
+Generación del índice | Duplicados residuales en la capa curada | ≤ 2 %
+Generación del índice | Completitud de campos obligatorios | ≥ 98 %
+Generación del índice | Frescura del índice (antigüedad máxima) | ≤ 30 min
+Servicio | Disponibilidad mensual del dashboard y la API | ≥ 99,5 %
+Adquisición | Conversión de Free a pago | ≥ 10 %
+Retención | Churn mensual de clientes de pago | ≤ 4 %
+</TABLA>
+Fuente: elaboración propia.
+[Heading2] 2.4. Conclusión de la descripción empresarial
+Pulse Analytics combina una estrategia de diferenciación enfocada, una familia de productos coherente y una estructura liviana. Su proceso central depende por completo de la calidad del NLP: la precisión del clasificador define la confiabilidad del Pulse Score y, a través de ella, la conversión y la retención de clientes. Esa dependencia justifica el proyecto de NLP que se plantea en la sección siguiente.
+[Heading1] 3. Comprensión del negocio
+Esta sección corresponde a la primera fase de la metodología CRISP-DM [43], [44] y traduce la problemática de Pulse Analytics en objetivos de negocio, una evaluación de la situación, objetivos de NLP medibles y un plan de proyecto.
+[Heading2] 3.1. Determinación de los objetivos de negocio
+[Heading3] 3.1.1. Problema de negocio
+Pulse Analytics necesita un motor que transforme, de forma automática, confiable y en español e inglés, el contenido de noticias y videos sobre criptomonedas en indicadores de sentimiento por activo y periodo. Sin ese motor no existe el producto: hoy el monitoreo se haría leyendo manualmente cientos de titulares y comentarios al día, lo que no escala y está sujeto a sesgos del lector. A modo de referencia, si un analista dedica un minuto a leer y valorar cada texto, revisar los 10 000 textos del corpus experimental tomaría unas 167 horas de trabajo.
+[Heading3] 3.1.2. Relación del negocio basado en NLP
+En Pulse Analytics el NLP no es una función de apoyo, sino el núcleo de la cadena de valor: cada producto comercial consume directamente una salida del sistema de lenguaje. La Tabla 17 explicita esa relación.
+Tabla 17. Relación entre productos de negocio y capacidades de NLP
+<TABLA>
+Producto / proceso | Capacidad NLP requerida | Salida que consume el negocio
+Pulse Intelligence | Clasificación de sentimiento (positivo, negativo, neutral) con puntuación de confianza | Pulse Score por activo, fuente y periodo
+Pulse Intelligence | Identificación del activo mencionado (reglas y diccionario de alias) | Asignación del texto a BTC, ETH o SOL
+Pulse Alerts | Series temporales de sentimiento y detección de cambios | Notificaciones ante variaciones del índice
+Pulse Reports | Selección de textos representativos por clase | Titulares y comentarios más influyentes
+Calidad de datos | Detección de idioma, normalización y deduplicación | Corpus limpio y trazable
+Pulse API | Inferencia por lotes con latencia acotada | Índices históricos y casi en tiempo real
+</TABLA>
+Fuente: elaboración propia.
+[Heading3] 3.1.3. Compilación de información
+Para definir el alcance se recopiló información secundaria de cuatro tipos (Tabla 18). Esta base documental se complementará en la fase de despliegue con entrevistas de validación a usuarios de los segmentos B2C y B2B.
+Tabla 18. Información compilada para el entendimiento del negocio
+<TABLA>
+Tipo | Fuente | Información obtenida | Uso en el proyecto
+Mercado | Chainalysis, Lemon, Forbes Perú, DataReportal [4], [8], [6], [12] | Volumen cripto, usuarios, adopción digital | Dimensionamiento y segmentación
+Competencia | Sitios y precios de Glassnode, Santiment, LunarCrush, The Tie [41], [42] | Oferta, idioma y precios de entrada | Posicionamiento y precios
+Regulación | Normas SBS, MINJUSDH, PCM y términos de Google [25], [28], [30], [32] | Obligaciones y límites de uso de datos | Requisitos y restricciones
+Técnica | Documentación de la YouTube Data API v3 y literatura de NLP [22], [20], [21] | Cuotas, campos disponibles, modelos de referencia | Diseño de datos y modelos
+</TABLA>
+Fuente: elaboración propia.
+[Heading3] 3.1.4. Objetivos de negocio
+Objetivo general. Contar, al término de las 16 semanas del proyecto, con un motor de análisis de sentimiento validado que permita lanzar comercialmente Pulse Intelligence en enero de 2027 y alcanzar 128 clientes de pago al cierre de ese año.
+Objetivos específicos (SMART):
+[ListParagraph] OB1. Reducir en al menos 90 % el tiempo de monitoreo de la percepción del mercado frente a la revisión manual, generando el índice de un lote de 500 textos en menos de 2 minutos.
+[ListParagraph] OB2. Ofrecer un indicador confiable para los activos BTC, ETH y SOL, cuya calidad se valide con una macro-F1 de al menos 0,78 en datos no vistos.
+[ListParagraph] OB3. Atender al público hispanohablante procesando textos en español e inglés con una diferencia de desempeño entre idiomas no mayor de 5 puntos porcentuales.
+[ListParagraph] OB4. Operar el MVP con un costo de adquisición de datos nulo, usando exclusivamente fuentes con acceso gratuito autorizado (Google News RSS y YouTube Data API v3).
+[ListParagraph] OB5. Validar la propuesta de valor con un dashboard funcional que permita a usuarios piloto desglosar cada indicador hasta sus textos de origen.
+[Heading3] 3.1.5. Criterios de rendimiento del negocio
+Tabla 19. Criterios de éxito del negocio
+<TABLA>
+Objetivo | Criterio de éxito | Meta | Forma de medición
+OB1 | Tiempo de generación del índice por lote de 500 textos | ≤ 2 min (frente a ≈ 8,3 h manuales) | Bitácora de ejecución del pipeline
+OB2 | Activos cubiertos con índice publicado | 3 (BTC, ETH, SOL) | Dashboard
+OB2 | Calidad del indicador (macro-F1) | ≥ 0,78 | Informe de evaluación
+OB3 | Brecha de macro-F1 entre español e inglés | ≤ 0,05 | Evaluación por idioma
+OB4 | Costo de adquisición de datos del MVP | US$ 0 | Registro de gastos
+OB5 | Usuarios piloto que califican el indicador como útil | ≥ 70 % de al menos 20 usuarios | Encuesta de validación (fase de despliegue)
+</TABLA>
+Fuente: elaboración propia.
+[Heading2] 3.2. Evaluación de la situación
+[Heading3] 3.2.1. Inventario de recursos
+Tabla 20. Inventario de recursos del proyecto
+<TABLA>
+Categoría | Recurso | Disponibilidad / detalle
+Humanos | 6 integrantes del equipo (ver Tabla de puestos) | Dedicación de 50 % (roles técnicos) y 25 % (roles de gestión) durante 16 semanas
+Datos | Google News RSS | Feeds por consulta y edición (es-419, en-US); sin clave de acceso; titular, enlace, medio y fecha
+Datos | YouTube Data API v3 | Cuota de 10 000 unidades diarias [22]; videos, estadísticas y comentarios públicos
+Datos | Precios de referencia | Series diarias de precio de BTC, ETH y SOL para análisis exploratorio de correlación
+Software | Python 3.11, pandas, scikit-learn [45], Hugging Face Transformers, feedparser, google-api-python-client, Label Studio, PostgreSQL, Streamlit, FastAPI | Código abierto, sin costo de licencia
+Modelos preentrenados | XLM-RoBERTa base [20], XLM-T sentimiento [21], FinBERT [46], VADER [47] | Disponibles públicamente para investigación y uso comercial según su licencia
+Hardware y nube | 6 laptops del equipo; GPU en la nube para ajuste fino; VM y base de datos administrada | Pago por uso
+</TABLA>
+Fuente: elaboración propia.
+[Heading3] 3.2.2. Requisitos
+Tabla 21. Requisitos funcionales
+<TABLA>
+Código | Requisito
+RF01 | Recolectar periódicamente noticias de Google News RSS y videos y comentarios de YouTube para consultas predefinidas por activo
+RF02 | Almacenar cada registro crudo con su fuente, fecha de publicación, fecha de captura e identificador único
+RF03 | Normalizar texto (codificación, entidades HTML, URLs, emojis, espacios) conservando el original
+RF04 | Detectar el idioma y descartar textos fuera de español e inglés
+RF05 | Eliminar duplicados exactos y casi duplicados
+RF06 | Asignar el activo (BTC, ETH, SOL) mediante diccionario de alias y reglas
+RF07 | Clasificar cada texto como positivo, negativo o neutral con su puntuación de confianza
+RF08 | Calcular el Pulse Score por activo, fuente y ventana temporal
+RF09 | Mostrar el índice, su volumen de respaldo y los textos de origen en un dashboard
+</TABLA>
+Fuente: elaboración propia.
+Tabla 22. Requisitos no funcionales
+<TABLA>
+Código | Atributo | Requisito
+RNF01 | Rendimiento | Procesar un lote de 500 textos en ≤ 2 minutos en CPU
+RNF02 | Escalabilidad | Agregar una nueva fuente implementando un conector sin modificar el resto del pipeline
+RNF03 | Trazabilidad | Todo indicador debe poder reconstruirse a partir de los registros y la versión del modelo usada
+RNF04 | Privacidad | Seudonimizar identificadores de autores de comentarios; no almacenar datos personales innecesarios
+RNF05 | Cumplimiento | Respetar cuotas, atribución y políticas de retención de las fuentes [33]
+RNF06 | Reproducibilidad | Semillas fijas, versionado de datos y de modelos, y registro de experimentos
+RNF07 | Seguridad | Claves de API en gestor de secretos; acceso al dashboard con autenticación
+</TABLA>
+Fuente: elaboración propia.
+[Heading3] 3.2.3. Supuestos y restricciones
+Supuestos:
+[ListParagraph] Las fuentes mantendrán sus condiciones de acceso durante el proyecto y la cuota de YouTube será suficiente para el volumen experimental.
+[ListParagraph] Habrá suficientes textos sobre BTC, ETH y SOL en ambos idiomas para formar un corpus de al menos 10 000 registros tras la limpieza.
+[ListParagraph] Los titulares y comentarios contienen suficiente señal para inferir sentimiento sin leer el artículo completo.
+[ListParagraph] Dos anotadores con una guía común alcanzarán un acuerdo aceptable (kappa de Cohen ≥ 0,70 [48]).
+Restricciones:
+[ListParagraph] Fuentes: el alcance de datos del proyecto se limita a Google News RSS y YouTube Data API v3.
+[ListParagraph] Contenido: Google News RSS entrega titular, medio, fecha y enlace, no el cuerpo completo de la noticia; no se extraerá el texto de los sitios enlazados para respetar sus términos.
+[ListParagraph] Cuota: una búsqueda en YouTube cuesta 100 unidades y una consulta de comentarios, 1 unidad [22]; el diseño debe optimizar el consumo.
+[ListParagraph] Tiempo y presupuesto: 16 semanas y un presupuesto de US$ 18 084.
+[ListParagraph] Alcance funcional: el sistema no predice precios, no ejecuta operaciones ni emite recomendaciones de inversión.
+[Heading3] 3.2.4. Riesgos y planes de contingencia
+Tabla 23. Registro de riesgos y contingencias
+<TABLA>
+ID | Riesgo | P | I | Respuesta preventiva | Contingencia
+R1 | Cambio de cuota, formato o términos en YouTube API o Google News RSS | 4 | 4 | Caché local, consultas optimizadas y monitoreo de errores | Activar fuentes alternativas autorizadas (APIs de noticias con plan gratuito)
+R2 | Desbalance de clases (predominio de neutrales en titulares) | 3 | 4 | Muestreo estratificado para etiquetado | Ponderación de clases y evaluación con macro-F1
+R3 | Spam, bots y comentarios promocionales en YouTube | 4 | 3 | Filtros por patrones, enlaces y repetición | Clase de descarte y revisión manual de muestras
+R4 | Sarcasmo, ironía y jerga cripto | 4 | 3 | Glosario de dominio en la guía de etiquetado | Análisis de errores y ampliación dirigida del corpus
+R5 | Desempeño desigual entre español e inglés | 3 | 3 | Corpus balanceado por idioma | Modelo multilingüe o modelos separados por idioma
+R6 | Retrasos en el cronograma | 2 | 4 | Hitos semanales y priorización del MVP | Reducir alcance a dos activos
+R7 | Noticias sindicadas que inflan el volumen | 3 | 3 | Deduplicación por similitud de títulos | Ponderar por medio único
+R8 | Tratamiento indebido de datos personales | 2 | 5 | Seudonimización y minimización de datos [28] | Protocolo de borrado y revisión legal
+R9 | Sobrecosto de cómputo en la nube | 3 | 2 | Alertas de presupuesto y apagado automático | Usar modelos más ligeros o destilados
+R10 | Uso del índice como recomendación de inversión | 2 | 4 | Avisos de no asesoría y documentación de límites | Revisión de comunicación y términos de uso
+</TABLA>
+Fuente: elaboración propia. P = probabilidad, I = impacto (escala 1 a 5).
+[IMG]
+Figura 11. Matriz de probabilidad e impacto de los riesgos del proyecto
+Fuente: elaboración propia.
+[Heading3] 3.2.5. Terminología del dominio
+La guía de etiquetado y el modelo deben entender términos propios del mercado cripto que modifican la polaridad de un texto. La Tabla 24 recoge los principales términos de negocio, del dominio y de NLP.
+Tabla 24. Glosario de terminología del dominio
+<TABLA>
+Término | Definición | Efecto en el sentimiento
+Bullish / alcista | Expectativa de subida del precio | Positivo
+Bearish / bajista | Expectativa de caída del precio | Negativo
+FUD | Miedo, incertidumbre y duda (fear, uncertainty and doubt) | Negativo
+FOMO | Miedo a quedarse fuera de una subida | Positivo o especulativo
+HODL | Mantener un activo a largo plazo pese a la volatilidad | Positivo
+To the moon | Expectativa de subida muy fuerte | Positivo (a menudo irónico)
+Rug pull / scam | Fraude en el que los creadores abandonan el proyecto | Negativo
+Ballena (whale) | Inversionista con grandes tenencias | Neutral; depende del contexto
+Halving | Reducción programada de la emisión de bitcoin | Neutral o positivo
+Stablecoin | Criptoactivo vinculado a una moneda fiduciaria | Neutral
+ETF spot | Fondo cotizado que replica el precio del activo | Positivo cuando se aprueba
+Liquidación | Cierre forzado de posiciones apalancadas | Negativo
+Sentimiento | Orientación evaluativa expresada en un texto [1] | —
+Corpus | Conjunto organizado de textos para análisis o entrenamiento | —
+Macro-F1 | Promedio no ponderado del F1 de cada clase | —
+Kappa de Cohen | Acuerdo entre anotadores corregido por azar [48] | —
+Pulse Score | Índice de −100 a +100 que agrega el sentimiento ponderado por confianza | —
+PSAV | Proveedor de Servicios de Activos Virtuales [24] | —
+</TABLA>
+Fuente: elaboración propia.
+[Heading3] 3.2.6. Análisis de costes y beneficios
+a) Costo del proyecto (MVP). El presupuesto de las 16 semanas se presenta en la Tabla 25. La partida de datos es nula porque ambas fuentes ofrecen acceso gratuito dentro de sus cuotas, lo que constituye una ventaja de costo frente a competidores que licencian datos sociales.
+Tabla 25. Presupuesto del MVP (16 semanas)
+<TABLA>
+Concepto | Costo
+Equipo técnico (3 roles, 50 % de dedicación, 4 meses) | US$ 9 600
+Equipo de gestión y negocio (3 roles, 25 %, 4 meses) | US$ 5 400
+Cómputo en la nube (GPU, VM, base de datos) | US$ 520
+Datos (Google News RSS y YouTube Data API v3) | US$ 0
+Etiquetado manual (doble anotación de 3 000 textos) | US$ 800
+Herramientas, dominio y despliegue del dashboard | US$ 120
+Subtotal | US$ 16 440
+Contingencia (10 %) | US$ 1 644
+Total del proyecto | US$ 18 084
+</TABLA>
+Fuente: elaboración propia con tarifas referenciales del mercado laboral peruano de tecnología.
+b) Beneficios operativos. Con el pipeline, un lote de 500 textos se procesa en unos 80 segundos frente a cerca de 8,3 horas de lectura manual (un minuto por texto), una reducción superior al 99 %. Para un cliente B2B que hoy dedica un analista a medio tiempo al monitoreo de noticias, el plan Business (US$ 349 al mes) libera alrededor de 80 horas mensuales.
+c) Evaluación económica del negocio. La Tabla 26 resume la proyección a tres años. La inversión inicial de US$ 23 084 incluye el MVP (US$ 18 084), la constitución de la empresa (US$ 1 500) y el equipamiento (US$ 3 500). El ingreso recurrente anual (ARR, el MRR de diciembre multiplicado por 12) cierra en US$ 82 464 en 2027, US$ 224 208 en 2028 y US$ 463 416 en 2029.
+Tabla 26. Flujo de caja proyectado del negocio, 2027-2029 (US$)
+<TABLA>
+Concepto | 2027 | 2028 | 2029
+Ingresos por suscripciones | US$ 44 668 | US$ 158 867 | US$ 354 154
+Planilla (equipo) | −US$ 96 000 | −US$ 132 000 | −US$ 186 000
+Infraestructura cloud | −US$ 7 200 | −US$ 12 000 | −US$ 20 400
+Marketing y ventas | −US$ 12 000 | −US$ 24 000 | −US$ 36 000
+Datos y licencias | −US$ 2 400 | −US$ 7 200 | −US$ 12 000
+Gastos administrativos y legales | −US$ 6 000 | −US$ 7 200 | −US$ 8 400
+Comisiones de pasarela (4,5 %) | −US$ 2 010 | −US$ 7 149 | −US$ 15 937
+Flujo neto del año | −US$ 80 942 | −US$ 30 682 | US$ 75 417
+</TABLA>
+Fuente: elaboración propia. Inversión inicial (año 0): −US$ 23 084. Cifras antes de impuestos.
+Tabla 27. Indicadores de evaluación económica
+<TABLA>
+Indicador | Resultado | Interpretación
+Equilibrio operativo mensual | Mes 22 (oct. 2028) | Primer mes en que el MRR cubre los costos. Enero y febrero de 2029 retroceden por el salto anual de costos; desde el mes 27 (mar. 2029) el flujo mensual es positivo de forma sostenida
+Necesidad máxima de capital | US$ 139 458 | Se cubrirá con una ronda semilla de US$ 150 000
+VAN a 3 años (tasa 25 %) | −US$ 68 861 | Negativo: el horizonte de 3 años solo captura la etapa de inversión
+VAN con valor terminal (g = 5 %) | US$ 133 860 | Positivo: el negocio crea valor si sostiene el crecimiento
+TIR con valor terminal | 83 % | Supera holgadamente la tasa de descuento de 25 %
+ARR al cierre de 2029 | US$ 463 416 | 782 clientes de pago
+</TABLA>
+Fuente: elaboración propia.
+[IMG]
+Figura 12. Flujo de caja acumulado del plan de negocio
+Fuente: elaboración propia.
+El flujo de caja acumulado cierra 2029 en −US$ 59 291, por lo que la inversión no se recupera dentro del horizonte de tres años (Figura 12). Con el flujo del mes 36 (US$ 14 980) se recuperaría en unos cuatro meses, hacia abril de 2030, si los costos se mantuvieran en el nivel de 2029.
+El análisis de sensibilidad (Anexo E) muestra que con un 30 % menos de clientes el negocio no alcanza flujos positivos en el horizonte, mientras que con un 30 % más el VAN a tres años ya es positivo. La conclusión es que el MVP, con un costo acotado de US$ 18 084, es la forma más barata de reducir la incertidumbre principal del negocio —si el indicador es lo bastante bueno para atraer y retener clientes— antes de comprometer la ronda semilla.
+[Heading2] 3.3. Determinación de los objetivos de inteligencia artificial (NLP)
+[Heading3] 3.3.1. Objetivo NLP
+Objetivo general: construir y evaluar un clasificador de sentimiento de tres clases para textos en español e inglés sobre criptomonedas, procedentes de Google News RSS (titulares) y YouTube (títulos, descripciones y comentarios), que alcance una macro-F1 ≥ 0,78 en un conjunto de prueba reservado y cuyas predicciones alimenten el Pulse Score.
+Objetivos específicos:
+[ListParagraph] ON1. Construir un corpus de al menos 10 000 textos sobre BTC, ETH y SOL a partir de las dos fuentes, con un subconjunto etiquetado manualmente de al menos 3 000 textos.
+[ListParagraph] ON2. Garantizar la calidad del etiquetado con doble anotación y un kappa de Cohen ≥ 0,70.
+[ListParagraph] ON3. Entrenar un modelo base (TF-IDF con regresión logística o SVM) y un modelo Transformer multilingüe ajustado (XLM-RoBERTa), y compararlos con un modelo preentrenado sin ajuste (XLM-T) y un léxico (VADER) como referencias.
+[ListParagraph] ON4. Evaluar el desempeño global, por clase, por idioma y por fuente, y analizar los errores típicos.
+[ListParagraph] ON5. Explorar la relación entre el Pulse Score diario y la variación del precio de cada activo como evidencia de utilidad, sin usarla como criterio de éxito.
+[Heading3] 3.3.2. Tipo de tarea NLP
+Tabla 28. Tareas NLP del proyecto
+<TABLA>
+Tarea | Tipo | Técnica prevista | Rol
+Análisis de sentimiento | Clasificación supervisada multiclase a nivel de documento (3 clases) | TF-IDF + LR/SVM; ajuste fino de XLM-RoBERTa [20] | Tarea principal
+Identificación de idioma | Clasificación de idioma | Clasificador fastText preentrenado [49] | Preprocesamiento
+Detección de duplicados | Similitud de textos | Hash exacto y MinHash sobre n-gramas [50] | Calidad de datos
+Identificación del activo | Reconocimiento de entidades basado en reglas | Diccionario de alias (bitcoin, BTC, ether, ETH, solana, SOL) | Asignación del texto
+Agregación | Análisis de series temporales | Pulse Score por ventana y detección de cambios | Salida de negocio
+</TABLA>
+Fuente: elaboración propia.
+La tarea principal se formula como clasificación a nivel de documento porque los titulares y comentarios son textos cortos que suelen expresar una sola orientación. Se descarta, para el MVP, el análisis de sentimiento basado en aspectos, que exigiría un etiquetado más costoso; queda como línea de mejora.
+[Heading3] 3.3.3. Criterios de rendimiento NLP
+Tabla 29. Criterios de éxito del modelo NLP
+<TABLA>
+Métrica | Meta | Justificación
+Macro-F1 (prueba) | ≥ 0,78 | Pondera por igual las tres clases; robusta ante el desbalance esperado
+Accuracy (prueba) | ≥ 0,80 | Medida global complementaria, comprensible para el negocio
+F1 por clase | ≥ 0,70 en cada clase | Evita un modelo que ignore la clase minoritaria
+Brecha de macro-F1 entre idiomas | ≤ 0,05 | Asegura un servicio equivalente en español e inglés (OB3)
+Mejora del Transformer sobre el modelo base | ≥ +5 p. p. de macro-F1 | Justifica el mayor costo computacional
+Acuerdo entre anotadores | Kappa ≥ 0,70 | Garantiza que la etiqueta de referencia es consistente
+Latencia de inferencia | ≤ 50 ms por texto en lote (CPU) | Compatible con el ciclo de 30 minutos (RNF01)
+Precisión en identificación de activo | ≥ 0,90 | Evita atribuir sentimiento al activo equivocado
+</TABLA>
+Fuente: elaboración propia.
+La Tabla 30 cierra el ciclo entre negocio y modelo, de modo que cada métrica técnica responde a un objetivo empresarial.
+Tabla 30. Alineamiento de objetivos de negocio y objetivos NLP
+<TABLA>
+Objetivo de negocio | Objetivo NLP | Métrica de control
+OB1 – Reducir tiempo de monitoreo | ON3 – Modelo eficiente en inferencia | Latencia ≤ 50 ms/texto; ciclo ≤ 2 min
+OB2 – Indicador confiable para 3 activos | ON1, ON3, ON4 – Corpus y clasificador validados | Macro-F1 ≥ 0,78; precisión de activo ≥ 0,90
+OB3 – Atender en español e inglés | ON4 – Evaluación por idioma | Brecha ≤ 0,05
+OB4 – Costo de datos nulo | ON1 – Corpus de fuentes gratuitas | Costo de datos = US$ 0
+OB5 – Validar la propuesta de valor | ON5 – Utilidad del Pulse Score | Evidencia exploratoria y encuesta a usuarios
+</TABLA>
+Fuente: elaboración propia.
+[Heading2] 3.4. Producción de un plan de proyecto
+[Heading3] 3.4.1. Metodología
+El proyecto sigue CRISP-DM, cuyas seis fases son iterativas: los resultados de la evaluación pueden exigir volver a la preparación de datos o al modelado [43], [44]. La Figura 13 muestra el ciclo aplicado al proyecto.
+[IMG]
+Figura 13. Ciclo CRISP-DM aplicado al proyecto de Pulse Analytics
+Fuente: elaboración propia a partir de [43].
+[Heading3] 3.4.2. Plan de actividades y cronograma
+Tabla 31. Plan de proyecto por fases
+<TABLA>
+Fase | Actividades principales | Semanas | Entregable
+1. Comprensión del negocio | Objetivos, situación, riesgos, objetivos NLP, plan | S1–S2 | Presente informe (secciones 1 a 3)
+2. Comprensión de los datos | Conectores, recolección inicial, descripción, EDA y calidad | S3–S4 | Informe de comprensión de datos y diccionario
+3. Preparación de los datos | Limpieza, deduplicación, idioma, activo, guía y etiquetado doble | S5–S7 | Corpus etiquetado versionado (≥ 3 000 textos)
+4. Modelado | Modelo base, Transformer, ajuste de hiperparámetros | S8–S11 | Modelos entrenados y registro de experimentos
+5. Evaluación | Métricas en prueba, análisis de errores, revisión de objetivos | S12–S13 | Informe de evaluación y selección de modelo
+6. Despliegue | Pipeline programado, dashboard, manual y validación con usuarios | S14–S16 | Prototipo funcional y documentación final
+</TABLA>
+Fuente: elaboración propia.
+[IMG]
+Figura 14. Diagrama de Gantt del proyecto (16 semanas)
+Fuente: elaboración propia.
+[Heading3] 3.4.3. Hitos de control
+Tabla 32. Hitos y criterios de aceptación
+<TABLA>
+Hito | Semana | Criterio de aceptación
+H1 – Alcance aprobado | S2 | Objetivos, criterios de éxito y riesgos validados por el CEO
+H2 – Datos iniciales disponibles | S4 | ≥ 10 000 registros crudos de ambas fuentes e informe de calidad
+H3 – Corpus etiquetado | S7 | ≥ 3 000 textos con doble anotación y kappa ≥ 0,70
+H4 – Modelos entrenados | S11 | Modelo base y Transformer con resultados en validación
+H5 – Modelo seleccionado | S13 | Cumplimiento de criterios de la Tabla de criterios NLP o plan de mejora
+H6 – Prototipo entregado | S16 | Pipeline programado, dashboard y manual de ejecución
+</TABLA>
+Fuente: elaboración propia.
+[Heading3] 3.4.4. Matriz de responsabilidades (RACI)
+Tabla 33. Matriz RACI del proyecto
+<TABLA>
+Fase | CEO | Ing. datos | Cient. datos | Full stack | Comercial | Calidad
+Comprensión del negocio | A | C | R | I | R | C
+Comprensión de los datos | I | R | A | I | I | C
+Preparación de los datos | I | R | A | I | C | R
+Modelado | I | C | A/R | I | I | C
+Evaluación | A | C | R | I | C | R
+Despliegue | A | R | C | R | C | R
+</TABLA>
+Fuente: elaboración propia. R = responsable, A = aprueba, C = consultado, I = informado.
+[Heading3] 3.4.5. Evaluación inicial de herramientas y técnicas
+Tabla 34. Herramientas y técnicas por actividad
+<TABLA>
+Actividad | Herramienta o técnica | Justificación
+Recolección | feedparser (RSS) y google-api-python-client (YouTube) | Bibliotecas estándar y mantenidas
+Almacenamiento | JSON en capa cruda y PostgreSQL en capa curada | Trazabilidad y consultas SQL
+Preprocesamiento | Expresiones regulares, ftfy, emoji, fastText [49] | Texto ruidoso de redes y titulares
+Deduplicación | Hash exacto y MinHash [50] | Noticias sindicadas en varios medios
+Etiquetado | Label Studio con guía de anotación y glosario | Doble anotación y adjudicación
+Modelo base | TF-IDF + regresión logística / SVM lineal [45] | Rápido, interpretable, referencia sólida
+Modelo avanzado | XLM-RoBERTa base ajustado [20]; XLM-T como referencia [21] | Multilingüe, robusto a texto informal
+Referencias adicionales | FinBERT (inglés financiero) [46] y VADER [47] | Comparar con enfoques de dominio y léxico
+Evaluación | scikit-learn: precisión, recall, F1, matriz de confusión | Métricas estándar y reproducibles
+Visualización | Streamlit y matplotlib | Dashboard rápido de construir
+</TABLA>
+Fuente: elaboración propia.
+[Heading3] 3.4.6. Estrategia de evaluación
+El corpus etiquetado se dividirá en entrenamiento (70 %), validación (15 %) y prueba (15 %) con una partición temporal: los textos más recientes se reservan para prueba, de modo que el modelo se evalúe en condiciones similares a producción y se eviten fugas por noticias del mismo evento. Antes de dividir se agruparán los casi duplicados para que no queden repartidos entre subconjuntos. La partición se estratificará por idioma y fuente. La selección del modelo usará solo el conjunto de validación; el conjunto de prueba se usará una única vez para el informe final. Se reportarán intervalos de confianza por bootstrap y una prueba de McNemar para comparar el modelo base con el Transformer.
+[Heading2] 3.5. Conclusión de la comprensión del negocio
+La comprensión del negocio deja definido qué debe lograr el motor NLP y por qué: un clasificador de tres clases en español e inglés, alimentado por Google News RSS y YouTube, cuya calidad se mide con macro-F1 y cuyo resultado se traduce en el Pulse Score que la empresa comercializará. El presupuesto acotado, el cronograma de 16 semanas con hitos verificables y el registro de riesgos permiten avanzar a la fase de comprensión de los datos con objetivos claros y medibles.
+[Heading1] 4. Comprensión de los datos
+Esta sección corresponde a la segunda fase de CRISP-DM [43]. Su objetivo es comprobar si los datos de YouTube Data API v3 y Google News RSS permiten cumplir los objetivos de negocio y de NLP definidos en la sección 3. El análisis se aplica a un caso de estudio: el hackeo a Binance del 29 de octubre de 2026. Ese día, desde las 20:05 UTC, atacantes vaciaron hot wallets del exchange por alrededor de US$ 6 300 millones, en lo que se considera el mayor robo de criptoactivos registrado [51], [52]. Un evento de esta magnitud es idóneo para observar cómo reaccionan medios y comunidad y para poner a prueba el futuro Pulse Score por entidad (Binance, BTC, BNB, etc.).
+Todo el proceso está implementado en el cuaderno 04_comprension_datos.ipynb (Anexo C), organizado con la misma numeración de esta sección. Los precios de mercado no forman parte del corpus de NLP; se reservan para la fase de evaluación (objetivo ON5).
+[Heading2] 4.1. Recopilar datos iniciales
+[Heading3] 4.1.1. Orígenes de datos
+Los datos provienen de dos orígenes públicos de Google, complementarios entre sí: la API oficial de YouTube recoge la voz de la comunidad y el feed RSS de Google News, la voz de los medios.
+Tabla 35. Orígenes de datos del corpus
+<TABLA>
+Origen | Tipo y acceso | Contenido aportado | Condiciones de uso
+YouTube Data API v3 | API REST oficial con clave; gratuita con cuota de 10 000 unidades diarias [22] | Comentarios públicos de primer nivel en videos sobre el hackeo, con fecha y “me gusta” | Términos y políticas de los servicios de API de YouTube [32], [33]
+Google News RSS | Feed XML público, sin clave | Titular, medio, fecha y enlace de noticias en español e inglés | Términos del Servicio de Google [34]; solo se usa el titular, sin el cuerpo de la nota
+</TABLA>
+Fuente: elaboración propia.
+[Heading3] 4.1.2. Fuentes de datos
+En YouTube, la recolección combina search.list (100 unidades por consulta) para ubicar videos sobre el caso y commentThreads.list (1 unidad por página de hasta 100 comentarios) para descargar sus comentarios en texto plano [22]. En Google News se consulta el endpoint /rss/search con la consulta y la edición correspondientes (parámetros hl, gl y ceid), una por idioma. Ambos procedimientos están documentados como funciones reutilizables en el cuaderno y son los mismos que ejecutará la API de producción, programada cada 30 minutos.
+[Heading3] 4.1.3. Características iniciales del corpus
+El corpus inicial reúne 1 445 documentos: 807 comentarios de 18 videos de YouTube y 638 titulares de alrededor de 250 medios. La captura se cerró el 6 de noviembre de 2026 a las 16:52 UTC, ocho días después del ataque.
+[Heading3] 4.1.4. Informe de recopilación de datos
+Tabla 36. Informe de recopilación de datos
+<TABLA>
+Fuente | Método | Unidad | Registros | Contenedores | Rango temporal | Observaciones
+YouTube Data API v3 | search.list + commentThreads.list | Comentario de primer nivel | 807 | 18 videos | 29-jul-2024 a 06-nov-2026 | 3 videos llegan exactamente a 100 comentarios (solo primera página); 1 video antiguo no relacionado con el caso; la API no informa el idioma
+Google News RSS | /rss/search por consulta y edición | Titular de noticia | 638 | ≈ 250 medios | 16-oct a 06-nov-2026 | 332 en español y 306 en inglés; solo titular y medio
+Total |  |  | 1 445 |  |  | 
+</TABLA>
+Fuente: elaboración propia.
+[Heading2] 4.2. Describir los datos
+[Heading3] 4.2.1. Características del corpus
+Ambas fuentes se integraron en un esquema común con una limpieza mínima y no destructiva: se decodifica el HTML, se eliminan URLs, se separa el nombre del medio del titular y se normalizan los espacios, conservando siempre el texto original. Además se derivan tres variables clave:
+[ListParagraph] Idioma. Google News lo informa por edición; para YouTube se usa un detector basado en la proporción de palabras funcionales en español e inglés. Se eligió porque es simple de replicar en TypeScript para producción, y se contrastó con la biblioteca langdetect [53].
+[ListParagraph] Periodo. El corte se hace a la hora real del ataque (20:05 UTC del 29-oct), no a medianoche: antes (14 días previos), durante (72 horas de crisis aguda), después y fuera de ventana.
+[ListParagraph] Precisión temporal. Algunos titulares solo tienen fecha a nivel de día (hora 07:00:00 UTC); los del 29-oct describen el hackeo, por lo que se asignan a durante.
+La Tabla 37 resume el tamaño y la riqueza léxica del corpus.
+Tabla 37. Características del corpus por fuente
+<TABLA>
+Métrica | Google News RSS | YouTube | Total
+Documentos | 638 | 807 | 1 445
+Tokens (palabras) | 8 651 | 15 939 | 24 590
+Vocabulario (tipos) | 1 791 | 4 214 | 5 322
+TTR (tipos/tokens) | 0,207 | 0,264 | 0,216
+Hapax (% del vocabulario) | 60,6 | 66,3 | 63,1
+Palabras por doc. (media) | 13,6 | 19,8 | 17
+Palabras por doc. (mediana) | 13 | 13 | 13
+Palabras por doc. (p95) | 20 | 52,7 | 42
+Caracteres por doc. (media) | 82,3 | 109,4 | 97,4
+% español | 52 | 73,9 | 64,2
+% inglés | 48 | 20,8 | 32,8
+</TABLA>
+Fuente: elaboración propia (tabla_4_2_corpus.csv).
+Los titulares son textos cortos y homogéneos (mediana de 13 palabras, p95 de 20). Los comentarios tienen la misma mediana, pero una cola mucho más larga (p95 de 53) y un vocabulario más diverso (TTR de 0,264 frente a 0,207). YouTube es predominantemente hispano (74 %), mientras que Google News está equilibrado entre español e inglés.
+[Heading3] 4.2.2. Características lingüísticas
+Tabla 38. Rasgos lingüísticos por fuente (% de documentos)
+<TABLA>
+Rasgo | Google News RSS | YouTube
+Emojis | 0,0 % | 16,1 %
+URL | 2,2 % | 0,6 %
+Menciones @ | 0,0 % | 0,5 %
+Exclamación / interrogación | 4,2 % | 26,1 %
+Palabras en MAYÚSCULAS (≥4 letras) | 6,1 % | 9,0 %
+Letras repetidas (aaaa) | 0,0 % | 1,5 %
+Risa (jaja, xd, lol) | 0,0 % | 3,8 %
+Jerga cripto | 3,4 % | 2,0 %
+Cifras y montos ($6.3bn, 8 %) | 53,1 % | 5,5 %
+Saltos de línea | 0,0 % | 7,9 %
+Mezcla es/en (ambos con ≥2 funcionales) | 0,0 % | 0,9 %
+</TABLA>
+Fuente: elaboración propia (tabla_4_2_rasgos_linguisticos.csv).
+Las dos fuentes representan registros distintos. Los titulares son periodísticos: más de la mitad incluye cifras o montos (“$6.3 billion”, “6.300 millones”) y casi no tienen emojis ni signos expresivos. Los comentarios son informales: el 16 % tiene emojis, el 26 % signos de exclamación o interrogación y el 4 % expresiones de risa, señales frecuentes de ironía. Esta diferencia justifica evaluar el modelo por fuente y no solo de forma global.
+[Heading3] 4.2.3. Variables y etiquetas
+Tabla 39. Variables del corpus
+<TABLA>
+Grupo | Variables | Descripción
+Identificación | doc_id, source, doc_type, url, video_id, medio | Trazabilidad del texto hasta su origen
+Temporales | timestamp, ts_precision, period | Fecha UTC, precisión y periodo del caso
+Texto | text_raw, text_clean, text_norm | Original, limpio y normalizado (minúsculas, sin tildes)
+Lingüísticas | lang, n_tokens, n_chars | Idioma y longitud
+Interacción | engagement | “Me gusta” del comentario (solo YouTube)
+Contenido (derivadas) | entidades, aspectos | Entidades (Binance, BTC, BNB, ETH, SOL, stablecoins, actores) y temas detectados por diccionario
+Etiqueta objetivo | sentimiento ∈ {positivo, negativo, neutral} | Aún no existe: se obtendrá por anotación manual doble en la fase 3
+Etiqueta débil | sent_lex | Sentimiento por léxico bilingüe, solo para exploración y estratificación
+</TABLA>
+Fuente: elaboración propia.
+[Heading3] 4.2.4. Consideraciones legales y éticas
+[ListParagraph] Datos públicos y mínimos: solo comentarios públicos y titulares. El esquema no incluye nombres, identificadores ni fotos de autores, en línea con el principio de minimización de la Ley N.° 29733 y su reglamento [27], [28].
+[ListParagraph] Términos de las fuentes: se respetan las cuotas y políticas de YouTube [33]; de Google News solo se usa el titular, con enlace y atribución al medio, sin descargar ni redistribuir el cuerpo de las notas.
+[ListParagraph] Publicación: en la web y en reportes se muestran agregados (volúmenes, proporciones, índices) y titulares cortos con enlace; no se publican comentarios completos de usuarios.
+[ListParagraph] Contenido sensible: el corpus contiene atribuciones del ataque a un Estado y mensajes fraudulentos; se tratan como objeto de análisis, sin amplificarlos.
+[ListParagraph] Propósito: el análisis mide percepción y no constituye recomendación de inversión.
+[Heading3] 4.2.5. Diccionario de datos
+El diccionario definitivo, con 17 campos, su tipo, origen, descripción, porcentaje de nulos y un ejemplo, se presenta en el Anexo B. Los nulos de medio y lang_src (55,8 %) y de video_id y engagement (44,2 %) son estructurales: cada campo solo aplica a una de las dos fuentes.
+[Heading2] 4.3. Explorar los datos (EDA)
+[Heading3] 4.3.1. Volumen en el tiempo
+La Figura 15 muestra que la conversación prácticamente no existía antes del ataque y explota a partir del 29-oct. Las noticias aparecen 0,7 horas después del inicio del robo (20:49 UTC) y los comentarios, 4,3 horas después (00:20 UTC del 30-oct). El día de mayor actividad conjunta es el 3 de noviembre (271 documentos), que coincide con la difusión de la explicación del ataque: un ingeniero engañado mediante una entrevista de trabajo falsa.
+La serie diaria cubre los 1 338 documentos de la ventana del caso. Los bloques de 6 horas incluyen 1 321 documentos con hora exacta, desde 24 horas antes del ataque hasta el cierre de la captura; quedan fuera 11 titulares fechados solo a nivel de día y 6 documentos anteriores a ese inicio. El titular previo que se observa el 29-oct (11:24 UTC) es un artículo general sobre la seguridad de Binance, no una noticia del ataque.
+[IMG]
+Figura 15. Volumen diario y por bloques de 6 horas de titulares y comentarios
+Fuente: elaboración propia.
+[Heading3] 4.3.2. Sincronía entre medios y comunidad
+La correlación cruzada entre los volúmenes horarios (Figura 16) alcanza su máximo con un desfase de +4 horas (r = 0,34): la comunidad reacciona después de los medios. En producción, esto indica que un aumento de titulares negativos sobre una entidad anticipa la reacción de los usuarios y es una señal útil para las alertas.
+[IMG]
+Figura 16. Correlación cruzada entre el volumen horario de noticias y de comentarios
+Fuente: elaboración propia.
+[Heading3] 4.3.3. Distribución por idioma
+[IMG]
+Figura 17. Distribución de idiomas por fuente y periodo
+Fuente: elaboración propia.
+Google News mantiene un equilibrio cercano a 50/50 en todos los periodos. En YouTube, el inglés aparece sobre todo en la etapa después y apenas en la crisis aguda, por lo que el corpus de comentarios en inglés es reducido para evaluar la brecha entre idiomas (OB3).
+[Heading3] 4.3.4. Longitud de los textos
+[IMG]
+Figura 18. Distribución del número de palabras por documento
+Fuente: elaboración propia.
+Con un p99 de 85 palabras y una relación aproximada de 1,5 subtokens por palabra, una longitud máxima de secuencia de 128 subtokens cubre el 99,2 % del corpus. Se adopta ese valor para el modelo Transformer de la fase 4.
+[Heading3] 4.3.5. Vocabulario y términos distintivos
+Los términos se cuentan por frecuencia documental (número de documentos que los contienen), con listas de palabras vacías en español e inglés normalizadas sin tildes. Los medios hablan de hack, millones, robo, retiros y Corea del Norte; la comunidad, de crypto, dinero, bitcoin, robo y seguridad (Figura 19). Entre los términos frecuentes de YouTube aparece “spcx90k”, que corresponde a mensajes promocionales: es el primer indicio de spam en el corpus.
+[IMG]
+Figura 19. Términos y bigramas más frecuentes por fuente
+Fuente: elaboración propia.
+Para comparar periodos se usan los log-odds con prior de Dirichlet informativo [54] (Figura 20). Durante la crisis aguda dominan récord, historia, suspende, pérdidas y cubrir, es decir, la magnitud del robo y la promesa de cobertura. Después dominan entrevista, trabajo falso, hackers y salidas: la explicación del ataque y la salida de fondos. El vocabulario cambia según la fase del evento, lo que respalda medir el sentimiento por ventanas de tiempo.
+[IMG]
+Figura 20. Términos distintivos de la crisis aguda frente a la etapa posterior
+Fuente: elaboración propia.
+[Heading3] 4.3.6. Entidades, aspectos y concentración
+Binance aparece en el 97 % de los titulares, pero solo en el 11 % de los comentarios: la comunidad discute el tema sin nombrar la entidad, por lo que asignar el sentimiento a una entidad exigirá usar el contexto del video y no solo el texto del comentario. Corea del Norte o el grupo Lazarus aparece en el 15 % de los titulares. Por aspectos, los medios se centran en seguridad/ataque (83–90 %) y en fondos y retiros (33–51 %), mientras que la comunidad reparte su atención entre seguridad, mercado y responsables (Figura 21).
+[IMG]
+Figura 21. Entidades mencionadas y aspectos por fuente y periodo
+Fuente: elaboración propia.
+La cobertura de medios es diversa: los diez medios con más titulares suman solo el 26 % del total, encabezados por Yahoo Finance, TradingView, DiarioBitcoin y CoinDesk. En YouTube, el video con más comentarios concentra el 14 % del corpus (índice HHI de 0,10), y tres videos quedaron truncados en 100 comentarios (Figura 22). El 64 % de los comentarios no tiene ningún “me gusta”, por lo que el engagement no es útil como ponderador en esta etapa.
+[IMG]
+Figura 22. Medios con más titulares y comentarios por video
+Fuente: elaboración propia.
+[Heading3] 4.3.7. Sentimiento preliminar
+Como aún no existen etiquetas manuales, se aplicó un léxico bilingüe de dominio con manejo simple de la negación, solo con fines exploratorios. El 69 % de los titulares sale negativo, frente al 26 % de los comentarios (59 % neutros). El Pulse Score diario preliminar de los medios se mantiene entre −60 y −86 casi todo el periodo, con un alivio el 1 y 2 de noviembre (−8 y −31), cuando el 60 % de los titulares del 1-nov informa la reanudación de los retiros y la cobertura de las pérdidas (Figura 23).
+[IMG]
+Figura 23. Sentimiento léxico por fuente y periodo, y Pulse Score diario preliminar
+Fuente: elaboración propia.
+Esta lectura tiene dos limitaciones conocidas. Los titulares que informan un hecho negativo salen negativos aunque su redacción sea neutral, y el léxico no capta la ironía de los comentarios. Por eso la etiqueta léxica se usa solo para estratificar la muestra de anotación y no para reportar el desempeño del producto.
+[Heading3] 4.3.8. Síntesis del EDA
+Tabla 40. Hallazgos del análisis exploratorio y su implicancia
+<TABLA>
+Hallazgo | Implicancia para el proyecto
+La comunidad reacciona unas 4 h después de los medios | Los titulares pueden alimentar alertas tempranas
+El vocabulario cambia entre la crisis aguda y la etapa posterior | Medir el sentimiento por ventanas de tiempo
+Binance aparece en el 97 % de los titulares y en el 11 % de los comentarios | Asignar la entidad usando el contexto del video
+El inglés es escaso en los comentarios | Ampliar los videos en inglés para evaluar la brecha entre idiomas
+Hay spam (spcx90k) y emojis o risa en el 19 % de los comentarios | Filtro antispam y guía de anotación que contemple la ironía
+El 99,2 % del corpus cabe en 128 subtokens | max_length = 128 en la fase de modelado
+</TABLA>
+Fuente: elaboración propia.
+[Heading2] 4.4. Verificar la calidad de los datos
+La calidad se verificó con 52 chequeos automáticos distribuidos en las diez dimensiones requeridas, cada uno con un umbral, un estado (OK, REVISAR o CRÍTICO) y la acción prevista para la fase de preparación. El resultado es de 39 chequeos OK, 13 a revisar y ninguno crítico (Figura 24). El detalle completo está en el Anexo D.
+[IMG]
+Figura 24. Resultado de la verificación de calidad por dimensión
+Fuente: elaboración propia (calidad_datos.csv).
+Tabla 41. Resumen de la verificación de calidad por dimensión
+<TABLA>
+Dimensión | Resultado principal | Estado | Acción
+Exactitud | Idioma correcto en el 96,7 % de los titulares y 98,5 % de acuerdo con langdetect en YouTube; 1,7 % de titulares con fecha solo por día; 2,2 % de medios con nombre anómalo (URL) | Revisar | Corregir el periodo por fecha y normalizar nombres de medios
+Completitud | Sin nulos críticos; 1 comentario vacío; 3 de 18 videos truncados en 100 comentarios; sin datos de autor (por diseño); solo titulares en Google News | Revisar | Paginar comentarios con nextPageToken
+Consistencia | IDs con formato válido al 100 %, zona horaria UTC única, dominios correctos e idioma coherente con la edición | OK | —
+Integridad | 0 IDs duplicados; 100 % de comentarios con video de origen y enlaces válidos | OK | —
+Razonabilidad | 0 fechas futuras; 13,3 % de comentarios anteriores a la ventana del caso (video antiguo); engagement muy asimétrico | Revisar | Excluir comentarios fuera de ventana
+Oportunidad | Noticias a +0,7 h y comentarios a +4,3 h del evento; 74 y 101 documentos en las primeras 24 h | OK | —
+Unicidad | Duplicados exactos: 1,9 % en YouTube y 2,7 % en Google News (mismo titular en varios medios); casi duplicados: 1,6 %; spam: 4,5 % de los comentarios | Revisar | Eliminar duplicados y spam; agrupar casi duplicados
+Validez | 6,6 % de comentarios con menos de 3 palabras; 3 % fuera de español/inglés; sin problemas de codificación; sin etiqueta de referencia | Revisar | Excluir textos cortos; anotar la muestra
+Sesgo y representatividad | Fuentes balanceadas (52/48) y medios diversos; inglés en YouTube 23,9 %; solo 8 documentos antes del ataque | Revisar | Ampliar inglés y recolectar una línea base
+Calidad lingüística | 19 % de comentarios con emojis o risa (posible ironía); mezcla de idiomas y alargamientos poco frecuentes | Revisar | Conservar emojis; incluir ironía en la guía de anotación
+</TABLA>
+Fuente: elaboración propia.
+[Heading3] 4.4.1. Decisiones de calidad y corpus curado
+A partir de la verificación se definieron cinco reglas de curado, que se aplican en orden y quedan versionadas en el archivo pipeline_config.json para que producción aplique exactamente las mismas (Tabla 42 y Figura 25).
+Tabla 42. Reglas de curado y documentos restantes
+<TABLA>
+Paso | Documentos restantes | Excluidos YouTube | Excluidos Google News
+Corpus inicial | 1 445 | — | —
+R1 Fuera de la ventana del caso | 1 338 | 107 | 0
+R2 Spam / promoción | 1 303 | 35 | 0
+R3 Duplicado exacto | 1 277 | 9 | 17
+R4 Menos de 3 palabras | 1 238 | 39 | 0
+R5 Idioma distinto de es/en | 1 228 | 10 | 0
+</TABLA>
+Fuente: elaboración propia (tabla_4_4_embudo_curado.csv).
+[IMG]
+Figura 25. Del corpus inicial al corpus curado
+Fuente: elaboración propia.
+El corpus curado queda en 1 228 documentos: 621 titulares y 607 comentarios, 799 en español y 429 en inglés. Los 10 casi duplicados detectados en Google News se conservan agrupados, porque representan la misma noticia publicada por medios distintos. Además se generó una muestra estratificada de 604 textos para anotación manual (por fuente, idioma, periodo y sentimiento léxico, con un máximo de 40 comentarios por video), que es el insumo de la fase de preparación de datos.
+[Heading3] 4.4.2. Conclusiones de la comprensión de los datos
+[ListParagraph] Los datos son adecuados para el caso de estudio. Ambas fuentes son gratuitas y autorizadas (OB4), reaccionan en pocas horas al evento, presentan una calidad estructural alta (consistencia, integridad y oportunidad sin observaciones) y cubren los dos idiomas objetivo.
+[ListParagraph] El volumen es una primera iteración, no el corpus final. Los 1 228 documentos curados están por debajo de la meta de 10 000 textos y 3 000 etiquetados de la sección 3. Para alcanzarla se debe paginar los comentarios, ampliar consultas y videos, sobre todo en inglés, e incorporar otros eventos y entidades.
+[ListParagraph] Falta una línea base. Solo 8 documentos son anteriores al ataque. Para comparar antes y después se recolectarán noticias y comentarios de las dos semanas previas a cada evento futuro.
+[ListParagraph] El ruido está identificado y tiene tratamiento. El spam, los duplicados, los textos cortos y los comentarios fuera de ventana se eliminan con reglas explícitas; la ironía y los titulares descriptivos se abordarán en la guía de anotación.
+[ListParagraph] La etiqueta de sentimiento debe construirse. La muestra de 604 textos se anotará con dos anotadores y se aceptará con un kappa de Cohen ≥ 0,70 [48] antes de pasar al modelado.
+[Heading1] Referencias bibliográficas
+ [1]	B. Liu, Sentiment Analysis and Opinion Mining. San Rafael, CA, EE. UU.: Morgan & Claypool, 2012.
+ [2]	O. Kraaijeveld y J. De Smedt, “The predictive power of public Twitter sentiment for forecasting cryptocurrency prices,” Journal of International Financial Markets, Institutions and Money, vol. 65, art. 101188, 2020.
+ [3]	V. Gurgul, S. Lessmann y W. K. Härdle, “Deep learning and NLP in cryptocurrency forecasting: Integrating financial, blockchain, and social media data,” International Journal of Forecasting, vol. 41, no. 4, pp. 1666–1695, 2025, doi: 10.1016/j.ijforecast.2025.02.007.
+ [4]	Chainalysis, “Latin America emerges as crypto powerhouse amid volatile growth,” Chainalysis Blog, 2 oct. 2025. [En línea]. Disponible en: https://www.chainalysis.com/blog/latin-america-crypto-adoption-2025/
+ [5]	Chainalysis, “The Chainalysis 2025 Global Adoption Index,” Chainalysis Blog, 2025. [En línea]. Disponible en: https://www.chainalysis.com/blog/2025-global-crypto-adoption-index/
+ [6]	Forbes Perú, “Mercado cripto en Perú crece ante auge de las stablecoins: las criptoapps aumentan sus usuarios y la banca estudia su incursión,” 5 ene. 2026. [En línea]. Disponible en: https://forbes.pe/activos-digitales/2026-01-05/mercado-cripto-en-peru-crece-ante-auge-de-las-stablecoins-las-criptoapps-aumentan-sus-usuarios-y-la-banca-estudia-su-incursion/
+ [7]	Monitor do Mercado, “Participação do Brasil no mercado cripto dobra em 2025, aponta estudo; país lidera América Latina,” 2025. [En línea]. Disponible en: https://monitordomercado.com.br/noticias/329838-participacao-do-brasil-no-mercado-cripto-dobra-em-2025-aponta-estudo-pais-lidera-america-latina/
+ [8]	Lemon, “Crypto Report 2025: Estado de la industria crypto en Latinoamérica,” 2026. [En línea]. Disponible en: https://lemon.me/blog/crypto-report-2025
+ [9]	Finnovista y Finnosummit, “Finnovista Fintech Radar Perú 2024,” dic. 2024. [En línea]. Disponible en: https://www.finnosummit.com/en/radar-types/peru-en/
+ [10]	Forbes Perú, “Más de 150 startups fintech del extranjero operan en el Perú: casi la mitad de la oferta total en 2024,” 18 dic. 2024. [En línea]. Disponible en: https://forbes.pe/negocios/2024-12-18/mas-de-150-startups-fintech-del-extranjero-operan-en-el-peru-casi-la-mitad-de-la-oferta-total-en-2024/
+ [11]	ResearchAndMarkets, “Sentiment Analytics – Global Strategic Business Report 2025,” Business Wire, 14 may. 2025. [En línea]. Disponible en: https://www.businesswire.com/news/home/20250514320402/en
+ [12]	S. Kemp, “Digital 2026: Peru,” DataReportal, 8 nov. 2025. [En línea]. Disponible en: https://datareportal.com/reports/digital-2026-peru
+ [13]	Gestión, “Bitcoin: 350 000 peruanos invierten sin pausa en criptomonedas,” Gestión, Lima, Perú. [En línea]. Disponible en: https://gestion.pe/tu-dinero/bitcoin-350000-peruanos-invierten-sin-pausa-en-criptomonedas-que-dolor-soportaron-en-8-meses-noticia/ (accedido: 6 nov. 2026).
+ [14]	Jurado Nacional de Elecciones, “Resolución N.° 1625-2026-JNE: proclamación de resultados de la Segunda Elección Presidencial 2026,” El Peruano, jul. 2026. [En línea]. Disponible en: https://www.elperuano.pe/noticia/299509-elecciones-2026-jne-oficializa-proclamacion-de-keiko-fujimori-como-presidenta-electa
+ [15]	Banco Central de Reserva del Perú, Reporte de Inflación: Panorama actual y proyecciones macroeconómicas 2026-2027. Lima, Perú: BCRP, jun. 2026.
+ [16]	Perú Retail, “BCR proyecta inflación de 3.8% este año y aplaza retorno al rango meta hasta 2027,” 30 jun. 2026. [En línea]. Disponible en: https://www.peru-retail.com/?p=413881
+ [17]	Expreso, “Perú supera el millón de usuarios cripto y avanza en regulación financiera,” 2025. [En línea]. Disponible en: https://www.expreso.com.pe/tecnologia/peru-supera-el-millon-de-usuarios-cripto-y-avanza-en-regulacion-financiera-noticia/1223773/
+ [18]	Statista, “Bitcoin (BTC) price index,” 2026. [En línea]. Disponible en: https://www.statista.com/statistics/326707/bitcoin-price-index/
+ [19]	J. Devlin, M.-W. Chang, K. Lee y K. Toutanova, “BERT: Pre-training of deep bidirectional transformers for language understanding,” en Proc. NAACL-HLT, 2019, pp. 4171–4186.
+ [20]	A. Conneau et al., “Unsupervised cross-lingual representation learning at scale,” en Proc. 58th Annual Meeting of the ACL, 2020, pp. 8440–8451.
+ [21]	F. Barbieri, L. Espinosa Anke y J. Camacho-Collados, “XLM-T: Multilingual language models in Twitter for sentiment analysis and beyond,” en Proc. 13th Language Resources and Evaluation Conf. (LREC), 2022, pp. 258–266.
+ [22]	Google for Developers, “YouTube Data API: Quota costs,” 2026. [En línea]. Disponible en: https://developers.google.com/youtube/v3/determine_quota_cost
+ [23]	International Energy Agency, Energy and AI. París, Francia: IEA, 2025. [En línea]. Disponible en: https://www.iea.org/reports/energy-and-ai
+ [24]	Ministerio de Justicia y Derechos Humanos, “Decreto Supremo N.° 006-2023-JUS,” El Peruano, Lima, Perú, 27 jul. 2023.
+ [25]	Superintendencia de Banca, Seguros y AFP, “Resolución SBS N.° 02648-2024: Norma para la prevención del lavado de activos y del financiamiento del terrorismo aplicable a los Proveedores de Servicios de Activos Virtuales (PSAV),” El Peruano, 1 ago. 2024.
+ [26]	Superintendencia del Mercado de Valores, “Sobre adquisición de tokens y monedas virtuales.” [En línea]. Disponible en: https://www.smv.gob.pe/uploads/SobreAdquisicionTokens.pdf
+ [27]	Congreso de la República del Perú, “Ley N.° 29733, Ley de Protección de Datos Personales,” El Peruano, 3 jul. 2011.
+ [28]	Ministerio de Justicia y Derechos Humanos, “Decreto Supremo N.° 016-2024-JUS que aprueba el Reglamento de la Ley N.° 29733,” El Peruano, 30 nov. 2024. [En línea]. Disponible en: https://www.gob.pe/institucion/anpd/normas-legales/6554453-16-2024-jus
+ [29]	Congreso de la República del Perú, “Ley N.° 31814, Ley que promueve el uso de la inteligencia artificial en favor del desarrollo económico y social del país,” El Peruano, 5 jul. 2023.
+ [30]	Presidencia del Consejo de Ministros, “Decreto Supremo N.° 115-2025-PCM que aprueba el Reglamento de la Ley N.° 31814,” El Peruano, 9 sep. 2025. [En línea]. Disponible en: https://www.gob.pe/institucion/pcm/normas-legales/7133522-115-2025-pcm
+ [31]	Cuatrecasas, “¿Qué establece el Reglamento de la Ley de Inteligencia Artificial?,” 10 sep. 2025. [En línea]. Disponible en: https://www.cuatrecasas.com/es/latam/tecnologia-medios-digitales/art/que-establece-el-reglamento-de-la-ley-de-inteligencia-artificial
+ [32]	Google, “YouTube API Services Terms of Service.” [En línea]. Disponible en: https://developers.google.com/youtube/terms/api-services-terms-of-service
+ [33]	Google, “YouTube API Services – Developer Policies.” [En línea]. Disponible en: https://developers.google.com/youtube/terms/developer-policies
+ [34]	Google, “Términos del Servicio de Google.” [En línea]. Disponible en: https://policies.google.com/terms
+ [35]	Parlamento Europeo y Consejo de la Unión Europea, “Reglamento (UE) 2023/1114 relativo a los mercados de criptoactivos (MiCA),” Diario Oficial de la Unión Europea, L 150, 9 jun. 2023.
+ [36]	M. E. Porter, “The five competitive forces that shape strategy,” Harvard Business Review, vol. 86, no. 1, pp. 78–93, 2008.
+ [37]	Glassnode, “Digital asset market intelligence.” [En línea]. Disponible en: https://glassnode.com/
+ [38]	Santiment, “Santiment MCP Connector.” [En línea]. Disponible en: https://academy.santiment.net/mcp-connector/
+ [39]	LunarCrush, “LunarCrush API documentation.” [En línea]. Disponible en: https://lunarcrush.com/en/developers
+ [40]	The Tie, “Institutional crypto data APIs: Sentiment, news, token unlocks & on-chain.” [En línea]. Disponible en: https://www.thetie.io/solutions/api
+ [41]	ComparEdge, “Santiment pricing: plans & cost calculator 2026,” jul. 2026. [En línea]. Disponible en: https://comparedge.com/tools/santiment/pricing
+ [42]	ComparEdge, “Glassnode pricing: plans & cost calculator 2026,” jul. 2026. [En línea]. Disponible en: https://comparedge.com/tools/glassnode/pricing
+ [43]	P. Chapman et al., CRISP-DM 1.0: Step-by-step data mining guide. SPSS Inc., 2000. [En línea]. Disponible en: https://www.kde.cs.uni-kassel.de/lehre/ws2012-13/kdd/files/CRISPWP-0800.pdf
+ [44]	R. Wirth y J. Hipp, “CRISP-DM: Towards a standard process model for data mining,” en Proc. 4th Int. Conf. Practical Applications of Knowledge Discovery and Data Mining, 2000, pp. 29–39.
+ [45]	F. Pedregosa et al., “Scikit-learn: Machine learning in Python,” Journal of Machine Learning Research, vol. 12, pp. 2825–2830, 2011.
+ [46]	D. Araci, “FinBERT: Financial sentiment analysis with pre-trained language models,” arXiv:1908.10063, 2019.
+ [47]	C. J. Hutto y E. Gilbert, “VADER: A parsimonious rule-based model for sentiment analysis of social media text,” en Proc. 8th Int. AAAI Conf. Weblogs and Social Media (ICWSM), 2014, pp. 216–225.
+ [48]	J. Cohen, “A coefficient of agreement for nominal scales,” Educational and Psychological Measurement, vol. 20, no. 1, pp. 37–46, 1960.
+ [49]	A. Joulin, E. Grave, P. Bojanowski y T. Mikolov, “Bag of tricks for efficient text classification,” en Proc. 15th Conf. European Chapter of the ACL (EACL), 2017, pp. 427–431.
+ [50]	A. Z. Broder, “On the resemblance and containment of documents,” en Proc. Compression and Complexity of Sequences, 1997, pp. 21–29.
+ [51]	Stingrai, “Binance hack (October 2026): How it happened, root causes and how to protect yourself,” 30 oct. 2026. [En línea]. Disponible en: https://www.stingrai.io/blog/binance-hack-october-2026
+ [52]	Tech Insider, “Binance $6.36B heist tops 2025 total: Biggest crypto hacks of 2026,” nov. 2026. [En línea]. Disponible en: https://tech-insider.org/binance-6-36b-heist-tops-2025-total-biggest-crypto-hacks-2026/
+ [53]	N. Shuyo, “Language detection library for Java,” 2010. [En línea]. Disponible en: https://github.com/shuyo/language-detection
+ [54]	B. L. Monroe, M. P. Colaresi y K. M. Quinn, “Fightin’ words: Lexical feature selection and evaluation for identifying the content of political conflict,” Political Analysis, vol. 16, no. 4, pp. 372–403, 2008.
+ [55]	A. Osterwalder e Y. Pigneur, Business Model Generation. Hoboken, NJ, EE. UU.: Wiley, 2010.
+[Heading1] Anexos
+[Heading2] Anexo A. Diagramas complementarios
+[IMG]
+Figura 26. Arquitectura técnica del prototipo (MVP)
+Fuente: elaboración propia.
+Tabla 43. Lienzo del modelo de negocio (Business Model Canvas) de Pulse Analytics
+<TABLA>
+Bloque | Contenido
+Segmentos de clientes | Inversionistas minoristas y analistas (B2C); fintech, exchanges, consultoras, medios y fondos (B2B)
+Propuesta de valor | Sentimiento del mercado cripto en español, trazable hasta el texto y a precio accesible
+Canales | Web y móvil, comunidades cripto, alianzas con fintech, venta consultiva B2B
+Relación con clientes | Autoservicio con plan Free, soporte por chat, ejecutivo de cuenta para B2B
+Fuentes de ingreso | Suscripciones mensuales y anuales; contratos de API; reportes a medida
+Recursos clave | Corpus etiquetado en español, modelos NLP, pipeline de datos, equipo técnico
+Actividades clave | Recolección y curación de datos, etiquetado, modelado, desarrollo de producto, marketing
+Socios clave | Proveedores de datos y nube, fintech y exchanges locales, asociaciones blockchain
+Estructura de costos | Planilla (≈ 75 %), nube, marketing, datos y licencias, gastos administrativos
+</TABLA>
+Fuente: elaboración propia con base en [55].
+[Heading2] Anexo B. Diccionario de datos
+Diccionario definitivo del corpus integrado (YouTube Data API v3 y Google News RSS), generado por el cuaderno 04_comprension_datos.ipynb (diccionario_datos.csv). Los nulos de los campos exclusivos de una fuente son estructurales.
+Tabla 44. Diccionario de datos del corpus
+<TABLA>
+Campo | Tipo | Origen | Descripción | % nulos | Ejemplo
+doc_id | texto | Ambas | Identificador único del documento (YouTube: ID de comentario; RSS: hash del enlace) | 0 | Ugwp-40afuhQyFy-2vJ4AaABAg
+source | categórica | Ambas | Fuente: youtube | google_news | 0 | youtube
+doc_type | categórica | Ambas | Tipo de documento: comment | news | 0 | comment
+timestamp | fecha-hora UTC | Ambas | Fecha de publicación del comentario o de la noticia | 0 | 2026-11-05 16:04:27+00:00
+ts_precision | categórica | Derivada | Precisión de la fecha: exacta | dia | 0 | exacta
+period | categórica | Derivada | fuera_de_ventana | antes | durante | despues | 0 | despues
+text_raw | texto | Ambas | Texto original tal como lo entrega la fuente | 0 | No es solo binance som todos los  bancos
+text_clean | texto | Derivada | Texto sin HTML, URLs, sufijo de medio ni espacios extra | 0 | No es solo binance som todos los bancos
+text_norm | texto | Derivada | text_clean en minúsculas y sin tildes | 0 | no es solo binance som todos los bancos
+medio | texto | Google News | Medio que publica la noticia | 55,8 | BBC
+video_id | texto | YouTube | ID del video al que pertenece el comentario | 44,2 | RkmVJ7UJgjc
+engagement | entero ≥ 0 | YouTube | Cantidad de 'me gusta' del comentario | 44,2 | 2.0
+lang_src | categórica | Google News | Idioma de la edición del feed | 55,8 | en
+lang | categórica | Derivada | Idioma final: es | en | otro | 0 | es
+n_tokens | entero | Derivada | Número de palabras del texto limpio | 0 | 24
+n_chars | entero | Derivada | Número de caracteres del texto limpio | 0 | 143
+url | URL | Ambas | Enlace al video o a la noticia en Google News | 0 | https://www.youtube.com/watch?v=RkmVJ7UJ
+</TABLA>
+Fuente: elaboración propia.
+[Heading2] Anexo C. Manual de ejecución
+Cuaderno de comprensión de datos (`04_comprension_datos.ipynb`).
+[ListParagraph] Requisitos: Python 3.11 o superior con pandas, numpy y matplotlib; langdetect es opcional (se usa como contraste de idioma si está instalado).
+[ListParagraph] Estructura de carpetas: el cuaderno y la carpeta data/raw/ con youtube_comments.json y google_news_rss.json. Si estos archivos no existen, el cuaderno los extrae automáticamente de exploracion_3_fuentes.ipynb ubicado en la misma carpeta.
+[ListParagraph] Parámetros (celda 0): fecha y hora del evento (29-oct-2026 20:05 UTC), ventanas del caso, semilla aleatoria y la opción COLECTAR_EN_VIVO.
+[ListParagraph] Ejecución: Kernel → Restart & Run All. El tiempo total es menor a un minuto.
+[ListParagraph] Recolección en vivo (opcional): definir la variable de entorno YOUTUBE_API_KEY, ajustar las consultas en CONSULTAS_RSS y CONSULTAS_YT y activar COLECTAR_EN_VIVO = True.
+[ListParagraph] Salidas: outputs/figures (11 figuras), outputs/tables (tablas 4.1 a 4.4, diccionario y calidad), outputs/processed (corpus curado y muestra de anotación) y outputs/web (pipeline_config.json y eda_summary.json para la API de Next.js y la página web).
+[Heading2] Anexo D. Evidencias de funcionamiento
+El cuaderno se ejecutó de inicio a fin sin errores el 6 de noviembre de 2026 sobre 1 445 documentos. La tabla siguiente es la salida completa de la verificación de calidad (calidad_datos.csv).
+Tabla 45. Resultado completo de la verificación de calidad (52 chequeos)
+<TABLA>
+Dimensión | Chequeo | Fuente | Valor | Umbral | Estado
+Exactitud | Idioma heurístico vs. idioma de la edición (RSS) | Google News | 96,7 % | ≥ 95 % | OK
+Exactitud | Acuerdo heurístico vs. langdetect (YouTube) | YouTube | 98,5 % | ≥ 95 % | OK
+Exactitud | Titulares con fecha solo a nivel de día (07:00 UTC) | Google News | 1,7 % | ≤ 2 % | OK
+Exactitud | Medio extraído con URL o texto anómalo | Google News | 2,2 % | ≤ 1 % | REVISAR
+Completitud | Nulos o vacíos en doc_id | Ambas | 0,0 % | 0 % | OK
+Completitud | Nulos o vacíos en timestamp | Ambas | 0,0 % | 0 % | OK
+Completitud | Nulos o vacíos en text_raw | Ambas | 0,1 % | 0 % | REVISAR
+Completitud | Nulos o vacíos en url | Ambas | 0,0 % | 0 % | OK
+Completitud | Titulares sin medio identificable | Google News | 0,0 % | ≤ 2 % | OK
+Completitud | Videos truncados en 100 comentarios (sin paginar) | YouTube | 3 de 18 videos | 0 | REVISAR
+Completitud | Campos de autor recolectados | YouTube | No (por diseño) | No requerido | OK
+Completitud | Cuerpo de la noticia disponible | Google News | Solo titular | Titular suficiente para el MVP | OK
+Consistencia | Formato de doc_id (Ug… / hash de 16 hex) | Ambas | 100,0 % / 100.0 % | 100 % | OK
+Consistencia | Zona horaria única (UTC) | Ambas | UTC | UTC | OK
+Consistencia | Valores de source dentro del dominio | Ambas | 100,0 % | 100 % | OK
+Consistencia | Valores de doc_type dentro del dominio | Ambas | 100,0 % | 100 % | OK
+Consistencia | Valores de period dentro del dominio | Ambas | 100,0 % | 100 % | OK
+Consistencia | Titular en idioma distinto al de la edición | Google News | 0,0 % | ≤ 3 % | OK
+Integridad | doc_id únicos en el corpus | Ambas | 0 duplicados | 0 | OK
+Integridad | Comentarios con video de origen identificable | YouTube | 100,0 % | 100 % | OK
+Integridad | Enlaces de noticias con formato de Google News | Google News | 100,0 % | 100 % | OK
+Razonabilidad | Fechas en el futuro | Ambas | 0 | 0 | OK
+Razonabilidad | Documentos anteriores a la ventana del caso (−14 d) | YouTube | 13,3 % | ≤ 5 % | REVISAR
+Razonabilidad | Documentos anteriores a la ventana del caso (−14 d) | Google News | 0,0 % | ≤ 5 % | OK
+Razonabilidad | Comentarios > 1 000 caracteres | YouTube | 4 | ≤ 1 % | OK
+Razonabilidad | Engagement atípico (> Q3 + 3·IQR = 4) | YouTube | 8,4 % | ≤ 5 % | REVISAR
+Oportunidad | Horas hasta el primer documento tras el evento | Google News | 0,7 h | ≤ 6 h | OK
+Oportunidad | Documentos en las primeras 24 h | Google News | 74 | ≥ 30 | OK
+Oportunidad | Horas hasta el primer documento tras el evento | YouTube | 4,3 h | ≤ 6 h | OK
+Oportunidad | Documentos en las primeras 24 h | YouTube | 101 | ≥ 30 | OK
+Oportunidad | Antigüedad de la captura al analizar | Ambas | 0,1 días | ≤ 7 días | OK
+Unicidad | Duplicados exactos (texto normalizado) | YouTube | 15 (1,9 %) | ≤ 1 % | REVISAR
+Unicidad | Duplicados exactos (texto normalizado) | Google News | 17 (2,7 %) | ≤ 1 % | REVISAR
+Unicidad | Casi duplicados (Jaccard 3-gramas ≥ 0,6) | YouTube | 0 (0,0 %) | ≤ 3 % | OK
+Unicidad | Casi duplicados (Jaccard 3-gramas ≥ 0,6) | Google News RSS | 10 (1,6 %) | ≤ 3 % | OK
+Unicidad | Comentarios de spam o promoción (p. ej. 'SPCX90K') | YouTube | 36 (4,5 %) | ≤ 2 % | REVISAR
+Validez | Textos con menos de 3 palabras | YouTube | 6,6 % | ≤ 5 % | REVISAR
+Validez | Textos con menos de 3 palabras | Google News | 0,0 % | ≤ 5 % | OK
+Validez | Textos fuera de español/inglés | Ambas | 3,0 % | ≤ 5 % | OK
+Validez | Problemas de codificación (mojibake) | Ambas | 0,0 % | 0 % | OK
+Validez | Restos de HTML tras la limpieza | Ambas | 0,0 % | 0 % | OK
+Validez | Etiqueta de sentimiento de referencia | Ambas | No existe aún | Muestra anotada ≥ 3 000 | REVISAR
+Sesgo | Balance entre fuentes (participación de la mayor) | Ambas | 52,3 % | ≤ 65 % | OK
+Sesgo | Proporción de inglés en comentarios | YouTube | 23,9 % | ≥ 25 % | REVISAR
+Sesgo | Concentración por video (mayor video / HHI) | YouTube | 14,3 % / 0.10 | ≤ 25 % / ≤ 0,15 | OK
+Sesgo | Participación de los 10 medios principales | Google News | 26,2 % | ≤ 50 % | OK
+Sesgo | Documentos en el periodo 'antes' (línea base) | Ambas | 8 | ≥ 100 | REVISAR
+Calidad lingüística | Textos con emojis o risa (posible ironía) | YouTube | 19,2 % | ≤ 15 % | REVISAR
+Calidad lingüística | Mezcla de idiomas en un mismo texto | YouTube | 0,9 % | ≤ 5 % | OK
+Calidad lingüística | Textos con emojis o risa (posible ironía) | Google News | 0,0 % | ≤ 15 % | OK
+Calidad lingüística | Mezcla de idiomas en un mismo texto | Google News | 0,0 % | ≤ 5 % | OK
+Calidad lingüística | Tokens con alargamientos o mezcla letra-número | YouTube | 1,0 % | ≤ 3 % | OK
+</TABLA>
+Fuente: elaboración propia.
+Tabla 46. Archivos generados por el cuaderno
+<TABLA>
+Carpeta | Archivos
+outputs/figures | fig_4_3_1_volumen, fig_4_3_2_sincronia, fig_4_3_3_idioma, fig_4_3_4_longitud, fig_4_3_5_vocabulario, fig_4_3_5b_log_odds, fig_4_3_6_entidades_aspectos, fig_4_3_6b_medios_videos, fig_4_3_7_sentimiento_preliminar, fig_4_4_calidad, fig_4_4b_embudo
+outputs/tables | tabla_4_1_recopilacion, tabla_4_2_corpus, tabla_4_2_rasgos_linguisticos, diccionario_datos, calidad_datos, tabla_4_4_embudo_curado
+outputs/processed | corpus_curado.csv (1 228 documentos), muestra_anotacion.csv (604 textos)
+outputs/web | pipeline_config.json (reglas para producción), eda_summary.json (datos de la sección web)
+</TABLA>
+Fuente: elaboración propia.
+[Heading2] Anexo E. Resultados adicionales: supuestos financieros y sensibilidad
+Tabla 47. Clientes de pago al cierre de cada año (neto de bajas)
+<TABLA>
+Plan | Precio | 2027 | 2028 | 2029
+Individual | US$ 19 | 90 | 260 | 560
+Professional | US$ 49 | 30 | 85 | 180
+Business | US$ 349 | 6 | 16 | 32
+Enterprise | US$ 799 | 2 | 5 | 10
+Total |  | 128 | 366 | 782
+</TABLA>
+Fuente: elaboración propia. Rampa lineal mensual entre cierres anuales.
+Tabla 48. Análisis de sensibilidad sobre el número de clientes
+<TABLA>
+Escenario | Ingresos 2029 | Flujo neto 2029 | VAN 3 años (25 %) | VAN con valor terminal
+Pesimista (−30 % clientes) | US$ 248 112 | −US$ 25 853 | −US$ 160 693 | −US$ 160 693
+Base | US$ 354 154 | US$ 75 417 | −US$ 68 861 | US$ 133 860
+Optimista (+30 % clientes) | US$ 459 795 | US$ 176 304 | US$ 22 861 | US$ 496 766
+</TABLA>
+Fuente: elaboración propia. Costos fijos constantes entre escenarios; en el pesimista no se calcula valor terminal por flujo negativo.
