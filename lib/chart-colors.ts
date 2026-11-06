@@ -27,6 +27,39 @@ export const anios = {
 
 export type Anio = keyof typeof anios;
 
+/**
+ * #caso-binance. Cada ENTIDAD conserva su color en toda la sección (el color sigue a la entidad).
+ * - Fuentes: azul y ámbar oscuro pasan los 5 chequeos de `validate_palette.js` (ΔE 26,6 con
+ *   daltonismo, 32,1 con visión normal, ambos ≥ 3:1 sobre blanco). El spec pedía navy y coral, pero
+ *   el coral es «negativo» en toda la marca y aquí convivirían los dos significados.
+ * - Sentimiento: escala divergente coral · gris · teal (los polos pasan los chequeos).
+ * - Periodos: violeta para la crisis aguda (el punto del gráfico) y el gris neutro para el resto
+ *   (énfasis). Azul y violeta juntos FALLAN (ΔE 10,9), por eso «después» no es azul.
+ */
+export const fuente = {
+  google_news: "#2B63A8",
+  youtube: "#CB8600",
+} as const;
+
+export const nombreFuente = { google_news: "Google News", youtube: "YouTube" } as const;
+
+export const sentimiento = {
+  negativo: categorico.coral,
+  neutral: neutro,
+  positivo: categorico.teal,
+} as const;
+
+export const periodo = { durante: "#6250D6", despues: neutro } as const;
+
+/** Estados de calidad: color de ESTADO (reservado), siempre con icono y texto. */
+export const estadoCalidad = { OK: categorico.teal, REVISAR: "#E9C46A", CRÍTICO: categorico.coral } as const;
+
+/** Mezcla un color con blanco: `t` = 0 deja el color, 1 lo vuelve blanco. Para el «inglés» de cada fuente. */
+export function tinte(hex: string, t: number): string {
+  const canal = (i: number) => Math.round(parseInt(hex.slice(i, i + 2), 16) * (1 - t) + 255 * t);
+  return `#${[1, 3, 5].map((i) => canal(i).toString(16).padStart(2, "0")).join("")}`;
+}
+
 /** Series únicas: clientes (crecimiento, teal) y flujo acumulado (negativo, coral). */
 export const serie = {
   clientes: categorico.teal,

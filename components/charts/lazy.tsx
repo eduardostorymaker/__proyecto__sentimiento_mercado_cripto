@@ -8,7 +8,7 @@ import { useInView } from "motion/react";
  * Reserva el alto del gráfico para que su carga no desplace el contenido (CLS) y solo monta el
  * gráfico —y, con él, descarga Recharts— cuando está por entrar en pantalla (SPEC 5.2 y 9).
  */
-function InViewMount({ height, children }: { height: number; children: ReactNode }) {
+export function InViewMount({ height, children }: { height: number; children: ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
   const visto = useInView(ref, { once: true, margin: "300px 0px" });
   return (
@@ -18,7 +18,7 @@ function InViewMount({ height, children }: { height: number; children: ReactNode
   );
 }
 
-function Reserva({ height }: { height: number }) {
+export function Reserva({ height }: { height: number }) {
   return <div aria-hidden="true" className="rounded-2xl bg-mist" style={{ height }} />;
 }
 

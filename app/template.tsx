@@ -21,18 +21,34 @@ import { ease } from "@/lib/motion";
 let navigated = false;
 
 /**
- * Next calcula el scroll al `#ancla` de la URL mientras el contenido aún está desplazado 12 px por
- * la animación de entrada; al terminar, el título queda 12 px más arriba de lo que marca
- * `scroll-mt`. Al acabar la animación se corrige esa diferencia, solo si Next acaba de aterrizar
- * ahí (≤ 24 px), para no tirar de quien ya se movió.
+ * Al llegar a una ruta con `#ancla`, Next calcula el scroll con el diseño de ese instante: la
+ * animación de entrada aún desplaza el contenido 12 px y secciones largas (gráficos que se montan
+ * al acercarse, tipografías, carruseles) pueden cambiar de alto después, con lo que el título
+ * queda fuera de su sitio (`scroll-mt`) o, en pantallas angostas, muy lejos. Al terminar la
+ * animación se vuelve a alinear y, durante 2,5 s, se mantiene alineado si el diseño cambia, hasta
+ * que la persona hace cualquier gesto propio (rueda, toque, teclado o clic): entonces se suelta.
  */
-function realignToHash() {
+function keepHashAligned() {
   const id = decodeURIComponent(window.location.hash.slice(1));
   const el = id ? document.getElementById(id) : null;
   if (!el) return;
-  const margin = parseFloat(getComputedStyle(el).scrollMarginTop) || 0;
-  const delta = el.getBoundingClientRect().top - margin;
-  if (Math.abs(delta) <= 24) window.scrollBy({ top: delta, behavior: "instant" });
+  const align = () => {
+    const margin = parseFloat(getComputedStyle(el).scrollMarginTop) || 0;
+    const delta = el.getBoundingClientRect().top - margin;
+    if (Math.abs(delta) > 1) window.scrollBy({ top: delta, behavior: "instant" });
+  };
+  align();
+
+  const ro = new ResizeObserver(align);
+  ro.observe(document.body);
+  const gestos = ["wheel", "touchstart", "keydown", "pointerdown"] as const;
+  const soltar = () => {
+    ro.disconnect();
+    clearTimeout(timer);
+    for (const g of gestos) window.removeEventListener(g, soltar);
+  };
+  const timer = setTimeout(soltar, 2500);
+  for (const g of gestos) window.addEventListener(g, soltar, { passive: true, once: true });
 }
 
 export default function Template({ children }: { children: React.ReactNode }) {
@@ -50,7 +66,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
       initial={animateIn ? { opacity: 0, y: 12 } : false}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.35, ease: ease.out }}
-      onAnimationComplete={realignToHash}
+      onAnimationComplete={keepHashAligned}
       className="flex-1 outline-none"
     >
       {children}

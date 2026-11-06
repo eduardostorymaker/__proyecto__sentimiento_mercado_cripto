@@ -1,3 +1,4 @@
+import { CasoBinance } from "@/components/sections/caso-binance";
 import { Costos } from "@/components/sections/costos";
 import { Hero } from "@/components/sections/hero";
 import { PulseScore } from "@/components/sections/pulse-score";
@@ -5,7 +6,7 @@ import { sections } from "@/data/nav";
 import { cn } from "@/lib/utils";
 
 /**
- * Página principal. `#inicio`, `#pulse-score` y `#costos` ya son las secciones reales (fases 5 y 6); el resto son
+ * Página principal. `#inicio`, `#pulse-score`, `#costos` y `#caso-binance` ya son las secciones reales (fases 5 a 7); el resto son
  * MARCADORES TEMPORALES con los `id` reales (se reemplazan en la fase 8). No declara `<main>`: lo
  * aporta `app/template.tsx`.
  */
@@ -16,6 +17,7 @@ export default function Home() {
         if (s.id === "inicio") return <Hero key={s.id} />;
         if (s.id === "pulse-score") return <PulseScore key={s.id} />;
         if (s.id === "costos") return <Costos key={s.id} />;
+        if (s.id === "caso-binance") return <CasoBinance key={s.id} />;
         return (
           <section
             key={s.id}

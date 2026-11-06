@@ -94,6 +94,38 @@ export function typo(text: string): string {
     .replace(/ (?=%)/g, NBSP);
 }
 
+const MESES_CORTOS = ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"] as const;
+const MESES_LARGOS = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"] as const;
+const dos = (n: number) => String(n).padStart(2, "0");
+
+/** `2026-10-29T20:05:00+00:00` → `29-oct 20:05` (UTC); sin `hora`: `29-oct`. Formato de la cronología. */
+export function fechaHito(iso: string, { hora = true }: { hora?: boolean } = {}): string {
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return EMPTY;
+  const dia = `${dos(d.getUTCDate())}-${MESES_CORTOS[d.getUTCMonth()]}`;
+  return hora ? `${dia} ${dos(d.getUTCHours())}:${dos(d.getUTCMinutes())}` : dia;
+}
+
+/** `2026-10-29T20:05:00+00:00` → `29 de octubre de 2026` (UTC). */
+export function formatFechaLarga(iso: string): string {
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return EMPTY;
+  return `${d.getUTCDate()} de ${MESES_LARGOS[d.getUTCMonth()]} de ${d.getUTCFullYear()}`;
+}
+
+/** `2026-11-03` → `3 de noviembre` (UTC). */
+export function formatDiaMes(iso: string): string {
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return EMPTY;
+  return `${d.getUTCDate()} de ${MESES_LARGOS[d.getUTCMonth()]}`;
+}
+
+/** `2026-10-29T20:05:00+00:00` → `20:05` (UTC). */
+export function formatHoraUTC(iso: string): string {
+  const d = new Date(iso);
+  return Number.isNaN(d.getTime()) ? EMPTY : `${dos(d.getUTCHours())}:${dos(d.getUTCMinutes())}`;
+}
+
 export interface FechaOpts {
   /** Zona horaria de presentación. */
   zona?: "Lima" | "UTC";

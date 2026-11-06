@@ -29,10 +29,21 @@ export function ChartShell({
 }
 
 /** Tarjeta blanca que aloja un gráfico sobre secciones `mist`. */
-export function ChartCard({ title, children, className }: { title?: ReactNode; children: ReactNode; className?: string }) {
+export function ChartCard({
+  title,
+  heading: Heading = "h3",
+  children,
+  className,
+}: {
+  title?: ReactNode;
+  /** Nivel del título: `h4` cuando la tarjeta ya va dentro de una subsección con su propio `h3`. */
+  heading?: "h3" | "h4";
+  children: ReactNode;
+  className?: string;
+}) {
   return (
     <div className={cn("min-w-0 rounded-2xl border border-border bg-white p-4 md:p-6", className)}>
-      {title && <h3 className="mb-4 text-base font-semibold text-navy">{title}</h3>}
+      {title && <Heading className="mb-4 text-base font-semibold text-navy">{title}</Heading>}
       {children}
     </div>
   );

@@ -95,7 +95,9 @@ export function PulseDemo() {
           className="h-10"
           trackClassName="h-1.5 bg-white/20"
           rangeClassName="bg-transparent"
-          thumbClassName="size-6 border-2 border-white shadow-md ring-white/30 focus-visible:ring-4"
+          // Foco: anillo blanco pleno con una separación del color del panel (#2A4467 = navy + 5 % blanco). Un anillo
+          // blanco al 30 % daba ~2,2:1, bajo el 3:1 que exige WCAG a un indicador de foco.
+          thumbClassName="size-6 border-2 border-white shadow-md ring-white/30 focus-visible:ring-4 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#2a4467]"
           thumbStyle={{ backgroundColor: color }}
         />
         {/* Marca del cero: el control es divergente, así que su centro es el punto de referencia. */}
