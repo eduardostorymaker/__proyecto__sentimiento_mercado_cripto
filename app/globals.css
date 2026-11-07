@@ -146,6 +146,44 @@
   }
 }
 
+/* Brillo suave que recorre el badge «Más popular» cada 4 s (SPEC 5.3). Sin movimiento reducido: queda quieto. */
+@keyframes badge-brillo {
+  0%,
+  55% {
+    background-position: 160% 0;
+  }
+  100% {
+    background-position: -60% 0;
+  }
+}
+/* Flechas del puente negocio → NLP: avanzan y vuelven suavemente. Quietas con movimiento reducido. */
+@keyframes flecha-puente {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(4px);
+  }
+}
+@utility flecha-puente {
+  animation: flecha-puente 1.8s ease-in-out infinite;
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+@utility badge-brillo {
+  background-image: linear-gradient(110deg, transparent 38%, rgb(255 255 255 / 0.65) 50%, transparent 62%);
+  background-size: 250% 100%;
+  background-repeat: no-repeat;
+  background-position: 160% 0;
+  animation: badge-brillo 4s ease-in-out infinite;
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
 @layer base {
   * {
     @apply border-border;

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { LayoutGroup, motion, useMotionValueEvent, useScroll } from "motion/react";
@@ -16,6 +16,7 @@ import { cn } from "@/lib/utils";
 
 const SOLID_AFTER_PX = 24; // pasa de transparente a sólido
 const HIDE_AFTER_PX = 400; // desde aquí se oculta al bajar
+const SHOW_AFTER_UP_PX = 12; // sube al menos esto para reaparecer: un reajuste de 1 px del diseño no debe abrirlo
 
 /**
  * Header fijo (SPEC 5.5):
@@ -32,12 +33,20 @@ export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  /** Lo que se lleva subido sin interrupción (se reinicia al bajar). */
+  const subido = useRef(0);
 
   useMotionValueEvent(scrollY, "change", (y) => {
     const previous = scrollY.getPrevious() ?? 0;
     setScrolled(y > SOLID_AFTER_PX);
-    if (y > previous && y > HIDE_AFTER_PX) setHidden(true);
-    else if (y < previous) setHidden(false);
+    if (y > previous) {
+      subido.current = 0;
+      if (y > HIDE_AFTER_PX) setHidden(true);
+    } else if (y < previous) {
+      subido.current += previous - y;
+      // Arriba del todo no hay nada que esconder; en el resto, hace falta una subida real.
+      if (subido.current >= SHOW_AFTER_UP_PX || y <= HIDE_AFTER_PX) setHidden(false);
+    }
   });
 
   const section = useActiveSection(isHome);
