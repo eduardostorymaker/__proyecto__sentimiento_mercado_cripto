@@ -15,7 +15,7 @@ const MARKS = /(\*\*[^*]+\*\*|\[ref:[a-z0-9_]+\]|\[Por completar\])/g;
  * Un `[ref:id]` inexistente LANZA un error: como las páginas se prerenderizan en `pnpm build`,
  * una cita rota detiene el build (SPEC 10), igual que un `<Cite id="…">` directo no compila.
  */
-export function RichText({ children, tone = "light" }: { children: string; tone?: "light" | "dark" }) {
+export function RichText({ children, tone = "light" }: { children: string; tone?: "light" | "dark" | "white" }) {
   return (
     <>
       {children.split(MARKS).map((part, i) => {

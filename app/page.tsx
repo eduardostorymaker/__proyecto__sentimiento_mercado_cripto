@@ -1,4 +1,4 @@
-import type { ReactElement } from "react";
+import { Suspense, type ReactElement } from "react";
 import { CasoBinance } from "@/components/sections/caso-binance";
 import { Competencia } from "@/components/sections/competencia";
 import { Contexto } from "@/components/sections/contexto";
@@ -47,7 +47,15 @@ export default function Home() {
     <>
       {sections.map((s) => {
         const Seccion = REGISTRO[s.id];
-        return <Seccion key={s.id} />;
+        // Cada sección es su propio límite de Suspense: React hidrata los límites por separado y cede el hilo
+        // entre uno y otro, en vez de una sola tarea de ~0,7 s (TBT en móvil). El HTML no cambia.
+        return s.id === "inicio" ? (
+          <Seccion key={s.id} />
+        ) : (
+          <Suspense key={s.id} fallback={null}>
+            <Seccion />
+          </Suspense>
+        );
       })}
     </>
   );

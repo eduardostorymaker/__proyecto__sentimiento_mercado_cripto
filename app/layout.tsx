@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import { OG_IMAGE, SITE_DESCRIPTION, SITE_NAME, SITE_TITLE, SITE_URL } from "@/lib/site";
 import { cn } from "@/lib/utils";
 import { Providers } from "@/components/providers";
 import { SiteHeader } from "@/components/layout/site-header";
@@ -8,12 +9,26 @@ import { SiteFooter } from "@/components/layout/site-footer";
 import { BackToTop } from "@/components/layout/back-to-top";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
-const jetbrains = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jetbrains", display: "swap" });
+// JetBrains Mono solo da el aspecto de las cifras: no se precarga, para que no compita con el HTML y el póster del primer pantallazo.
+const jetbrains = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jetbrains", display: "swap", preload: false });
 
 export const metadata: Metadata = {
-  title: "Pulse Analytics — Sentimiento del mercado cripto con NLP",
-  description:
-    "Convertimos noticias y comentarios en español e inglés en un índice de sentimiento por criptoactivo, trazable hasta el texto que lo origina.",
+  metadataBase: new URL(SITE_URL),
+  title: { default: SITE_TITLE, template: `%s — ${SITE_NAME}` },
+  description: SITE_DESCRIPTION,
+  applicationName: SITE_NAME,
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    locale: "es_PE",
+    siteName: SITE_NAME,
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    url: "/",
+    images: [OG_IMAGE],
+  },
+  twitter: { card: "summary_large_image", title: SITE_TITLE, description: SITE_DESCRIPTION, images: [OG_IMAGE.url] },
+  robots: { index: true, follow: true },
 };
 
 export const viewport: Viewport = {

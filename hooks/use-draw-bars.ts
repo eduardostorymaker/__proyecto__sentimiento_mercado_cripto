@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, type RefObject } from "react";
+import { enLote, observar } from "@/lib/dom-lote";
 import { dur, EASE_OUT_CSS, prefersReducedMotion, STAGGER_STEP } from "@/lib/motion";
 
 /**
@@ -17,36 +18,46 @@ export function useDrawBars(ref: RefObject<HTMLElement | null>) {
   useEffect(() => {
     const raiz = ref.current;
     if (!raiz || prefersReducedMotion()) return;
-    if (raiz.getBoundingClientRect().top < window.innerHeight) return;
 
-    const barras = Array.from(raiz.querySelectorAll<HTMLElement>("[data-barra]"));
-    if (barras.length === 0) return;
-    const escala = (b: HTMLElement) => (b.dataset.eje === "y" ? "scaleY" : "scaleX");
-    for (const b of barras) b.style.transform = `${escala(b)}(0)`;
+    let cancelado = false;
+    let dejarDeObservar: (() => void) | undefined;
+    let barras: HTMLElement[] = [];
     const animaciones: Animation[] = [];
 
-    const observador = new IntersectionObserver(
-      ([entrada]) => {
-        if (!entrada?.isIntersecting) return;
-        observador.disconnect();
-        barras.forEach((b, i) => {
-          b.style.removeProperty("transform");
-          animaciones.push(
-            b.animate([{ transform: `${escala(b)}(0)` }, { transform: `${escala(b)}(1)` }], {
-              duration: (dur.slow + 0.25) * 1000,
-              delay: i * STAGGER_STEP * 1000,
-              easing: EASE_OUT_CSS,
-              fill: "backwards",
-            }),
-          );
+    // Lectura y escritura agrupadas con las de los demás componentes (ver `lib/dom-lote.ts`).
+    const cancelarLote = enLote(
+      () => raiz.getBoundingClientRect().top < window.innerHeight,
+      (yaVisible) => {
+        if (cancelado || yaVisible) return;
+        barras = Array.from(raiz.querySelectorAll<HTMLElement>("[data-barra]"));
+        if (barras.length === 0) return;
+        const escala = (b: HTMLElement) => (b.dataset.eje === "y" ? "scaleY" : "scaleX");
+        for (const b of barras) b.style.transform = `${escala(b)}(0)`;
+
+        let hecho = false;
+        dejarDeObservar = observar(raiz, 0.2, (entrada) => {
+          if (hecho || !entrada.isIntersecting) return;
+          hecho = true;
+          dejarDeObservar?.();
+          barras.forEach((b, i) => {
+            b.style.removeProperty("transform");
+            animaciones.push(
+              b.animate([{ transform: `${escala(b)}(0)` }, { transform: `${escala(b)}(1)` }], {
+                duration: (dur.slow + 0.25) * 1000,
+                delay: i * STAGGER_STEP * 1000,
+                easing: EASE_OUT_CSS,
+                fill: "backwards",
+              }),
+            );
+          });
         });
       },
-      { threshold: 0.2 },
     );
-    observador.observe(raiz);
 
     return () => {
-      observador.disconnect();
+      cancelado = true;
+      cancelarLote();
+      dejarDeObservar?.();
       for (const a of animaciones) a.cancel();
       for (const b of barras) b.style.removeProperty("transform");
     };

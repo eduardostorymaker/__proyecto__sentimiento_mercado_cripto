@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { hitos } from "@/data/plan";
 import { useDrawBars } from "@/hooks/use-draw-bars";
+import { enLote, observar } from "@/lib/dom-lote";
 import { dur, EASE_OUT_CSS, prefersReducedMotion } from "@/lib/motion";
 
 /**
@@ -18,33 +19,41 @@ export function HitosTimeline() {
   useEffect(() => {
     const raiz = ref.current;
     if (!raiz || prefersReducedMotion()) return;
-    if (raiz.getBoundingClientRect().top < window.innerHeight) return;
 
-    const puntos = Array.from(raiz.querySelectorAll<HTMLElement>("[data-punto]"));
-    for (const p of puntos) p.style.backgroundColor = "#ffffff";
+    let cancelado = false;
+    let dejarDeObservar: (() => void) | undefined;
+    let puntos: HTMLElement[] = [];
     const animaciones: Animation[] = [];
-    const observador = new IntersectionObserver(
-      ([entrada]) => {
-        if (!entrada?.isIntersecting) return;
-        observador.disconnect();
-        puntos.forEach((p, i) => {
-          p.style.removeProperty("background-color");
-          // Un solo fotograma: el final es el color propio del punto (la clase).
-          animaciones.push(
-            p.animate([{ backgroundColor: "#ffffff" }], {
-              duration: dur.slow * 1000,
-              delay: 150 + i * 160,
-              easing: EASE_OUT_CSS,
-              fill: "backwards",
-            }),
-          );
+    const cancelarLote = enLote(
+      () => raiz.getBoundingClientRect().top < window.innerHeight,
+      (yaVisible) => {
+        if (cancelado || yaVisible) return;
+        puntos = Array.from(raiz.querySelectorAll<HTMLElement>("[data-punto]"));
+        for (const p of puntos) p.style.backgroundColor = "#ffffff";
+        let hecho = false;
+        dejarDeObservar = observar(raiz, 0.2, (entrada) => {
+          if (hecho || !entrada.isIntersecting) return;
+          hecho = true;
+          dejarDeObservar?.();
+          puntos.forEach((p, i) => {
+            p.style.removeProperty("background-color");
+            // Un solo fotograma: el final es el color propio del punto (la clase).
+            animaciones.push(
+              p.animate([{ backgroundColor: "#ffffff" }], {
+                duration: dur.slow * 1000,
+                delay: 150 + i * 160,
+                easing: EASE_OUT_CSS,
+                fill: "backwards",
+              }),
+            );
+          });
         });
       },
-      { threshold: 0.2 },
     );
-    observador.observe(raiz);
     return () => {
-      observador.disconnect();
+      cancelado = true;
+      cancelarLote();
+      dejarDeObservar?.();
       for (const a of animaciones) a.cancel();
       for (const p of puntos) p.style.removeProperty("background-color");
     };

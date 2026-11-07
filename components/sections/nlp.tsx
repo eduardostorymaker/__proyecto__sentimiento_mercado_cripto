@@ -71,7 +71,7 @@ export function Nlp() {
                   <span className={cn("font-mono text-xs font-semibold", e.objetivo ? "text-white/85" : "text-teal-text")}>Escalón {i + 1}</span>
                   <span className="mt-1 text-lg leading-snug font-semibold">{e.nombre}</span>
                   <span className={cn("mt-1 text-sm", e.objetivo ? "text-white/90" : "text-ink/80")}>
-                    <RichText tone={e.objetivo ? "dark" : "light"}>{e.descripcion}</RichText>
+                    <RichText tone={e.objetivo ? "white" : "light"}>{e.descripcion}</RichText>
                   </span>
                   {e.objetivo && <Badge className="mt-3 h-6 w-fit rounded-full bg-gold px-3 text-ink">Objetivo</Badge>}
                 </li>

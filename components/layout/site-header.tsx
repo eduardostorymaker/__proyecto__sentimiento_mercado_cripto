@@ -21,8 +21,9 @@ const SHOW_AFTER_UP_PX = 12; // sube al menos esto para reaparecer: un reajuste 
 /**
  * Header fijo (SPEC 5.5):
  * - arriba del todo: transparente, texto blanco (sobre el hero navy), altura 72 px;
- * - tras 24 px: `bg-white/80` + desenfoque + borde, texto navy, altura 60 px;
+ * - tras 24 px: `bg-white/95` (el spec decía 80 %: sobre una sección navy el fondo se volvía gris azulado y los enlaces bajaban a 3,9:1) + desenfoque + borde, texto navy, altura 60 px;
  * - se oculta al bajar (después de 400 px) y reaparece al subir; nunca con el menú móvil abierto;
+ * - los enlaces en línea caben desde 1280 px (a 1024 px 8 enlaces + «Referencias» saltaban de línea): por debajo, menú hamburguesa;
  * - fuera de la página principal no hay hero navy debajo, así que arranca ya sólido.
  */
 export function SiteHeader() {
@@ -62,7 +63,7 @@ export function SiteHeader() {
       transition={{ duration: dur.base, ease: ease.out }}
       className={cn(
         "fixed inset-x-0 top-0 z-50 border-b transition-[background-color,border-color,backdrop-filter] duration-200 motion-reduce:duration-150",
-        solid ? "border-border bg-white/80 backdrop-blur-md" : "border-transparent bg-transparent",
+        solid ? "border-border bg-white/95 backdrop-blur-md" : "border-transparent bg-transparent",
       )}
     >
       <div
@@ -72,6 +73,7 @@ export function SiteHeader() {
         )}
       >
         <Link
+          prefetch={false}
           href={hrefFor("inicio")}
           aria-label="Pulse Analytics, ir al inicio"
           className={cn(
@@ -83,15 +85,16 @@ export function SiteHeader() {
           <Wordmark />
         </Link>
 
-        <div className="flex items-center gap-2 lg:gap-6">
+        <div className="flex items-center gap-2 xl:gap-6">
           <LayoutGroup id="site-nav">
-            <NavigationMenu viewport={false} aria-label="Principal" className="hidden lg:flex">
+            <NavigationMenu viewport={false} aria-label="Principal" className="hidden xl:flex">
               <NavigationMenuList className="gap-1">
                 {navLinks.map((link) => {
                   const current = activeId === link.id;
                   return (
                     <NavigationMenuItem key={link.id}>
                       <Link
+                        prefetch={false}
                         href={hrefFor(link.id)}
                         aria-current={current ? "location" : undefined}
                         className={cn(
@@ -99,7 +102,7 @@ export function SiteHeader() {
                           solid
                             ? current
                               ? "text-navy"
-                              : "text-navy/70 hover:text-navy"
+                              : "text-navy/80 hover:text-navy"
                             : current
                               ? "text-white"
                               : "text-white/80 hover:text-white",
@@ -126,7 +129,7 @@ export function SiteHeader() {
             variant="outline"
             size="lg"
             className={cn(
-              "hidden rounded-xl px-4 transition-all duration-150 active:scale-[0.97] lg:inline-flex",
+              "hidden rounded-xl px-4 transition-all duration-150 active:scale-[0.97] xl:inline-flex",
               solid
                 ? "border-navy/30 bg-transparent text-navy hover:bg-mist"
                 : "border-white/40 bg-white/10 text-white hover:bg-white/20 hover:text-white",

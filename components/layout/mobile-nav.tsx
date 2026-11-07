@@ -46,7 +46,7 @@ export function MobileNav({ open, onOpenChange, isHome, activeId, light }: Mobil
           size="icon-lg"
           aria-label="Abrir menú"
           className={cn(
-            "lg:hidden",
+            "xl:hidden",
             light ? "text-white hover:bg-white/10 hover:text-white" : "text-navy",
           )}
         >
@@ -81,6 +81,7 @@ export function MobileNav({ open, onOpenChange, isHome, activeId, light }: Mobil
               return (
                 <li key={link.id}>
                   <Link
+                    prefetch={false}
                     href={isHome ? `#${link.id}` : `/#${link.id}`}
                     onClick={(event) => handleSelect(event, link.id)}
                     aria-current={current ? "location" : undefined}

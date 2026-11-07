@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { Info } from "lucide-react";
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import { ChipTooltip } from "@/components/common/chip-tooltip";
 import { cn } from "@/lib/utils";
 
 type Tone = "navy" | "teal" | "coral" | "ink";
@@ -60,18 +60,13 @@ export function Kpi({ value, label, hint, tone = "navy", size = "md", onDark = f
       >
         <span>{label}</span>
         {hint && (
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <button
-                type="button"
-                aria-label="Más información"
-                className="mt-0.5 shrink-0 rounded-full text-current opacity-70 transition-opacity hover:opacity-100 focus-visible:opacity-100"
-              >
-                <Info className="size-4" strokeWidth={1.75} aria-hidden="true" />
-              </button>
-            </TooltipTrigger>
-            <TooltipContent>{hint}</TooltipContent>
-          </Tooltip>
+          <ChipTooltip
+          ariaLabel="Más información"
+          tip={hint}
+          className="-m-1 mt-[-0.125rem] grid size-6 shrink-0 place-items-center rounded-full text-current opacity-70 transition-opacity hover:opacity-100 focus-visible:opacity-100"
+        >
+          <Info className="size-4" strokeWidth={1.75} aria-hidden="true" />
+        </ChipTooltip>
         )}
       </p>
     </div>

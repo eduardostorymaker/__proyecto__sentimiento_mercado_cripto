@@ -10,15 +10,16 @@ export interface Integrante {
 }
 
 export const integrantes: readonly Integrante[] = [
-  { nombre: null, codigo: null, rol: null },
-  { nombre: null, codigo: null, rol: null },
-  { nombre: null, codigo: null, rol: null },
-  { nombre: null, codigo: null, rol: null },
+  { nombre: "Sayumi Canchari", codigo: "26207048", rol: "Cientifico de Datos" },
+  { nombre: "Lesli Diaz", codigo: "26207058", rol: "Gerente Comercial" },
+  { nombre: "Eduardo Espinoza", codigo: "26207059", rol: "Ingeniero Devops/Mlops" },
+  { nombre: "Rodeny Llantoy", codigo: "26207068", rol: "Ingeniero de Datos" },
+  { nombre: "Elliot Garamendi", codigo: "26207060", rol: "Desarrollador Fullstack" },
 ];
 
 export const datosCurso = {
-  universidad: null as string | null,
-  curso: null as string | null,
-  docente: null as string | null,
+  universidad: "Universidad Nacional Mayor de San Marcos" as string | null,
+  curso: "Procesamiento de Lenguaje Natural" as string | null,
+  docente: "Saúl Ascue" as string | null,
   lugarFecha: "Lima, noviembre de 2026",
 };

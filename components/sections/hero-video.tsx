@@ -16,7 +16,7 @@ const LABEL =
  * único que ve quien pide movimiento reducido); el video se superpone y aparece con un fundido
  * cuando empieza a reproducirse.
  *
- * - Movimiento reducido: el `<video>` ni se monta, así que no se descarga.
+ * - Movimiento reducido o ahorro de datos: el `<video>` ni se monta, así que no se descarga.
  * - Con movimiento: se monta después de la carga de la página, para no competir con el LCP.
  * - Se pausa fuera de pantalla y se reanuda al volver, salvo que la persona lo haya pausado.
  * - Botón Pausar/Reproducir: WCAG 2.2.2 (contenido en movimiento de más de 5 s).
@@ -34,6 +34,9 @@ export function HeroVideo({ className }: { className?: string }) {
   // Montar el video tras la carga de la página.
   useEffect(() => {
     if (reduced) return;
+    // Ahorro de datos o red muy lenta: el póster basta y se evitan ~4,5 MB de video.
+    const red = (navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }).connection;
+    if (red?.saveData || red?.effectiveType === "slow-2g" || red?.effectiveType === "2g") return;
     const mount = () => setReady(true);
     if (document.readyState === "complete") {
       const timer = setTimeout(mount, 300);
@@ -82,7 +85,8 @@ export function HeroVideo({ className }: { className?: string }) {
           alt=""
           width={2576}
           height={1438}
-          priority
+          loading="eager"
+          fetchPriority="high"
           sizes="(min-width: 1024px) 58vw, 100vw"
           className="absolute inset-0 size-full object-cover"
         />

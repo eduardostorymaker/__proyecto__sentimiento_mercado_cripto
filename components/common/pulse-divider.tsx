@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useId, useRef } from "react";
+import { enLote, observar } from "@/lib/dom-lote";
 import { prefersReducedMotion } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 
@@ -18,28 +19,35 @@ export function PulseDivider({ className }: { className?: string }) {
     const svg = ref.current;
     const path = svg?.querySelector<SVGPathElement>("path");
     if (!svg || !path || prefersReducedMotion()) return;
-    if (svg.getBoundingClientRect().top < window.innerHeight) return;
 
-    path.style.strokeDasharray = "1";
-    path.style.strokeDashoffset = "1";
+    let cancelado = false;
+    let dejarDeObservar: (() => void) | undefined;
     let animacion: Animation | undefined;
-    const observador = new IntersectionObserver(
-      ([entrada]) => {
-        if (!entrada?.isIntersecting) return;
-        observador.disconnect();
-        path.style.removeProperty("stroke-dashoffset");
-        animacion = path.animate([{ strokeDashoffset: 1 }, { strokeDashoffset: 0 }], {
-          duration: 1200,
-          easing: "cubic-bezier(0.16, 1, 0.3, 1)",
-          fill: "backwards",
+    const cancelarLote = enLote(
+      () => svg.getBoundingClientRect().top < window.innerHeight,
+      (yaVisible) => {
+        if (cancelado || yaVisible) return;
+        path.style.strokeDasharray = "1";
+        path.style.strokeDashoffset = "1";
+        let hecho = false;
+        dejarDeObservar = observar(svg, 0.4, (entrada) => {
+          if (hecho || !entrada.isIntersecting) return;
+          hecho = true;
+          dejarDeObservar?.();
+          path.style.removeProperty("stroke-dashoffset");
+          animacion = path.animate([{ strokeDashoffset: 1 }, { strokeDashoffset: 0 }], {
+            duration: 1200,
+            easing: "cubic-bezier(0.16, 1, 0.3, 1)",
+            fill: "backwards",
+          });
+          animacion.finished.then(() => path.style.removeProperty("stroke-dasharray")).catch(() => {});
         });
-        animacion.finished.then(() => path.style.removeProperty("stroke-dasharray")).catch(() => {});
       },
-      { threshold: 0.4 },
     );
-    observador.observe(svg);
     return () => {
-      observador.disconnect();
+      cancelado = true;
+      cancelarLote();
+      dejarDeObservar?.();
       animacion?.cancel();
       path.style.removeProperty("stroke-dasharray");
       path.style.removeProperty("stroke-dashoffset");

@@ -38,7 +38,7 @@ export function RiesgosPanel() {
   return (
     <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-[minmax(0,27rem)_1fr] lg:gap-10">
       <div className="min-w-0 rounded-2xl border border-border bg-white p-4 md:p-6">
-        <h4 className="mb-4 text-base font-semibold text-navy">Matriz de probabilidad e impacto</h4>
+        <h3 className="mb-4 text-base font-semibold text-navy">Matriz de probabilidad e impacto</h3>
         <div role="group" aria-label="Matriz de probabilidad e impacto: cada círculo es un riesgo en la celda de su probabilidad e impacto">
           <div className="grid grid-cols-[auto_auto_1fr] gap-x-2">
             <span className="row-span-2 flex items-center justify-center text-xs font-medium text-muted-foreground [writing-mode:vertical-rl] rotate-180">
@@ -60,7 +60,7 @@ export function RiesgosPanel() {
                       key={`${p}-${i}`}
                       className={cn("relative flex flex-wrap content-center items-center justify-center gap-0.5 rounded-md p-0.5", CELDA[nivelRiesgo(p, i)])}
                     >
-                      <span aria-hidden="true" className="absolute top-0.5 right-1 font-mono text-[0.6rem] text-ink/50">
+                      <span aria-hidden="true" className="absolute top-0.5 right-1 font-mono text-[0.6rem] text-ink/70">
                         {p * i}
                       </span>
                       {enCelda.map((r) => (

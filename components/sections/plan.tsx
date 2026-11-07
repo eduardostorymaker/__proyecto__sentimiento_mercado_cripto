@@ -1,6 +1,7 @@
 import { AnimatedTabs, type TabDef } from "@/components/common/animated-tabs";
 import { Cite } from "@/components/common/cite";
 import { DataTable } from "@/components/common/data-table";
+import { VerFigura } from "@/components/common/figura-alterna";
 import { FiguraInforme } from "@/components/common/figura-informe";
 import { PulseDivider } from "@/components/common/pulse-divider";
 import { RichText } from "@/components/common/rich-text";
@@ -41,6 +42,9 @@ function Cronograma() {
       {/* Escritorio: Gantt nativo. Móvil: la imagen del informe, que se puede ampliar. */}
       <div className="hidden md:block">
         <Gantt />
+        <div className="mt-3 flex justify-end">
+          <VerFigura id="gantt" />
+        </div>
       </div>
       <div className="md:hidden">
         <FiguraInforme id="gantt" />

@@ -22,8 +22,26 @@ export interface TabDef {
  *
  * En pantallas angostas la lista se desplaza horizontalmente.
  */
-export function AnimatedTabs({ tabs, label, className }: { tabs: readonly TabDef[]; label: string; className?: string }) {
-  const [active, setActive] = useState(tabs[0].id);
+export function AnimatedTabs({
+  tabs,
+  label,
+  className,
+  value,
+  onValueChange,
+}: {
+  tabs: readonly TabDef[];
+  label: string;
+  className?: string;
+  /** Pestaña activa, si la controla quien lo usa (p. ej. el filtro de `/referencias`). */
+  value?: string;
+  onValueChange?: (id: string) => void;
+}) {
+  const [interno, setInterno] = useState(tabs[0].id);
+  const active = value ?? interno;
+  const setActive = (id: string) => {
+    setInterno(id);
+    onValueChange?.(id);
+  };
   const group = useId();
   const current = tabs.find((t) => t.id === active) ?? tabs[0];
 
@@ -41,6 +59,9 @@ export function AnimatedTabs({ tabs, label, className }: { tabs: readonly TabDef
               <TabsTrigger
                 key={tab.id}
                 value={tab.id}
+                // Radix pone `aria-controls` en TODAS las pestañas, pero aquí solo existe el panel de la activa:
+                // una referencia a un id inexistente es un error de ARIA.
+                {...(tab.id === active ? {} : { "aria-controls": undefined })}
                 // Foco: el contorno global de 2 px con separación (cabe en el relleno del contenedor con scroll), no el borde + anillo pegados al texto de shadcn.
                 className="relative h-11 flex-none rounded-md px-4 text-sm text-ink/70 after:hidden hover:text-navy focus-visible:border-transparent focus-visible:ring-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring data-active:text-navy"
               >
@@ -58,7 +79,12 @@ export function AnimatedTabs({ tabs, label, className }: { tabs: readonly TabDef
         </div>
       </LayoutGroup>
 
-      <TabsContent value={active} forceMount className="mt-8 text-base">
+      {/* El panel es enfocable (Radix le pone tabindex=0): al enfocarlo con el teclado muestra el mismo contorno de 2 px que el resto. */}
+      <TabsContent
+        value={active}
+        forceMount
+        className="mt-8 rounded-md text-base focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-solid focus-visible:outline-ring"
+      >
         <AnimatePresence mode="wait" initial={false}>
           <motion.div
             key={current.id}

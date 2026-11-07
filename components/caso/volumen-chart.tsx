@@ -126,12 +126,13 @@ export default function VolumenChart({ seis, dia, eventoUtc, finDuranteUtc, conc
             Crisis aguda (72 h)
           </li>
         </ul>
+        {/* Selector de escala sin paneles propios (el gráfico de abajo cambia): sin `aria-controls`, que apuntaría a un id inexistente. */}
         <Tabs value={modo} onValueChange={(v) => setModo(v as Modo)}>
           <TabsList variant="line" aria-label="Escala de tiempo del gráfico" className="h-8 gap-1 p-0">
-            <TabsTrigger value="6h" className="h-8 flex-none rounded-md px-3 text-xs after:hidden focus-visible:border-transparent focus-visible:ring-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring data-active:bg-mist data-active:text-navy">
+            <TabsTrigger value="6h" aria-controls={undefined} className="h-8 flex-none rounded-md px-3 text-xs after:hidden focus-visible:border-transparent focus-visible:ring-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring data-active:bg-mist data-active:text-navy">
               Cada 6 horas
             </TabsTrigger>
-            <TabsTrigger value="dia" className="h-8 flex-none rounded-md px-3 text-xs after:hidden focus-visible:border-transparent focus-visible:ring-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring data-active:bg-mist data-active:text-navy">
+            <TabsTrigger value="dia" aria-controls={undefined} className="h-8 flex-none rounded-md px-3 text-xs after:hidden focus-visible:border-transparent focus-visible:ring-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring data-active:bg-mist data-active:text-navy">
               Por día
             </TabsTrigger>
           </TabsList>

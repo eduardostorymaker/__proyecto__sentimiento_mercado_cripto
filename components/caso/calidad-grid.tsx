@@ -45,7 +45,6 @@ export function CalidadGrid({ calidad }: { calidad: CasoData["calidad"] }) {
                 <button
                   type="button"
                   data-estado={estado}
-                  aria-label={`${dim}: ${cuenta(filas, "OK")} OK, ${cuenta(filas, "REVISAR")} a revisar${criticos ? `, ${criticos} críticos` : ""}. Ver los chequeos`}
                   style={{ borderLeftColor: estadoCalidad[estado] }}
                   className="flex h-full w-full flex-col items-start gap-2 rounded-2xl border border-l-4 border-border bg-white p-4 text-left shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg hover:shadow-navy/10 motion-reduce:transition-none motion-reduce:hover:translate-y-0"
                 >
@@ -58,6 +57,8 @@ export function CalidadGrid({ calidad }: { calidad: CasoData["calidad"] }) {
                     {cuenta(filas, "OK")} OK / {cuenta(filas, "REVISAR")} a revisar
                     {criticos > 0 && ` / ${criticos} críticos`}
                   </span>
+                  {/* Sin `aria-label`: el nombre accesible es el texto visible (estado, dimensión y conteo), como pide WCAG 2.5.3. */}
+                  <span className="sr-only">. Ver los chequeos</span>
                 </button>
               </DialogTrigger>
               <DialogContent className="max-w-[min(96vw,64rem)] gap-4 bg-white p-4 sm:max-w-5xl md:p-6">

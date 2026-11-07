@@ -15,6 +15,7 @@ export function ChipTooltip({
   tip,
   className,
   contentClassName,
+  ariaLabel,
 }: {
   /** Contenido del chip (el botón). */
   children: ReactNode;
@@ -22,6 +23,8 @@ export function ChipTooltip({
   tip: ReactNode;
   className?: string;
   contentClassName?: string;
+  /** Nombre accesible del botón, cuando su contenido es solo un icono. */
+  ariaLabel?: string;
 }) {
   const [open, setOpen] = useState(false);
   // Radix cierra el tooltip en `pointerdown` y otra vez en `click`: se recuerda cómo estaba antes del toque.
@@ -32,6 +35,7 @@ export function ChipTooltip({
       <TooltipTrigger asChild>
         <button
           type="button"
+          aria-label={ariaLabel}
           className={className}
           onPointerDown={(e) => {
             toque.current = { estabaAbierto: open, mouse: e.pointerType === "mouse" };

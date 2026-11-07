@@ -7,9 +7,9 @@ import { cn } from "@/lib/utils";
  * Cita IEEE `[n]` (SPEC 5.3 y 6.4): muestra el texto de la referencia en un `HoverCard` (abre a
  * 150 ms, cierra a 100 ms; también se abre con el foco del teclado) y enlaza a
  * `/referencias#ref-n`. `id` es un `RefId`: un id inexistente no compila.
- * `tone="dark"` para fondos navy.
+ * `tone="dark"` para fondos navy y `tone="white"` para fondos teal oscuro (el teal claro no contrasta ahí).
  */
-export function Cite({ id, tone = "light" }: { id: RefId; tone?: "light" | "dark" }) {
+export function Cite({ id, tone = "light" }: { id: RefId; tone?: "light" | "dark" | "white" }) {
   const ref = refById[id];
 
   return (
@@ -20,7 +20,7 @@ export function Cite({ id, tone = "light" }: { id: RefId; tone?: "light" | "dark
           aria-label={`Referencia ${ref.n}`}
           className={cn(
             "rounded-sm font-mono text-[0.85em] font-medium hover:underline",
-            tone === "dark" ? "text-teal-soft" : "text-teal-text",
+            tone === "white" ? "text-white underline" : tone === "dark" ? "text-teal-soft" : "text-teal-text",
           )}
         >
           [{ref.n}]

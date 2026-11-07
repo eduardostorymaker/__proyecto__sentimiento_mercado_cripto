@@ -63,7 +63,7 @@ export function TitularesCarousel({ titulares }: { titulares: CasoData["titulare
         return (
           <section key={g.periodo} aria-label={`Titulares: ${g.titulo}`} className="min-w-0">
             <h4 className="mb-4 text-sm font-semibold tracking-[0.12em] text-teal-text uppercase">{g.titulo}</h4>
-            <Carousel opts={{ align: "start" }} aria-label={`Titulares del periodo ${g.titulo.toLowerCase()}`}>
+            <Carousel opts={{ align: "start" }} aria-label={`Titulares del periodo ${g.titulo.toLowerCase()}`} className="mb-14 xl:mb-0">
               <CarouselContent className="-ml-4">
                 {lista.map((t) => (
                   <CarouselItem key={t.url} className="basis-full pl-4 sm:basis-1/2 lg:basis-1/3">
@@ -71,8 +71,9 @@ export function TitularesCarousel({ titulares }: { titulares: CasoData["titulare
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <CarouselPrevious className="left-2 lg:-left-12" />
-              <CarouselNext className="right-2 lg:-right-12" />
+              {/* Bajo las tarjetas hasta 1280 px: a media altura taparían el texto, y fuera del borde (`-left-12`) a 1024 px ensanchaban la página. */}
+              <CarouselPrevious className="top-auto -bottom-12 left-[calc(50%-2.75rem)] xl:inset-y-0 xl:-left-12" />
+              <CarouselNext className="top-auto right-[calc(50%-2.75rem)] -bottom-12 xl:inset-y-0 xl:-right-12" />
             </Carousel>
           </section>
         );

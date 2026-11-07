@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, type RefObject } from "react";
+import { enLote, observar } from "@/lib/dom-lote";
 import {
   dur,
   EASE_OUT_CSS,
@@ -30,44 +31,53 @@ export function useReveal(ref: RefObject<HTMLElement | null>, stagger = false) {
   useEffect(() => {
     const root = ref.current;
     if (!root || prefersReducedMotion()) return;
-    if (root.getBoundingClientRect().top < window.innerHeight) return; // ya visible al cargar
 
-    const targets = stagger ? (Array.from(root.children) as HTMLElement[]) : [root];
-    if (targets.length === 0) return;
-
-    for (const el of targets) el.style.opacity = "0";
+    let cancelado = false;
+    let dejarDeObservar: (() => void) | undefined;
+    let targets: HTMLElement[] = [];
     const animations: Animation[] = [];
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const entry = entries[entries.length - 1];
-        // 20 % del elemento, o 20 % del alto de la ventana si es más alto que 5 pantallas.
-        const enough =
-          entry.isIntersecting &&
-          (entry.intersectionRatio >= 0.2 || entry.intersectionRect.height >= window.innerHeight * 0.2);
-        if (!enough) return;
-        observer.disconnect();
+    // Lectura y escritura agrupadas con las de todos los demás componentes (ver `lib/dom-lote.ts`).
+    const cancelarLote = enLote(
+      () => root.getBoundingClientRect().top < window.innerHeight, // ya visible al cargar
+      (yaVisible) => {
+        if (cancelado || yaVisible) return;
+        targets = stagger ? (Array.from(root.children) as HTMLElement[]) : [root];
+        if (targets.length === 0) return;
+        for (const el of targets) el.style.opacity = "0";
 
-        targets.forEach((el, i) => {
-          el.style.removeProperty("opacity");
-          const delay = stagger ? STAGGER_START + Math.min(i, STAGGER_MAX - 1) * STAGGER_STEP : 0;
-          animations.push(
-            el.animate(
-              [
-                { opacity: 0, transform: `translateY(${REVEAL_DISTANCE_PX}px)` },
-                { opacity: 1, transform: "translateY(0)" },
-              ],
-              { duration: dur.reveal * 1000, delay: delay * 1000, easing: EASE_OUT_CSS, fill: "backwards" },
-            ),
-          );
+        let hecho = false;
+        dejarDeObservar = observar(root, [0, 0.2], (entry) => {
+          if (hecho) return;
+          // 20 % del elemento, o 20 % del alto de la ventana si es más alto que 5 pantallas.
+          const enough =
+            entry.isIntersecting &&
+            (entry.intersectionRatio >= 0.2 || entry.intersectionRect.height >= window.innerHeight * 0.2);
+          if (!enough) return;
+          hecho = true;
+          dejarDeObservar?.();
+
+          targets.forEach((el, i) => {
+            el.style.removeProperty("opacity");
+            const delay = stagger ? STAGGER_START + Math.min(i, STAGGER_MAX - 1) * STAGGER_STEP : 0;
+            animations.push(
+              el.animate(
+                [
+                  { opacity: 0, transform: `translateY(${REVEAL_DISTANCE_PX}px)` },
+                  { opacity: 1, transform: "translateY(0)" },
+                ],
+                { duration: dur.reveal * 1000, delay: delay * 1000, easing: EASE_OUT_CSS, fill: "backwards" },
+              ),
+            );
+          });
         });
       },
-      { threshold: [0, 0.2] },
     );
-    observer.observe(root);
 
     return () => {
-      observer.disconnect();
+      cancelado = true;
+      cancelarLote();
+      dejarDeObservar?.();
       for (const a of animations) a.cancel();
       for (const el of targets) el.style.removeProperty("opacity");
     };

@@ -39,6 +39,7 @@ export function SiteFooter() {
         <div className="grid gap-10 md:grid-cols-[1.4fr_2fr]">
           <div className="max-w-sm">
             <Link
+              prefetch={false}
               href="/#inicio"
               aria-label="Pulse Analytics, ir al inicio"
               className="inline-flex items-center gap-2 rounded-lg text-white"
@@ -54,7 +55,7 @@ export function SiteFooter() {
             <ul className="mt-4 grid grid-cols-2 gap-x-6 gap-y-2.5 sm:grid-cols-3">
               {links.map((s) => (
                 <li key={s.id}>
-                  <Link href={`/#${s.id}`} className={linkClass}>
+                  <Link prefetch={false} href={`/#${s.id}`} className={linkClass}>
                     {s.label}
                   </Link>
                 </li>

@@ -2,6 +2,7 @@ import { CashflowChartLazy, MrrChartLazy } from "@/components/charts/lazy";
 import { ChartCard } from "@/components/charts/chart-shell";
 import { MvpBar } from "@/components/charts/mvp-bar";
 import { AnimatedTabs, type TabDef } from "@/components/common/animated-tabs";
+import { VerFigura } from "@/components/common/figura-alterna";
 import { DataTable } from "@/components/common/data-table";
 import { Kpi } from "@/components/common/kpi";
 import { Reveal } from "@/components/common/reveal";
@@ -105,6 +106,9 @@ function Proyeccion() {
   return (
     <div className="grid grid-cols-1 gap-8">
       <MrrChartLazy />
+      <div className="-mt-4 flex justify-end">
+        <VerFigura id="mrr" />
+      </div>
       <DataTable
         caption="Flujo de caja proyectado, 2027-2029"
         source="elaboración propia. Inversión inicial (año 0): −US$ 23 084. Cifras antes de impuestos."
@@ -123,6 +127,9 @@ function Evaluacion() {
   return (
     <div className="grid grid-cols-1 gap-8">
       <CashflowChartLazy />
+      <div className="-mt-4 flex justify-end">
+        <VerFigura id="flujoAcumulado" />
+      </div>
       <p className="max-w-prose text-sm leading-relaxed text-ink/80">
         <RichText>{notaFlujoAcumulado}</RichText>
       </p>
@@ -158,7 +165,7 @@ function Sensibilidad() {
             className={cn("rounded-2xl border border-t-4 border-border bg-white p-6 shadow-sm", TONO_BORDE[e.tono])}
           >
             <div className="flex items-start justify-between gap-2">
-              <h4 className="text-base font-semibold text-navy">{e.escenario}</h4>
+              <h3 className="text-base font-semibold text-navy">{e.escenario}</h3>
               {e.base && <Badge className="h-5 shrink-0 rounded-full bg-navy px-2.5 text-white">Escenario base</Badge>}
             </div>
             <dl className="mt-4 grid gap-3 text-sm">
